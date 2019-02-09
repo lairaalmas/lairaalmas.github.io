@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>FEDE - Ferramenta de Estruturas de Dados Educacional</title> 
+		<link rel="stylesheet" type="text/css" href="css.css">
+
+		<style>
+
+			p{
+				text-align: center;
+				padding-left: 0px;
+			}
+		
+		</style>
+
+	</head>
+
+	<body>
+
+		<div id="cabecalho">
+			<h1><a href="file:///C:/Users/Laira%20Almas/Desktop/FEDE/index.html">FEDE</a></h1>
+			<h3 id="subtitulo">Ferramenta de Estruturas de Dados Educacional</h3>
+		</div>
+
+		<ul>
+
+            <li><a class="menu-titulos active" href="file:///C:/Users/Laira%20Almas/Desktop/FEDE/index.html">Início</a></li>
+            
+            <li><a class="menu-titulos" href="">Estruturas</a></li>
+			<li><a class="menu-topicos" href="">Vetor</a></li>
+			<li><a class="menu-topicos" href="file:///C:/Users/Laira%20Almas/Desktop/FEDE/estrutura-pilha.html">Pilha</a></li>
+			<li><a class="menu-topicos" href="">Fila</a></li>
+			<li><a class="menu-topicos" href="">Lista</a></li>
+			<li><a class="menu-topicos" href="">Árvore Binária</a></li>
+
+			<li><a class="menu-titulos" href="">Algoritmos de Ordenação</a></li>
+			<li><a class="menu-topicos" href="">Bubble sort</a></li>
+			<li><a class="menu-topicos" href="">Insertion sort</a></li>
+			<li><a class="menu-topicos" href="">Selection Sort</a></li>
+			<li><a class="menu-topicos" href="">Heap</a></li>
+
+			<li><a class="menu-titulos" href="">Algoritmos de Busca</a></li>
+			<li><a class="menu-topicos" href="">Árvore de busca binária</a></li>
+
+			<li><a class="menu-titulos" href="file:///C:/Users/Laira%20Almas/Desktop/FEDE/sobre.html">Sobre</a></li>
+
+		</ul>
+
+		<h2 id="saida-titulo">
+		<!-- INICIO modificacao -->
+		BEM VINDO!
+		<!-- FIM modificacao -->
+		</h2> 
+			
+		<div id="saida-texto">
+		<!-- INICIO modificacao -->
+
+			<p>Ferramenta online para simulação dos conteúdos básicos de estruturas de dados.<br><br><br><br><br><br><br><br><br><br><br>
+
+<button id="clicker"> Boring </button>
+                
+            <br><br><br><br><br><br><br><br><br><br>texto<br>
+			</p>
+		
+		<!-- FIM modificacao -->
+		</div>
+
+		<p id="footer">Criado: Dezembro, 2018. Ultima atualização: 18 dezembro, 2018.</p>
+
+		<script>
+		
+// 1. find and store the element we want to listen to events on
+var clickerButton = document.getElementById("clicker");
+// 2. define the function that will respond to the event      
+// callback
+  /*
+  var onButtonClick = function(){
+      clicker.textContent = "Oh wow, you clicked me!"
+  };
+  */
+// 3. add the event listener for the element and function
+// annonymous "inline"
+  //clickerButton.addEventListener("click", onButtonClick);
+
+clickerButton.addEventListener("click", function(){
+    clickerButton.textContent = "oh wow, you clicked me!"
+});
+
+
+        /*    
+        document.getElementById(id)
+        document.getElementsByClassName(className)
+        document.getElementsByTagName(tagName)
+        document.querySelector(cssSelector) //melhor usar o id mesmo
+        document.querySelectorAll(cssSelector)*/
+        /*
+			console.log("wheee!");
+			document.body.innerHTML = "Woooo, I'm all up in your webpage!";
+
+
+		var headingEl = document.getElementById("heading");
+			console.log(headingEl);
+			headingEl.innerHTML = "All about cats";
+
+
+        var nameEls = document.getElementsByTagName("span");
+            console.log(nameEls);
+            // HTMLCollection
+            console.log(nameEls[0]);
+            for (var i = 0; i < nameEls.length; i++) {
+                nameEls[i].innerHTML = "cat";
+            }
+
+
+        var nameEls = document.getElementsByClassName("animal");
+    
+    		//mais generico = usar se as outras n tiverem ajudando
+    		//ao inves de array retorna NodeList
+    	
+        var nameEls = document.querySelectorAll("p .animal");
+
+
+
+            document.getElementById(id)
+            document.getElementsByTagName(tagName)
+            document.getElementsByClassName(className)
+            document.querySelectorAll(cssSelector)
+            document.querySelector(cssSelector)
+
+            nameEl.style.color = "red";
+            nameEl.innerHTML = "cat";
+
+            headingEl.style.backgroundColor = "black"; //e nao background-color
+            headingEl.style.textAlign = "center";
+
+    colorEl.innerHTML = "red"; //muda a linha entre tags para "red"
+    colorEl.style.color = "red"; //muda a cor da linha para vermelha
+
+    frameEl.style.border = "10px dashed orange";
+
+    headingEl.textContent = "All about cats"; //aqui aparece o <em> se colocar
+    headingEl.innerHTML = "<em>All about cats</em>"; //aqui converte pra emphasys
+
+            var catEl = document.createElement("img"); //cria uma tag <img>
+            catEl.src = "https://www.kasandbox.org/programming-images/animals/cat.png";
+            catEl.alt = "Photo of cute cat";
+            document.body.appendChild(catEl); //coloca a <img=...> no corpo como ultimo filho/folha
+
+            
+            //<strong>
+            var strongEl = document.createElement("strong");
+            //strongEl.textContent = "cat";
+            // 'cat'
+            var strongText = document.createTextNode("cat");
+            // <strong>cat</strong>
+            nameEls.appendChild(StrongEl);
+*/
+
+		</script>
+
+	</body>
+
+</html>
+
+<!-- Hello humans! 
+
+
+<span class="linha"></span>
+<div class="bloco"></div>
+
+overflow -> visible, hidden, auto
+
+
+a:link{} 
+a:visited{}
+
+a:hover{}, a:active, a:focus {backgound-color: pink}
+
+
+
+JS 
+
+
+
+rect(x,y,w,h); 
+ellipse(x,y,w,h);
+line(x1,y1,x2,y2); 
+
+background(r,g,b);
+
+strokeweight(33); //pixels
+
+stroke(r,g,b);
+fill(r,g,b);
+
+nostroke();
+
+
+
+
+-
+
+
+
+var x = 20;
+
+"var pode ter valores reatribuidos varias vezes"
+
+draw = function(){ //f~unção existente - em loop
+};
+	
+noStroke();
+// position of the car
+var x = 10;
+draw = function() {
+    
+    // all lines of code inside here will be run repeatedly
+    background(151, 244, 247);
+    
+    // draw the car body
+    fill(255, 0, 115);
+    rect(x, 200, 100, 20);
+    rect(x + 15, 178, 70, 40);
+    
+    // draw the wheels
+    fill(77, 66, 66);
+    ellipse(x + 25, 221, 24, 24);
+    ellipse(x + 75, 221, 24, 24);
+    
+    x = x + 10;
+};
+
+mouseX //variaveis ja existem
+mouseY //...
+
+strokeWeight(3);
+stroke(57, 0, 214);
+fill(0, 210, 247);
+draw = function() {
+    background(255, 255, 255);
+    ellipse(mouseX, mouseY, 30, 30);
+};
+
+
+text("hello",x,y,w,h);
+textSize(30);
+text("hello",x,y);
+
+//configuração vai para os abaixo
+
+var nomeFunção = function(){};
+var nomeFunção = function(v1, v2, v2){return umValor};
+nomeFunção();
+
+random(); //função existente
+
+mouseMoved = function(){};
+mousePressed = function(){};
+mouseReleased = function(){};
+keyPressed= function(){};
+
+mouseIsPressed
+keyIsPressed
+
+=== igual
+!== diferente 
+
+
+random()
+round(); //arredonda
+floor(); //arredonda para baixo
+ceil(); ///arredonda pra cima
+
+
+println("stringu");
+
+while(true){}
+for(var i=0;i<100;y++){}
+
+
+var myfriend = "laira";
+
+var myfriends = ["laira","eu mesma","minha pessoa"];
+
+myfriends[0];
+
+myfriends.length
+
+
+
+var xPositions = [100, 200, 300];
+
+noStroke();
+background(212, 254, 255);
+
+stroke(64, 117, 207);
+fill(196, 33, 255);
+for (var i = 0; i < xPositions.length; i++) { 
+    line(xPositions[i], 120, 194, 285);
+    ellipse(xPositions[i], 104, 32, 46);
+}
+var hopper = getImage("creatures/Hopper-Jumping");
+image(hopper, 189, 227);
+
+
+
+
+
+var xPositions = [100, 200];
+var draw = function() {
+    if (mouseIsPressed) {
+        xPositions[2] = mouseX;
+    }
+    noStroke();
+    background(212, 254, 255);
+    
+    stroke(64, 117, 207);
+    fill(196, 33, 255);
+    for (var i = 0; i < xPositions.length; i++) { 
+        line(xPositions[i], 120, 194, 285);
+        ellipse(xPositions[i], 104, 32, 46);
+    }
+    var hopper = getImage("creatures/Hopper-Jumping");
+    image(hopper, 189, 227);
+};
+
+
+
+
+
+
+var xPositions = [100, 200];
+
+var draw = function() {
+    if (mouseIsPressed) {
+        xPositions.push(mouseX);
+    }
+    noStroke();
+    background(212, 254, 255);
+    
+    stroke(64, 117, 207);
+    fill(196, 33, 255);
+    for (var i = 0; i < xPositions.length; i++) { 
+        line(xPositions[i], 120, 194, 285);
+        ellipse(xPositions[i], 104, 32, 46);
+    }
+    var hopper = getImage("creatures/Hopper-Jumping");
+    image(hopper, 189, 227);
+};
+
+
+
+//vetores sao dinamicos
+
+var x = [10, 20]
+x[2] = 30;
+x[3] = 40;
+
+x.push(mousex);
+
+//function
+var f = function(){};
+f();
+draw = function(){};
+
+//object
+var obj = {
+	nome: "laira",
+	idade: 22,
+	estudo: ["uesb", "opcao"]
+	nascimento: {
+		cidade: "vitoria da conquista",
+		estado: "bahia"
+	}
+};
+
+obj.nome;
+
+//vetor de objetos
+var positions = [{x:10, y:20}, {x:20, y:30}];
+
+var drawWinston = function(facePosition) {
+    var faceX = facePosition.x;
+    var faceY = facePosition.y;
+    
+    fill(255, 255, 0);
+    ellipse(faceX, faceY, 180, 180); // face
+    fill(46, 46, 41);
+    ellipse(faceX - 30, faceY - 50, 30, 30); // eyes
+    ellipse(faceX + 44, faceY - 55, 30, 30);
+    fill(252, 65, 65);
+    ellipse(faceX + 19, faceY + 32, 82, 81); // mouth
+};
+
+var positions = [
+  {x: 99, y: 117},
+  {x: 294, y: 117},
+  {x: 101, y: 316},
+  {x: 294, y: 316},
+  {x: 200, y: 200}
+];
+for (var i = 0; i < positions.length; i++) {
+    drawWinston(positions[i]);
+}
+
+
+
+
+//objeto abstrato (maiusculo mesmo)
+var Nome = function(nome, idade){
+	this.nome = nome;
+	this.idade = idade + " anos";	
+};
+
+var jovem = new Nome("enzo","8");
+var adulto = new Nome("juvencio","83");
+var jovem = new Obj("enzo","8");
+
+
+
+
+
+
+
+
+var Winston = function(nickname, age, x, y) {
+    this.nickname = nickname;
+    this.age = age + "yrs old";
+    this.x = x;
+    this.y = y;
+};
+
+// the draw method
+Winston.prototype.draw = function() {
+    fill(255, 0, 0);
+    var img = getImage("creatures/Winston");
+    image(img, this.x, this.y);
+    var txt = this.nickname + ", " + this.age;
+    text(txt, this.x+20, this.y-10);    
+};
+
+Winston.prototype.talk = function() {
+    text("I'm Winston!", this.x+20, this.y+150);
+};
+
+var winstonTeen = new Winston("Winsteen", 15, 20, 50);
+var winstonAdult = new Winston("Mr. Winst-a-lot", 30, 229, 50);
+
+winstonTeen.draw();
+winstonTeen.talk();
+winstonAdult.draw();
+winstonAdult.talk();
+
+
+--------------------
+
+
+-->
