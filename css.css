@@ -12,18 +12,10 @@
 		margin: 0px;
 	}
 
-
-
 	#cabecalho {
 		background-color: white;
 
 		padding:10px;
-/*
-		padding-top: 15px;
-		padding-left: 10px;
-		padding-right: 10px;
-		padding-bottom: 3px;
-*/
 		position: fixed;
 		z-index: 10;
 		width: 100%;
@@ -44,8 +36,6 @@
 		
 	}
 
-
-
 	h3 {
 		color: black;
 	}
@@ -55,8 +45,6 @@
 		font-size: 14px;
 		text-align: justify;
 	}
-
-
 
 	ul {
 		list-style-type: none;
@@ -69,7 +57,7 @@
 
 		font-size: 1.3em;
 		text-align:  left;
-		float: top;
+		float: left;
 		padding-top: 62px;
 		padding-bottom: 20px;
 		background-color: rgb(53, 53, 53);
@@ -81,9 +69,8 @@
 		background-color: rgb(53, 53, 53);
 	}
 
-
 	.menu-titulos{
-		color: rgb(186, 186, 186);
+		color: rgb(208, 213, 219);
 		font-weight: bold;
 		padding: 0.5em;
 	}
@@ -93,8 +80,7 @@
 		padding: 0.5em;
 	}
 
-	#saida-titulo{
-
+	.titulo{
 		overflow: auto;
 
 		margin: 0px;
@@ -106,8 +92,7 @@
 		color: inherit;
 	}
 
-	#saida-texto{
-
+	.secao{
 		overflow: auto;
 
 		margin: 0px;
@@ -116,7 +101,7 @@
 		padding-top: 1px;
 		padding-left: 50px;
 		padding-right: 50px;
-		padding-bottom: 50px;
+		padding-bottom: 0px;
 	}
 
 	a {
@@ -147,8 +132,6 @@
 		background-color: rgb(48, 108, 165);
   		color: white;
 	}
-
-
 
 	#footer{
 		margin: 0px;
