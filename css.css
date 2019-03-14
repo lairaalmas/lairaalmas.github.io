@@ -1,8 +1,5 @@
 
 	body {
-		/*
-		font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-		*/
 		font-family: Helvetica, serif;
 		font-size: 12px;
 		
@@ -46,6 +43,11 @@
 		text-align: justify;
 	}
 
+	.paragrafo-centralizado {
+        text-align: center;
+    }
+		
+
 	ul {
 		list-style-type: none;
 		margin: 0px;
@@ -78,31 +80,47 @@
 	.menu-topicos{
 		color: white;
 		padding: 0.5em;
+		padding-left: 1.5em;
 	}
 
 	.titulo{
 		overflow: auto;
 
 		margin: 0px;
-		margin-left: 210px;
+		margin-left: 320px;
+		margin-right: 100px;
+
 		padding: 40px;
-		padding-top: 90px;
+		padding-top: 35px;
 		padding-bottom: 15px;
+
+		border-top: 1px;
+		border-top-color: rgb(198, 198, 198);
+		border-top-style: solid;		
 		text-align: center;
 		color: inherit;
 	}
 
 	.secao{
 		overflow: auto;
-
+		
 		margin: 0px;
-		margin-left: 210px;
+		margin-left: 320px; /*largura do menu 220 + 100 margem*/
+		margin-right: 100px;
 
 		padding-top: 1px;
 		padding-left: 50px;
 		padding-right: 50px;
 		padding-bottom: 0px;
 	}
+
+	#final {
+		padding-bottom: 70px;
+	}
+
+	#inicio {
+	    padding-top: 90px;
+    }
 
 	a {
 		text-decoration: none;
