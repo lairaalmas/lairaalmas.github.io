@@ -87,7 +87,7 @@
 		overflow: auto;
 
 		margin: 0px;
-		margin-left: 320px;
+		margin-left: 100px;
 		margin-right: 100px;
 
 		padding: 40px;
@@ -105,7 +105,7 @@
 		overflow: auto;
 		
 		margin: 0px;
-		margin-left: 320px; /*largura do menu 220 + 100 margem*/
+		margin-left: 100px; /*largura do menu 220 + 100 margem*/
 		margin-right: 100px;
 
 		padding-top: 1px;
