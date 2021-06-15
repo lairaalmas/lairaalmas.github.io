@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: menu.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: menu.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * MAIN MENU STATE: main menu - player can select the game he wants to play 
+ * 
+ * @namespace
+ */
+const menuState = {
+
+    /**
+     * Preloads media for current state
+     */
+    preload: function () {
+
+        // LOADING MEDIA
+        game.load.image(url.menu.image);
+
+    },
+
+    /**
+     * Main code
+     */
+    create: function () {
+
+        // BACKGROUND
+
+        game.add.graphic.rect(0, 0, 900, 600, undefined, 0, colors.blueBckg, 1);
+
+        for (let i = 0; i &lt; defaultWidth / 100; i++) {
+            game.add.image(i * 100, 501, 'floor');
+        }
+
+        // LABELS
+
+        // Overtitle: Welcome, &lt;player name>!
+        game.add.text(defaultWidth / 2, 40, game.lang.welcome + ', ' + playerName + '!', textStyles.h4_brown);
+
+        // Title : Select a game
+        game.add.text(defaultWidth / 2, 80, game.lang.menu_title, textStyles.h1_green);
+
+        // Subtitle : &lt;game mode> 
+        this.lbl_game = game.add.text(defaultWidth / 2, 110, '', textStyles.h2_blue_2);
+
+        // NAVIGATION ICONS
+
+        // Loads navigation icons
+        navigationIcons.func_addIcons(
+            false, false, false,
+            true, true,
+            false, false);
+
+        // -------------------- GAME ICONS 
+        this.menuIcons = [];
+
+        const offset = defaultWidth / (info.gameType.length + 1);
+
+        for (let i = 0, x = offset; i &lt; info.gameType.length; i++, x += offset) {
+
+            const icon = game.add.image(x, defaultHeight / 2 - 70, info.gameTypeUrl[i], 1);
+            icon.anchor(0.5, 0.5);
+
+            icon.gameShape = info.gameShape[i];
+            icon.gameType = info.gameType[i];
+
+            this.menuIcons.push(icon);
+
+        }
+
+        // EVENTS
+
+        game.event.add('click', this.func_onInputDown);
+        game.event.add('mousemove', this.func_onInputOver);
+
+    },
+
+
+
+    /* EVENTS */
+
+    /**
+     * Called by mouse click event
+     * 
+     * @param {object} mouseEvent contains the mouse click coordinates
+     */
+     func_onInputDown: function (mouseEvent) {
+        const x = mouseEvent.offsetX, y = mouseEvent.offsetY;
+
+        // Check menu icons
+        for (let i in self.menuIcons) {
+            // If mouse is within the bounds of an icon
+            if (game.math.isOverIcon(x, y, self.menuIcons[i])) {
+                // Click first valid icon
+                self.func_load(self.menuIcons[i]);
+                break;
+            }
+        }
+
+        // Check navigation icons
+        navigationIcons.func_onInputDown(x, y);
+    },
+
+    /**
+     * Called by mouse move event
+     * 
+     * @param {object} mouseEvent contains the mouse move coordinates
+     */
+    func_onInputOver: function (mouseEvent) {
+        const x = mouseEvent.offsetX, y = mouseEvent.offsetY;
+        let flag = false;
+
+        // Check menu icons
+        self.menuIcons.forEach(cur => {
+            if (game.math.isOverIcon(x, y, cur)) {
+                cur.scale = 1.08;
+                self.func_showTitle(cur);
+                flag = true;
+            } else {
+                cur.scale = 1;
+            }
+        });
+
+        if (flag) {
+            document.body.style.cursor = 'pointer';
+        } else {
+            document.body.style.cursor = 'auto';
+        }
+
+        // Check navigation icons
+        navigationIcons.func_onInputOver(x, y);
+
+        game.render.all();
+    },
+
+
+
+    /* GAME FUNCTIONS */
+
+    /**
+     * Saves info from selected game and goes to next state
+     * 
+     * @param {object} icon clicked icon
+     */
+    func_load: function (icon) {
+
+        if (audioStatus) game.audio.beepSound.play();
+
+        gameShape = icon.gameShape;
+        gameTypeString = icon.gameType;
+        switch (gameTypeString) {
+            case 'squareOne': gameType = squareOne; break;
+            case 'squareTwo': gameType = squareTwo; break;
+            case 'circleOne': gameType = circleOne; break;
+            default: console.error('Game error: the name of the game is not valid');
+        }
+
+        self.menuIcons = self.lbl_game.name;
+
+        game.state.start('customMenu');
+
+    },
+
+    /**
+     * Display the name of the game on screen
+     * 
+     * @param {object} icon icon for the game
+     */
+    func_showTitle: function (icon) {
+
+        let title;
+
+        switch (icon.gameShape) {
+            case 'circle': title = game.lang.circle_name; break;
+            case 'square': title = game.lang.square_name; break;
+        }
+
+        const type = icon.gameType.substring(icon.gameType.length - 3);
+
+        switch (type) {
+            case 'One': title += ' I'; break;
+            case 'Two': title += ' II'; break;
+        }
+
+        self.lbl_game.name = title;
+
+    },
+
+    /**
+     * Remove the name of the game from screen
+     */
+    func_clearTitle: function () {
+        self.lbl_game.name = '';
+    },
+
+};
+
+/**
+ * SECUNDARY MENU STATE: player can select level, sublevel and difficulty
+ * 
+ * @namespace
+ */ 
+const customMenuState = {
+
+    /**
+     * Preloads media for current state
+     */
+    preload: function () {
+
+        // LOADING MEDIA
+        game.load.sprite(url[gameTypeString].sprite);
+        game.load.image(url[gameTypeString].image);
+
+    },
+
+    /**
+     * Main code
+     */
+    create: function () {
+
+        let x, y, width, height, offsetH, offsetW;
+        const iconScale = 0.5;
+
+        // Background color
+        game.add.graphic.rect(0, 0, 900, 600, undefined, 0, colors.blueBckg, 1);
+
+        // Floor
+        for (let i = 0; i &lt; defaultWidth / 100; i++) { game.add.image(i * 100, 501, 'floor'); }
+
+        // LABELS
+
+        // Add Title : Select a game
+        game.add.text(defaultWidth / 2, 80, game.lang.custom_game, textStyles.h1_green);
+
+        // Selected game
+        game.add.text(defaultWidth / 2, 40, menuState.menuIcons, textStyles.h4_brown);
+
+        // Loads animation icons
+        navigationIcons.func_addIcons(
+            true, false, false,
+            true, true,
+            'menu', false);
+
+
+        this.menuIcons = [];
+
+        offsetW = 600 / 6;
+        x = 150;
+        y = 200;
+        height = 280;
+        width = 5;
+
+        // Label 'Level'
+        game.add.text(x + offsetW, y, game.lang.level, textStyles.h2_blue_2);
+        // Label 'Sublevel'
+        const sublevelLabel = game.add.text(x + 3 * offsetW, y, game.lang.sublevel, textStyles.h2_blue_2);
+        // Label 'Difficulty'
+        game.add.text(x + 5 * offsetW, y, game.lang.difficulty, textStyles.h2_blue_2);
+
+        // Horizontal line
+        game.add.graphic.rect(x, y + 10, 600, width, undefined, 0, colors.blueMenuLine).anchor(0, 0.5);
+
+        // Vertical line
+        game.add.graphic.rect(x + 2 * offsetW, y - 25, width, height, undefined, 0, colors.blueMenuLine).anchor(0.5, 0);
+        game.add.graphic.rect(x + 4 * offsetW, y - 25, width, height, undefined, 0, colors.blueMenuLine).anchor(0.5, 0);
+
+        // --------------------------- TURN ON/OFF FRACTION LABELS
+
+        if (gameTypeString == 'squareTwo') {
+
+            sublevelLabel.alpha = 0.3;
+
+        } else {
+
+            // Horizontal line
+            game.add.graphic.rect(x + 4 * offsetW, y + 136, 200, width, undefined, 0, colors.blueMenuLine).anchor(0, 0.5);
+
+            // Label 'Show Fractions'
+            game.add.text(x + 5 * offsetW, y + 102, game.lang.show, textStyles.h4_blue_2);
+            game.add.text(x + 5 * offsetW, y + 102 + 24, game.lang.title, textStyles.h2_blue_2);
+
+            const frame = (fractionLabel) ? 1 : 0;
+
+            // Selection box
+            y += 40;
+            const selectionBox = game.add.sprite(x + 5 * offsetW, y + 102 + 24 - 2, 'select', frame, 0.1);
+            selectionBox.anchor(0.5, 0.5);
+            selectionBox.iconType = 'selectionBox';
+            selectionBox.originalScale = 0.1;
+            this.menuIcons.push(selectionBox);
+        }
+
+        // ---------------------------- LEVEL ICONS
+
+        offsetH = this.func_getOffset(height, info[gameTypeString].levelType.length);
+
+        x = 150 + offsetW;
+        y = 270;
+
+        for (let i = 0; i &lt; info[gameTypeString].levelTypeUrl.length; i++, y += offsetH) {
+
+            const icon = game.add.image(x, y, info[gameTypeString].levelTypeUrl[i], iconScale, 1);
+            icon.anchor(0.5, 0.5);
+
+            icon.levelType = info[gameTypeString].levelType[i];
+            icon.iconType = 'level';
+            icon.originalScale = iconScale;
+            if (i == 0) {
+                levelType = icon.levelType;
+                icon.shadow = true;
+            }
+
+            this.menuIcons.push(icon);
+
+        }
+
+        // ---------------------------- SUBLEVEL ICONS
+
+        offsetH = this.func_getOffset(height, info[gameTypeString].sublevelType.length);
+
+        if (gameTypeString != 'squareTwo') x += 2 * offsetW;
+        y = 270;
+
+        let icon;
+        let aux = [];
+        aux['squareOne'] = [
+            ['sublevel_right', 'Plus'],
+            ['sublevel_left', 'Minus']
+        ];
+        aux['circleOne'] = [
+            ['sublevel_right', 'Plus'],
+            ['sublevel_left', 'Minus'],
+            ['sublevel_mixed', 'Mixed']
+        ];
+        aux['squareTwo'] = [
+            // ['sublevel_top', 'A'],
+            ['sublevel_bottom', 'B'],
+            ['sublevel_top', 'C'],
+        ];
+        // Placing sublevel icons
+        for (let i = 0; i &lt; aux[gameTypeString].length; i++, y += offsetH) {
+
+            icon = game.add.image(x, y, aux[gameTypeString][i][0], iconScale);
+            icon.anchor(0.5, 0.5);
+            icon.alpha = 1;
+
+            icon.sublevelType = aux[gameTypeString][i][1];
+            icon.iconType = 'sublevel';
+            icon.originalScale = iconScale;
+
+            if (i == 0) {
+                sublevelType = icon.sublevelType;
+                icon.shadow = true;
+            }
+
+            this.menuIcons.push(icon);
+
+        }
+
+        // --------------------------- DIFFICULTY ICONS
+
+        x = (gameTypeString == 'squareOne') ? 600 : 570;
+        y = 235;
+
+        for (let i = 0; i &lt; info[gameTypeString].gameDifficulty; i++) {
+
+            // Parameters
+            const curX = x + (30 + 10) * i;
+
+            // Difficulty menuIcons
+            const icon = game.add.graphic.rect(curX, y, 30, 30, undefined, 0, colors.green, 1);
+            icon.anchor(0.5, 0.5);
+            icon.difficulty = i + 1;
+            icon.iconType = 'difficulty';
+            icon.originalScale = 1;
+
+            if (i == 0) {
+                gameDifficulty = icon.difficulty;
+                icon.shadow = true;
+            }
+            this.menuIcons.push(icon);
+
+            // Difficulty numbers
+            game.add.text(curX, y + 7, i + 1, textStyles.h4_white);
+
+        }
+
+        // -------------- ENTER ICON
+
+        x = defaultWidth - 100;
+        y = defaultHeight - 110;
+
+        const enterIcon = game.add.image(x, y, 'bush');
+        enterIcon.anchor(0.5, 0.5);
+        enterIcon.iconType = 'enter';
+        enterIcon.originalScale = 0.9;
+
+        this.menuIcons.push(enterIcon);
+
+        game.add.text(x, y, game.lang.continue.toUpperCase(), textStyles.p_white);
+
+        // EVENTS
+
+        game.event.add('click', this.func_onInputDown);
+        game.event.add('mousemove', this.func_onInputOver);
+
+    },
+
+    /* GAME FUNCTIONS */
+
+    /**
+     * Saves information selected by the player 
+     * 
+     * @param {object} icon selected icon
+     */
+    func_load: function (icon) {
+
+        if (audioStatus) game.audio.beepSound.play();
+
+        const type = icon.iconType;
+        switch (type) {
+            case 'level': levelType = icon.levelType; break;
+            case 'sublevel': sublevelType = icon.sublevelType; break;
+            case 'difficulty': gameDifficulty = icon.difficulty; break;
+            case 'selectionBox':
+                if (icon.curFrame == 0) {
+                    icon.curFrame = 1;
+                    fractionLabel = true;
+                } else {
+                    icon.curFrame = 0;
+                    fractionLabel = false;
+                }
+                game.render.all();
+                break;
+            case 'enter':
+                if (debugMode) console.log('Game State: ' + gameTypeString + ', ' + levelType);
+                mapPosition = 0;      // Map position
+                mapMove = true;       // Move no next point
+                completedLevels = 0;  // Reset the game progress when entering a new level
+                game.state.start('map');
+                break;
+        }
+
+    },
+
+    /**
+     * Calculate spacing for icons on the menu screen
+     * 
+     * @param {number} width width of the available part of the screen
+     * @param {number} numberOfIcons number or icons to be put on the screen
+     * @returns {number}
+     */
+    func_getOffset: function (width, numberOfIcons) {
+        return width / (numberOfIcons + 1);
+    },
+
+    /* EVENTS */
+
+    /**
+     * Called by mouse click event
+     * 
+     * @param {object} mouseEvent contains the mouse click coordinates
+     */
+    func_onInputDown: function (mouseEvent) {
+        const x = mouseEvent.offsetX, y = mouseEvent.offsetY;
+        let overIcon;
+
+        // Check if clicked on an icon
+        for (let i in self.menuIcons) {
+            if (game.math.isOverIcon(x, y, self.menuIcons[i])) {
+                overIcon = i;
+                break;
+            }
+        }
+
+        // Update gui
+        if (overIcon) {
+
+            document.body.style.cursor = 'pointer';
+
+            self.menuIcons.forEach(cur => {
+                if (cur.iconType == self.menuIcons[overIcon].iconType) {
+                    if (cur == self.menuIcons[overIcon]) {
+                        cur.shadow = true;
+                    } else {
+                        cur.shadow = false;
+                    }
+                }
+            });
+
+            self.func_load(self.menuIcons[overIcon]);
+
+        } else document.body.style.cursor = 'auto';
+
+        navigationIcons.func_onInputDown(x, y);
+
+        game.render.all();
+
+    },
+
+    /**
+     * Called by mouse move event
+     * 
+     * @param {object} mouseEvent contains the mouse move coordinates
+     */
+    func_onInputOver: function (mouseEvent) {
+        const x = mouseEvent.offsetX, y = mouseEvent.offsetY;
+        let overIcon;
+
+        // Check if pointer is over an icon
+        for (let i in self.menuIcons) {
+            if (game.math.isOverIcon(x, y, self.menuIcons[i])) {
+                overIcon = i;
+                break;
+            }
+        }
+
+        // Update gui
+        if (overIcon) {
+            document.body.style.cursor = 'pointer';
+
+            self.menuIcons.forEach(cur => {
+                if (cur.iconType == self.menuIcons[overIcon].iconType) {
+                    if (cur == self.menuIcons[overIcon]) {
+                        cur.scale = cur.originalScale * 1.1;
+                    } else {
+                        cur.scale = cur.originalScale;
+                    }
+                }
+            });
+        } else {
+            self.menuIcons.forEach(cur => {
+                cur.scale = cur.originalScale;
+            });
+            document.body.style.cursor = 'auto';
+        }
+
+        // Check navigation icons
+        navigationIcons.func_onInputOver(x, y);
+
+        game.render.all();
+
+    },
+
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="bootState.html">bootState</a></li><li><a href="circleOne.html">circleOne</a></li><li><a href="customMenuState.html">customMenuState</a></li><li><a href="endState.html">endState</a></li><li><a href="game.html">game</a></li><li><a href="game.add.html">add</a></li><li><a href="game.add.graphic.html">graphic</a></li><li><a href="game.animation.html">animation</a></li><li><a href="game.event.html">event</a></li><li><a href="game.load.html">load</a></li><li><a href="game.loop.html">loop</a></li><li><a href="game.math.html">math</a></li><li><a href="game.render.html">render</a></li><li><a href="game.render._graphic.html">_graphic</a></li><li><a href="game.state.html">state</a></li><li><a href="game.timer.html">timer</a></li><li><a href="langState.html">langState</a></li><li><a href="loadLangState.html">loadLangState</a></li><li><a href="mapState.html">mapState</a></li><li><a href="menuState.html">menuState</a></li><li><a href="nameState.html">nameState</a></li><li><a href="squareOne.html">squareOne</a></li><li><a href="squareTwo.html">squareTwo</a></li></ul><h3>Global</h3><ul><li><a href="global.html#postScore">postScore</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 03 2021 20:43:07 GMT-0300 (Brasilia Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

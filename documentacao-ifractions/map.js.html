@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: map.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: map.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * MAP STATE: game map where character advances as he passes a level
+ * 
+ * @namespace
+ */
+const mapState = {
+
+    /**
+     * Main code
+     */
+    create: function () {
+
+        // Background color
+        game.add.graphic.rect(0, 0, 900, 600, undefined, 0, colors.blueBckg, 1);
+
+        // Map
+        game.add.image(0, 40, 'bgmap');
+
+        // Calls function that loads navigation icons
+        navigationIcons.func_addIcons(true, true, false, // Left icons
+            false, false, // Right icons
+            'customMenu', false);
+
+        // Progress bar
+        const percentText = 4 * 25;
+
+        if (completedLevels == 4) game.add.graphic.rect(660, 10, completedLevels * 37.5, 35, undefined, 0, colors.intenseGreen, 0.5);
+        else game.add.graphic.rect(660, 10, completedLevels * 37.5, 35, undefined, 0, colors.yellow, 0.9);
+
+        game.add.graphic.rect(661, 11, 149, 34, colors.blue, 3, undefined, 1);
+        game.add.text(820, 38, percentText + '%', textStyles.h2_blue, 'left');
+        game.add.text(650, 38, game.lang.difficulty + ' ' + gameDifficulty, textStyles.h2_blue, 'right');
+
+        // Map positions
+        this.points = {
+            x: [90, 204, 318, 432, 546, 660],
+            y: [486, 422, 358, 294, 230, 166]
+        };
+
+        if (gameTypeString == 'squareOne') {
+            // Garage
+            game.add.image(this.points.x[0], this.points.y[0], 'garage', 0.4).anchor(0.5, 1);
+            // Farm
+            game.add.image(this.points.x[5], this.points.y[5], 'farm', 0.6).anchor(0.1, 0.7);
+        } else {
+            // House
+            game.add.image(this.points.x[0], this.points.y[0], 'house', 0.7).anchor(0.7, 0.8);
+            // School
+            game.add.image(this.points.x[5], this.points.y[5], 'school', 0.35).anchor(0.2, 0.7);
+        }
+
+        // Rocks and bushes
+        const rocks = {
+            x: [156, 275, 276, 441, 452, 590, 712],
+            y: [309, 543, 259, 156, 419, 136, 316],
+            type: [1, 1, 2, 1, 2, 2, 2]
+        };
+
+        for (let i in rocks.type) {
+            if (rocks.type[i] == 1) {
+                game.add.image(rocks.x[i], rocks.y[i], 'rock', 0.32).anchor(0.5, 0.95);
+            } else {
+                game.add.image(rocks.x[i], rocks.y[i], 'bush', 0.4).anchor(0.5, 0.95);
+            }
+        }
+
+        // Trees
+        const trees = {
+            x: [105, 214, 354, 364, 570, 600, 740, 779],
+            y: [341, 219, 180, 520, 550, 392, 488, 286],
+            type: [2, 4, 3, 4, 1, 2, 4, 4]
+        };
+
+        for (let i in trees.type) {
+            game.add.image(trees.x[i], trees.y[i], 'tree' + trees.type[i], 0.6).anchor(0.5, 0.95);
+        }
+
+        // Map positions
+        for (let i = 1; i &lt; this.points.x.length - 1; i++) {
+
+            const aux = (i &lt; mapPosition || (mapMove &amp;&amp; i == mapPosition)) ? 'place_on' : 'place_off';
+
+            // Map road positions
+            game.add.image(this.points.x[i], this.points.y[i], aux, 0.3).anchor(0.5, 0.5);
+
+            // Level signs
+            game.add.image(this.points.x[i] - 20, this.points.y[i] - 60, 'sign', 0.4).anchor(0.5, 1);
+            game.add.text(this.points.x[i] - 20, this.points.y[i] - 79, i, textStyles.h2_white);
+
+        }
+
+        // Game Character 
+        if (gameTypeString == 'squareOne') {
+
+            if (sublevelType == 'Plus') {
+                this.character = game.add.sprite(this.points.x[mapPosition], this.points.y[mapPosition], 'tractor', 0, 0.5);
+                this.character.animation = ['green_tractor', [0, 1, 2, 3, 4], 3];
+            } else {
+                this.character = game.add.sprite(this.points.x[mapPosition], this.points.y[mapPosition], 'tractor', 10, 0.5);
+                this.character.animation = ['red_tractor', [10, 11, 12, 13, 14], 3];
+            }
+
+            this.character.rotate = -30; // 25 anticlock
+
+        } else {
+
+            this.character = game.add.sprite(this.points.x[mapPosition], this.points.y[mapPosition], 'kid_run', 0, 0.4);
+            this.character.animation = ['kid', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3];
+
+        }
+
+        this.character.anchor(0.5, 1);
+        game.animation.play(this.character.animation[0]);
+
+        this.count = 0;
+
+        const speed = 60;
+        const xA = this.points.x[mapPosition];
+        const yA = this.points.y[mapPosition];
+        const xB = this.points.x[mapPosition + 1];
+        const yB = this.points.y[mapPosition + 1];
+        self.speedX = (xB - xA) / speed;
+        self.speedY = (yA - yB) / speed;
+
+        game.event.add('click', this.func_onInputDown);
+        game.event.add('mousemove', this.func_onInputOver);
+
+    },
+
+    /**
+     * Game loop
+     */
+    update: function () {
+
+        let endUpdate = false;
+
+        self.count++;
+
+        if (self.count > 60) { // Wait 1 second before moving or staring a game
+
+            if (mapMove) { // Move character on screen for 1 second
+                self.character.x += self.speedX;
+                self.character.y -= self.speedY;
+                if (Math.ceil(self.character.x) >= self.points.x[mapPosition + 1]) { // Reached next map position
+                    mapMove = false;
+                    mapPosition++; // Set new next position
+                }
+            }
+
+            if (!mapMove) {
+                endUpdate = true;
+            }
+
+
+        }
+
+        game.render.all();
+
+        if (endUpdate) {
+            game.animation.stop(self.character.animation[0]);
+            self.func_loadGame();
+        }
+
+    },
+
+
+
+    /* EVENT HANDLER */
+
+    /**
+     * Called by mouse click event
+     * 
+     * @param {object} mouseEvent contains the mouse click coordinates
+     */
+    func_onInputDown: function (mouseEvent) {
+        navigationIcons.func_onInputDown(mouseEvent.offsetX, mouseEvent.offsetY);
+    },
+
+    /**
+     * Called by mouse move event
+     * 
+     * @param {object} mouseEvent contains the mouse move coordinates
+     */
+    func_onInputOver: function (mouseEvent) {
+        navigationIcons.func_onInputOver(mouseEvent.offsetX, mouseEvent.offsetY);
+    },
+
+
+
+    /* GAME FUNCTIONS */
+
+    /**
+     * Calls game state
+     */
+    func_loadGame: function () {
+
+        if (audioStatus) game.audio.beepSound.play();
+
+        if (mapPosition &lt;= 4) game.state.start('' + gameTypeString + '');
+        else game.state.start('end');
+
+    },
+
+};
+
+/**
+ * ENDING STATES: animation after a full level is completed
+ * 
+ * @namespace
+ */
+const endState = {
+
+    /**
+     * Main code
+     */
+    create: function () {
+
+        self.preAnimate = false;
+        self.animate = true;
+
+        // Background color
+        game.add.graphic.rect(0, 0, 900, 600, undefined, 0, colors.blueBckg, 1);
+
+        // Background
+        game.add.image(0, 0, 'bgimage');
+
+        // Clouds
+        game.add.image(300, 100, 'cloud');
+        game.add.image(660, 80, 'cloud');
+        game.add.image(110, 85, 'cloud', 0.8);
+
+        // Floor
+        for (let i = 0; i &lt; 9; i++) { game.add.image(i * 100, 501, 'floor'); }
+
+        // Progress bar
+        game.add.graphic.rect(660, 10, 4 * 37.5, 35, undefined, 0, colors.intenseGreen, 0.5); // Progress
+        game.add.graphic.rect(661, 11, 149, 34, colors.blue, 3, undefined, 1); // Box
+        game.add.text(820, 38, '100%', textStyles.h2_blue, 'left');
+        game.add.text(650, 38, game.lang.difficulty + ' ' + gameDifficulty, textStyles.h2_blue, 'right');
+
+        game.add.image(360, 545, 'tree4', 0.7).anchor(0, 1);
+
+        // Level character
+        switch (gameTypeString) {
+
+            case 'circleOne':
+
+                this.preAnimate = true;
+                this.animate = false;
+
+                // School
+                game.add.image(600, 222, 'school', 0.7);
+
+                // Kid
+                this.character = game.add.sprite(0, -152, 'kid_run', 0, 0.7);
+                this.character.anchor(0.5, 0.5);
+                this.character.animation = ['move', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 3];
+
+                // Balloon
+                this.balloon = game.add.image(0, -260, 'balloon');
+                this.balloon.anchor(0.5, 0.5);
+
+                this.basket = game.add.image(0, -150, 'balloon_basket');
+                this.basket.anchor(0.5, 0.5);
+
+                break;
+
+            case 'squareTwo':
+
+                // School
+                game.add.image(600, 222, 'school', 0.7);
+
+                // Kid
+                this.character = game.add.sprite(0, 460, 'kid_run', 6, 0.7);
+                this.character.anchor(0.5, 0.5);
+                this.character.animation = ['move', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 3];
+
+                break;
+
+            case 'squareOne':
+
+                // Farm
+                game.add.image(650, 260, 'farm', 1.1);
+
+                // Tractor
+                this.character = game.add.sprite(0, 490, 'tractor', 0, 0.7);
+                this.character.anchor(0.5, 0.5);
+                if (sublevelType == 'Plus') {
+                    this.character.animation = ['move', [0, 1, 2, 3, 4], 4];
+                } else {
+                    this.character.curFrame = 10;
+                    this.character.animation = ['move', [10, 11, 12, 13, 14], 4];
+                }
+
+                break;
+
+        }
+
+        if (this.animate) game.animation.play(this.character.animation[0]);
+
+        game.add.image(30, 585, 'tree4', 0.85).anchor(0, 1);
+
+    },
+
+    /**
+     * Game loop
+     */
+    update: function () {
+
+        // Balloon falling
+        if (self.preAnimate) {
+
+            if (self.character.y &lt; 460) {
+
+                self.balloon.y += 2;
+                self.basket.y += 2;
+                self.character.y += 2;
+
+                self.balloon.x++;
+                self.basket.x++;
+                self.character.x++;
+
+            } else {
+
+                self.preAnimate = false;
+                self.animate = true;
+                game.animation.play(self.character.animation[0]);
+
+            }
+
+        }
+
+        // Character running
+        if (self.animate) {
+
+            if (self.character.x &lt;= 700) {
+
+                self.character.x += 2;
+
+            } else {
+
+                animate = false;
+                completedLevels = 0;
+                game.animation.stop(self.character.animation[0]);
+                game.state.start('menu');
+
+            }
+
+        }
+
+        game.render.all();
+
+    },
+
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="bootState.html">bootState</a></li><li><a href="circleOne.html">circleOne</a></li><li><a href="customMenuState.html">customMenuState</a></li><li><a href="endState.html">endState</a></li><li><a href="game.html">game</a></li><li><a href="game.add.html">add</a></li><li><a href="game.add.graphic.html">graphic</a></li><li><a href="game.animation.html">animation</a></li><li><a href="game.event.html">event</a></li><li><a href="game.load.html">load</a></li><li><a href="game.loop.html">loop</a></li><li><a href="game.math.html">math</a></li><li><a href="game.render.html">render</a></li><li><a href="game.render._graphic.html">_graphic</a></li><li><a href="game.state.html">state</a></li><li><a href="game.timer.html">timer</a></li><li><a href="langState.html">langState</a></li><li><a href="loadLangState.html">loadLangState</a></li><li><a href="mapState.html">mapState</a></li><li><a href="menuState.html">menuState</a></li><li><a href="nameState.html">nameState</a></li><li><a href="squareOne.html">squareOne</a></li><li><a href="squareTwo.html">squareTwo</a></li></ul><h3>Global</h3><ul><li><a href="global.html#postScore">postScore</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Jun 03 2021 20:43:07 GMT-0300 (Brasilia Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
