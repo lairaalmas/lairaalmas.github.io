@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Educational game for teaching fractions" />
+  <meta name="keywords" content="ifractions, fraction, game, private data" />
+  <link rel="shortcut icon" href="assets/img/scene/flag.png">
+  <title>iFractions</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <style>
+    #iFractions-canvas {
+      width: 100%;
+    }
+
+    #teste {
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      padding: 15px 40px;
+      top: 400px;
+      height: 100px;
+      width: 400px;      
+      visibility: hidden;
+
+    }
+
+    #textbox {
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      top: 360px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      visibility: hidden;
+    }
+
+    input[type=text] {
+      background-color: #fff;
+      padding: 15px 40px;
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      font-size: 44px;
+      font-family: Arial;
+      color: #000;
+      text-align: center;
+    }
+
+    input:focus {
+      outline: 3px solid #85accc;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 155px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 50%;
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">iFractions game :: by LInE</div>
+      <div class="panel-body">
+
+        <canvas id="iFractions-canvas"></canvas> <!-- iFractions game -->
+
+        <div>
+          <input class="form-control form-control-lg" id="teste" type="text" placeholder=".form-control-lg">
+        </div>
+        <!--<div>
+          <input class="form-control" type="text" placeholder="Default input">
+        </div>
+        <div>
+          <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
+        </div>-->
+
+        <div id="textbox" onsubmit="return false">
+          <input type="text" id="textbox-content" value="" size="13" maxlength="36"> <!-- Textbox to get player name -->
+        </div>
+
+        <div id="myModal" class="modal">
+          <!-- Modal -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id='infobox-content'></div> <!-- Modal content -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Load all js files -->
+    <script src="js/preMenu.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/customMenu.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/games/circleOne.js"></script>
+    <script src="js/games/squareOne.js"></script>
+    <script src="js/games/squareTwo.js"></script>
+    <script src="js/studentReport.js"></script> <!-- FOR MOODLE -->
+    <script src="js/integrationFunctions.js"></script> <!-- FOR MOODLE -->
+    <script src="js/gameMechanics.js"></script>
+    <script src="js/globals.js"></script>
+
+    <script>
+
+      const defaultWidth = 900; // Default width for the Canvas
+      const defaultHeight = 600; // Default height for the Canvas
+
+      const context = document.getElementById("iFractions-canvas").getContext("2d");
+      context.canvas.width = defaultWidth;
+      context.canvas.height = defaultWidth;
+
+      // CREATING GAME STATES
+      game.state.add('boot', bootState);
+      game.state.add('lang', langState);
+      game.state.add('loadLang', loadLangState);
+      game.state.add('name', nameState);
+
+      game.state.add('menu', menuState);
+      game.state.add('customMenu', customMenuState);
+
+      game.state.add('map', mapState);
+      game.state.add('end', endState);
+
+      game.state.add('squareOne', squareOne);
+      game.state.add('circleOne', circleOne);
+      game.state.add('squareTwo', squareTwo);
+
+      game.state.add('studentReport', studentReport); // FOR MOODLE
+
+      // CALLING FIRST GAME STATE
+      game.state.start('boot');
+    </script>
+
+  </div>
+
+</body>
+
+</html>
