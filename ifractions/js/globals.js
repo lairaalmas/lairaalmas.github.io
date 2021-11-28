@@ -594,9 +594,9 @@ const sendToDB = function (extraData) {
     const url = iLMparameters.iLM_PARAM_ServerToGetAnswerURL;
     const grade = '' + getEvaluation();
     const report = getAnswer();
-    const data = 'return_get_answer=1'+
-    '&iLM_PARAM_ActivityEvaluation='+encodeURIComponent(grade)+
-    '&iLM_PARAM_ArchiveContent='+encodeURIComponent(report);
+    const data = 'return_get_answer=1' +
+      '&iLM_PARAM_ActivityEvaluation=' + encodeURIComponent(grade) +
+      '&iLM_PARAM_ArchiveContent=' + encodeURIComponent(report);
 
     const init = { method: 'POST', body: data, headers: { 'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8' } };
 
@@ -640,3 +640,21 @@ const sendToDB = function (extraData) {
   }
 
 };
+
+let gameFrame = function () {
+  let x = y = 200;
+  let width = context.canvas.width - 2 * x;
+  let height = context.canvas.height - 2 * y;
+  let rect = function () { game.add.geom.rect(x, y, width, height, colors.red, 2) }
+  let point = function (offsetW, offsetH) {
+    for (let i = 0, y1 = y; i < 4; i++) {
+      x1 = x;
+      for (let j = 0; j < 7; j++) {
+        game.add.geom.rect(x1, y1, 20, 20, undefined, 0, colors.red, 1);
+        x1 += offsetW;
+      }
+      y1 += offsetH;
+    }
+  }
+  return { x, y, width, height, rect, point}
+}

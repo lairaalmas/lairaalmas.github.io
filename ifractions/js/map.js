@@ -16,9 +16,6 @@ const mapState = {
     // Background color
     game.add.geom.rect(0, 0, context.canvas.width, context.canvas.height, undefined, 0, colors.blueBckg, 1);
 
-    // Map
-    game.add.image(0, 40, 'bgmap');
-
     // Calls function that loads navigation icons
 
     // FOR MOODLE
@@ -34,22 +31,40 @@ const mapState = {
         'customMenu', false);
     }
 
-    // Progress bar
-    const percentText = completedLevels * 25;
-
-    if (completedLevels >= 4) game.add.geom.rect(660, 10, 4 * 37.5, 35, undefined, 0, colors.intenseGreen, 0.5);
-    else game.add.geom.rect(660, 10, completedLevels * 37.5, 35, undefined, 0, colors.yellow, 0.9);
-
-    game.add.geom.rect(661, 11, 149, 34, colors.blue, 3, undefined, 1); // Box
-    game.add.text(820, 38, percentText + '%', textStyles.h2_blue).align = 'left';
-    game.add.text(650, 38, game.lang.difficulty + ' ' + gameDifficulty, textStyles.h2_blue).align = 'right';
-
-    // Map positions
     this.points = {
       x: [90, 204, 318, 432, 546, 660],
       y: [486, 422, 358, 294, 230, 166]
     };
+    const rocks = {
+      x: [156, 275, 276, 441, 452, 590, 712],
+      y: [309, 543, 259, 156, 419, 136, 316],
+      type: [1, 1, 2, 1, 2, 2, 2]
+    };
+    const trees = {
+      x: [105, 214, 354, 364, 570, 600, 740, 779],
+      y: [341, 219, 180, 520, 550, 392, 488, 286],
+      type: [2, 4, 3, 4, 1, 2, 4, 4]
+    };
+    const offsetH = gameFrame().y;
+    const offsetW = gameFrame().x * 2.5;
+    for (let i = 0, cur = this.points; i < cur.x.length; i++) { cur.x[i] += offsetW; cur.y[i] += offsetH; }
+    for (let i = 0, cur = rocks; i < cur.x.length; i++) { cur.x[i] += offsetW; cur.y[i] += offsetH; }
+    for (let i = 0, cur = trees; i < cur.x.length; i++) { cur.x[i] += offsetW; cur.y[i] += offsetH; }
+    
+    // Map
+    game.add.image(offsetW, offsetH + 40, 'bgmap');
 
+    // Progress bar
+    const percentText = completedLevels * 25;
+
+    if (completedLevels >= 4) game.add.geom.rect(context.canvas.width - 240, 10, 4 * 37.5, 35, undefined, 0, colors.intenseGreen, 0.5);
+    else game.add.geom.rect(context.canvas.width - 240, 10, completedLevels * 37.5, 35, undefined, 0, colors.yellow, 0.9);
+
+    game.add.geom.rect(context.canvas.width - 240 + 1, 11, 149, 34, colors.blue, 3, undefined, 1); // Box
+    game.add.text(context.canvas.width - 240 + 160, 38, percentText + '%', textStyles.h2_blue).align = 'left';
+    game.add.text(context.canvas.width - 240 - 10, 38, game.lang.difficulty + ' ' + gameDifficulty, textStyles.h2_blue).align = 'right';
+
+    // Map positions
     if (gameType == 'squareOne') {
       // Garage
       game.add.image(this.points.x[0], this.points.y[0], 'garage', 0.4).anchor(0.5, 1);
@@ -63,12 +78,6 @@ const mapState = {
     }
 
     // Rocks and bushes
-    const rocks = {
-      x: [156, 275, 276, 441, 452, 590, 712],
-      y: [309, 543, 259, 156, 419, 136, 316],
-      type: [1, 1, 2, 1, 2, 2, 2]
-    };
-
     for (let i in rocks.type) {
       if (rocks.type[i] == 1) {
         game.add.image(rocks.x[i], rocks.y[i], 'rock', 0.32).anchor(0.5, 0.95);
@@ -78,12 +87,6 @@ const mapState = {
     }
 
     // Trees
-    const trees = {
-      x: [105, 214, 354, 364, 570, 600, 740, 779],
-      y: [341, 219, 180, 520, 550, 392, 488, 286],
-      type: [2, 4, 3, 4, 1, 2, 4, 4]
-    };
-
     for (let i in trees.type) {
       game.add.image(trees.x[i], trees.y[i], 'tree' + trees.type[i], 0.6).anchor(0.5, 0.95);
     }
@@ -134,7 +137,7 @@ const mapState = {
     const yB = this.points.y[mapPosition + 1];
     self.speedX = (xB - xA) / speed;
     self.speedY = (yA - yB) / speed;
-
+    
     game.event.add('click', this.onInputDown);
     game.event.add('mousemove', this.onInputOver);
 
@@ -230,15 +233,15 @@ const endState = {
     game.add.geom.rect(0, 0, context.canvas.width, context.canvas.height, undefined, 0, colors.blueBckg, 1);
 
     // Background
-    game.add.image(0, 0, 'bgimage');
+    game.add.image(0, 0, 'bgimage', 2.2);
 
     // Clouds
-    game.add.image(300, 100, 'cloud');
-    game.add.image(660, 80, 'cloud');
-    game.add.image(110, 85, 'cloud', 0.8);
+    game.add.image(640, 100, 'cloud');
+    game.add.image(1280, 80, 'cloud');
+    game.add.image(300, 85, 'cloud', 0.8);
 
     // Floor
-    for (let i = 0; i < 9; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
+    for (let i = 0; i < context.canvas.width / 100; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
 
     // Progress bar
     game.add.geom.rect(660, 10, 4 * 37.5, 35, undefined, 0, colors.intenseGreen, 0.5); // Progress
@@ -356,7 +359,7 @@ const endState = {
           game.state.start('menu');
         } else {
           // FOR MOODLE
-          parent.location.reload(true);          
+          parent.location.reload(true);
         }
 
       }

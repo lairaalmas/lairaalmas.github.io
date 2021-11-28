@@ -58,33 +58,34 @@ const circleOne = {
 
     let hasBaseDifficulty = false; // Will validate that level isnt too easy (has at least one '1/difficulty' fraction)
 
+    const startY =  context.canvas.height - 75;
     const startX = (gameOperation == 'Minus') ? 66 + 5 * 156 : 66;  // Initial 'x' coordinate for the kid and the baloon
     this.correctX = startX; // Ending position, accumulative
 
     // BACKGROUND
 
     // Add background image
-    game.add.image(0, 0, 'bgimage');
+    game.add.image(0, 0, 'bgimage', 2.2);
     // Add clouds
-    game.add.image(300, 100, 'cloud');
-    game.add.image(660, 80, 'cloud');
-    game.add.image(110, 85, 'cloud', 0.8);
+    game.add.image(640, 100, 'cloud');
+    game.add.image(1280, 80, 'cloud');
+    game.add.image(300, 85, 'cloud', 0.8);
 
     // Add floor of grass
-    for (let i = 0; i < 9; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
+    for (let i = 0; i < context.canvas.width / 100; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
 
     // Road
-    this.road = game.add.image(47, 515, 'road', 1.01, 0.94);
+    this.road = game.add.image(47, startY - 11, 'road', 1.01, 0.94);
 
     // Road points
     const distanceBetweenPoints = 156; // Distance between road points
 
     for (let i = 0; i <= 5; i++) {
-      game.add.image(66 + i * distanceBetweenPoints, 526, 'place_off', 0.3).anchor(0.5, 0.5);
-      game.add.text(66 + i * distanceBetweenPoints, 560, i, textStyles.h2_blue);
+      game.add.image(66 + i * distanceBetweenPoints, startY, 'place_off', 0.3).anchor(0.5, 0.5);
+      game.add.text(66 + i * distanceBetweenPoints, startY + 34, i, textStyles.h2_blue);
     }
 
-    this.trace = game.add.geom.rect(startX - 1, 526, 1, 1, undefined, 1);
+    this.trace = game.add.geom.rect(startX - 1, startY, 1, 1, undefined, 1);
     this.trace.alpha = 0;
 
     // Calls function that loads navigation icons
@@ -173,7 +174,7 @@ const circleOne = {
       let circle, label = [];
 
       if (divisor == 1) {
-        circle = game.add.geom.circle(startX, 490 - i * this.circles.diameter, this.circles.diameter,
+        circle = game.add.geom.circle(startX, startY - 36 - i * this.circles.diameter, this.circles.diameter,
           lineColor, 2, colors.white, 1);
 
         circle.anticlockwise = anticlockwise;
@@ -181,7 +182,7 @@ const circleOne = {
         this.circles.angle.push(360);
 
         if (fractionLabel) {
-          label[0] = game.add.text(x, 490 - i * this.circles.diameter, divisor, textStyles.h2_blue);
+          label[0] = game.add.text(x, startY - 36 - i * this.circles.diameter, divisor, textStyles.h2_blue);
           this.circles.label.push(label);
         }
       } else {
@@ -189,16 +190,16 @@ const circleOne = {
 
         if (direction == 'Right') degree = 360 - degree; // Anticlockwise equivalent
 
-        circle = game.add.geom.arc(startX, 490 - i * this.circles.diameter, this.circles.diameter,
+        circle = game.add.geom.arc(startX, startY - 36 - i * this.circles.diameter, this.circles.diameter,
           0, game.math.degreeToRad(degree), anticlockwise,
           lineColor, 2, colors.white, 1);
 
         this.circles.angle.push(degree);
 
         if (fractionLabel) {
-          label[0] = game.add.text(x, 480 - i * this.circles.diameter + 32, divisor, textStyles.h4_blue);
-          label[1] = game.add.text(x, 488 - i * this.circles.diameter, '1', textStyles.h4_blue);
-          label[2] = game.add.text(x, 488 - i * this.circles.diameter, '___', textStyles.h4_blue);
+          label[0] = game.add.text(x, startY - 46 - i * this.circles.diameter + 32, divisor, textStyles.h4_blue);
+          label[1] = game.add.text(x, startY - 38 - i * this.circles.diameter, '1', textStyles.h4_blue);
+          label[2] = game.add.text(x, startY - 38 - i * this.circles.diameter, '___', textStyles.h4_blue);
           this.circles.label.push(label);
         }
       }
@@ -246,7 +247,7 @@ const circleOne = {
     this.availableAnimations['Right'] = ['Right', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 4];
     this.availableAnimations['Left'] = ['Left', [23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12], 4];
 
-    this.kid = game.add.sprite(startX, 495 - this.circles.all.length * this.circles.diameter, 'kid_walk', 0, 0.8);
+    this.kid = game.add.sprite(startX, startY - 31 - this.circles.all.length * this.circles.diameter, 'kid_walk', 0, 0.8);
     this.kid.anchor(0.5, 0.8);
     if (gameOperation == 'Minus') {
       this.kid.animation = this.availableAnimations['Left'];
@@ -256,11 +257,11 @@ const circleOne = {
     }
 
     // BALLOON
-    this.balloon = game.add.image(this.balloonPlace, 350, 'balloon', 1, 0.5);
+    this.balloon = game.add.image(this.balloonPlace, startY - 176, 'balloon', 1, 0.5);
     this.balloon.alpha = 0.5;
     this.balloon.anchor(0.5, 0.5);
 
-    this.basket = game.add.image(this.balloonPlace, 472, 'balloon_basket');
+    this.basket = game.add.image(this.balloonPlace, startY - 54, 'balloon_basket');
     this.basket.anchor(0.5, 0.5);
 
     // Help pointer

@@ -18,25 +18,11 @@
       width: 100%;
     }
 
-    #teste {
-      position: absolute;
-      margin-left: auto;
-      margin-right: auto;
-      left: 0;
-      right: 0;
-      padding: 15px 40px;
-      top: 400px;
-      height: 100px;
-      width: 400px;      
-      visibility: hidden;
-
-    }
-
     #textbox {
       position: absolute;
       margin-left: auto;
       margin-right: auto;
-      top: 360px;
+      top: 330px;
       left: 0;
       right: 0;
       text-align: center;
@@ -48,7 +34,7 @@
       padding: 15px 40px;
       box-sizing: border-box;
       border: 3px solid #ccc;
-      font-size: 44px;
+      font-size: 24px;
       font-family: Arial;
       color: #000;
       text-align: center;
@@ -119,23 +105,13 @@
 
         <canvas id="iFractions-canvas"></canvas> <!-- iFractions game -->
 
-        <div>
-          <input class="form-control form-control-lg" id="teste" type="text" placeholder=".form-control-lg">
-        </div>
-        <!--<div>
-          <input class="form-control" type="text" placeholder="Default input">
-        </div>
-        <div>
-          <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm">
-        </div>-->
-
         <div id="textbox" onsubmit="return false">
           <input type="text" id="textbox-content" value="" size="13" maxlength="36"> <!-- Textbox to get player name -->
         </div>
 
         <div id="myModal" class="modal">
           <!-- Modal -->
-          <div class="modal-content">
+          <div class=" modal-content">
             <span class="close">&times;</span>
             <div id='infobox-content'></div> <!-- Modal content -->
           </div>
@@ -160,8 +136,8 @@
 
     <script>
 
-      const defaultWidth = 900; // Default width for the Canvas
-      const defaultHeight = 600; // Default height for the Canvas
+      const defaultWidth = 1920; // Default width for the Canvas
+      const defaultHeight = 1080; // Default height for the Canvas
 
       const context = document.getElementById("iFractions-canvas").getContext("2d");
       context.canvas.width = defaultWidth;

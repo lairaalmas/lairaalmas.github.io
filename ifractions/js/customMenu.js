@@ -31,10 +31,6 @@ const customMenuState = {
 
     } else {
 
-      const iconScale = 0.7;
-      const baseY = 270 - 40;
-      this.menuIcons = [];
-
       // Background color
       game.add.geom.rect(0, 0, context.canvas.width, context.canvas.height, undefined, 0, colors.blueBckg, 1);
       // Floor
@@ -51,18 +47,23 @@ const customMenuState = {
         true, true,
         'menu', false);
 
+      let infoIcon;
+      const iconScale = 0.7;
       const curGame = info.all[gameType];
-      let x = 150;
-      let y = 200 - 40;
-      let width = 5;
-      let height = 280 + 80;
-      let offsetW = 600 / 6;
-      let offsetH, infoIcon;
+      this.menuIcons = [];
+
+      let x = gameFrame().x;
+      let y = gameFrame().y;
+
+      let offsetW = game.math.getOffset(gameFrame().width, 5);
+      let offsetH = game.math.getOffset(gameFrame().height, curGame.gameMode.length);
+
+      const line_thickness = 5;
 
       // Label 'Game Modes'
-      game.add.text(x + offsetW - 12, y, game.lang.game_modes, textStyles.h2_blue_2);
+      game.add.text(x + offsetW, y, game.lang.game_modes, textStyles.h2_blue_2);
 
-      infoIcon = game.add.image(x + 2 * offsetW - 30, y - 40, 'info', 0.5, 0.4);
+      infoIcon = game.add.image(x + 2 * offsetW - 30, y - 20, 'info', 0.5, 0.4);
       infoIcon.anchor(0.5, 0.5);
       infoIcon.iconType = 'infoIcon';
       infoIcon.id = 'gameMode';
@@ -71,7 +72,7 @@ const customMenuState = {
       // Label 'Operations'
       game.add.text(x + 3 * offsetW, y, game.lang.operations, textStyles.h2_blue_2);
 
-      infoIcon = game.add.image(x + 4 * offsetW - 30, y - 40, 'info', 0.5, 0.4);
+      infoIcon = game.add.image(x + 4 * offsetW - 30, y - 20, 'info', 0.5, 0.4);
       infoIcon.anchor(0.5, 0.5);
       infoIcon.iconType = 'infoIcon';
       infoIcon.id = 'gameOperation';
@@ -80,55 +81,54 @@ const customMenuState = {
       // Label 'Difficulties'
       game.add.text(x + 5 * offsetW, y, game.lang.difficulties, textStyles.h2_blue_2);
 
-      infoIcon = game.add.image(x + 6 * offsetW - 30, y - 40, 'info', 0.5, 0.4);
+      infoIcon = game.add.image(x + 6 * offsetW - 30, y - 20, 'info', 0.5, 0.4);
       infoIcon.anchor(0.5, 0.5);
       infoIcon.iconType = 'infoIcon';
       infoIcon.id = 'gameDifficulty';
       this.menuIcons.push(infoIcon);
 
       // Horizontal line
-      game.add.geom.rect(x - 25, y + 10, 600 + 50, width, undefined, 0, colors.blueMenuLine).anchor(0, 0.5);
+      game.add.geom.rect(x - 25, y + 10, gameFrame().width, line_thickness, undefined, 0, colors.blueMenuLine).anchor(0, 0.5);
       // Vertical lines
-      game.add.geom.rect(x + 2 * offsetW, y - 25, width, height, undefined, 0, colors.blueMenuLine).anchor(0.5, 0);
-      game.add.geom.rect(x + 4 * offsetW, y - 25, width, height, undefined, 0, colors.blueMenuLine).anchor(0.5, 0);
+      game.add.geom.rect(x + 2 * offsetW, y - 25, line_thickness, gameFrame().height, undefined, 0, colors.blueMenuLine).anchor(0.5, 0);
+      game.add.geom.rect(x + 4 * offsetW, y - 25, line_thickness, gameFrame().height, undefined, 0, colors.blueMenuLine).anchor(0.5, 0);
 
       // --------------------------- TURN ON/OFF FRACTION LABELS / RECTANGLE GUIDE
 
       // Horizontal line
-      game.add.geom.rect(x + 4 * offsetW, y + 136, 200 + 25, width, undefined, 0, colors.blueMenuLine).anchor(0, 0.5);
+      game.add.geom.rect(x + 4 * offsetW, y + offsetH, gameFrame().width / 3 - 4 * line_thickness, line_thickness, undefined, 0, colors.blueMenuLine).anchor(0, 0.5);
 
-      // Label 'Show Fractions / Auxiliar rectangles'
-      game.add.text(x + 5 * offsetW, y + 102, game.lang.show, textStyles.h4_blue_2);
-
-      infoIcon = game.add.image(x + 6 * offsetW + 20, y + 102, 'info', 0.5, 0.4);
+      infoIcon = game.add.image(x + 6 * offsetW - 30, y + offsetH - 20, 'info', 0.5, 0.4);
       infoIcon.anchor(0.5, 0.5);
       infoIcon.iconType = 'infoIcon';
       infoIcon.id = 'gameMisc';
       this.menuIcons.push(infoIcon);
 
+      // Label 'Show Fractions / Auxiliar rectangles'
+      game.add.text(x + 5 * offsetW, y + offsetH - 48, game.lang.show, textStyles.h4_blue_2);
+
       let auxText;
       if (gameType == 'squareTwo') {
         auxText = game.lang.aux_rectangle;
-        game.add.text(x + 5 * offsetW + 10, y + 102 + 24, auxText, textStyles.h4_blue_2);
+        game.add.text(x + 5 * offsetW + 10, y + offsetH - 24, auxText, textStyles.h4_blue_2);
       } else {
         auxText = game.lang.title;
-        game.add.text(x + 5 * offsetW, y + 102 + 24, auxText, textStyles.h2_blue_2);
+        game.add.text(x + 5 * offsetW, y + offsetH - 24, auxText, textStyles.h2_blue_2);
       }
 
       // Selection box
       y += 40;
       const frame = (fractionLabel) ? 1 : 0;
 
-      const selectionBox = game.add.sprite(x + 5 * offsetW, y + 102 + 24 - 2, 'select', frame, 0.11);
+      const selectionBox = game.add.sprite(x + 5 * offsetW, y + offsetH, 'select', frame, 0.11);
       selectionBox.anchor(0.5, 0.5);
       selectionBox.iconType = 'selectionBox';
       this.menuIcons.push(selectionBox);
 
       // --------------------------- GAME MODE ICONS
 
-      x = 150 + offsetW;
-      y = baseY;
-      offsetH = this.getOffset(height, curGame.gameMode.length);
+      x = gameFrame().x + offsetW;
+      y = gameFrame().y + offsetH / 2;
 
       for (let i = 0; i < curGame.gameModeUrl.length; i++, y += offsetH) {
         const icon = game.add.sprite(x, y, curGame.gameModeUrl[i], 0, iconScale, 1);
@@ -147,8 +147,8 @@ const customMenuState = {
       // --------------------------- GAME OPERATION ICONS
 
       x += 2 * offsetW;
-      y = baseY;
-      offsetH = this.getOffset(height, curGame.gameOperation.length);
+      y = gameFrame().y + offsetH / 2;
+      offsetH = game.math.getOffset(gameFrame().height, curGame.gameOperation.length);
 
       let icon;
 
@@ -169,9 +169,12 @@ const customMenuState = {
       }
 
       // --------------------------- DIFFICULTY ICONS
+      x = gameFrame().x - 50 + 5 * offsetW
 
-      x = (gameType == 'squareOne') ? 625 : 585;
-      y = baseY - 25;
+      offsetH = game.math.getOffset(gameFrame().height, curGame.gameMode.length);
+      y = gameFrame().y + offsetH / 3;
+
+      if (gameType != 'squareOne') x -= 40;
 
       for (let i = 0; i < curGame.gameDifficulty; i++) {
         // Parameters
@@ -366,10 +369,10 @@ const customMenuState = {
         break;
       case 'enter':
         if (debugMode) {
-          console.log('------------------------------'+
-          '\nGame State: ' + gameType +
-          '\nGame Mode: ' + gameMode + 
-          '\n------------------------------');
+          console.log('------------------------------' +
+            '\nGame State: ' + gameType +
+            '\nGame Mode: ' + gameMode +
+            '\n------------------------------');
         }
         mapPosition = 0;  // Map position
         mapMove = true; // Move no next point
@@ -378,18 +381,6 @@ const customMenuState = {
         break;
     }
 
-  },
-
-  /**
-   * Calculate spacing for icons on the menu screen
-   * 
-   * @param {number} width width of the available part of the screen
-   * @param {number} numberOfIcons number or icons to be put on the screen
-   * 
-   * @returns {number} correct spacing between icons
-   */
-  getOffset: function (width, numberOfIcons) {
-    return width / (numberOfIcons + 1);
   },
 
   /**

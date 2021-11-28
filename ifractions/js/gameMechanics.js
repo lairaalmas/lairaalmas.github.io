@@ -933,16 +933,31 @@ const game = {
       return y >= cur.yWithAnchor && y <= (cur.yWithAnchor + cur.height * cur.scale) &&
         (x >= cur.xWithAnchor && x <= (cur.xWithAnchor + cur.width * cur.scale));
     },
-
+    /**
+     * Get mouse position coordinates
+     *  
+     * @param {object} mouseEvent 
+     * @returns {object} x and y mouse coordinates
+     */
     getMouse: function (mouseEvent) {
       const c = context.canvas.getBoundingClientRect()
       const canvas_scale = context.canvas.width / parseFloat(c.width);
-      return { 
-        x: (mouseEvent.clientX - c.left) * canvas_scale, 
-        y: (mouseEvent.clientY - c.top) * canvas_scale 
+      return {
+        x: (mouseEvent.clientX - c.left) * canvas_scale,
+        y: (mouseEvent.clientY - c.top) * canvas_scale
       }
     },
-
+    /**
+     * Calculate spacing for icons on the menu screen
+     * 
+     * @param {number} width width of the desirable part of the screen
+     * @param {number} numberOfIcons number or icons to be put on the screen
+     * 
+     * @returns {number} correct spacing between icons
+     */
+    getOffset: function (width, numberOfIcons) {
+      return width / (numberOfIcons + 1);
+    },
     /**
      * Converts a given time in seconds (number) to the format HH:MM:SS (string)
      * 

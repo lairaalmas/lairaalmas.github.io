@@ -25,10 +25,10 @@ const studentReport = {
 
     // Background
     game.add.geom.rect(0, 0, context.canvas.width, context.canvas.height, undefined, 0, colors.blueBckg, 1);
-    game.add.image(300, 100, 'cloud');
-    game.add.image(660, 80, 'cloud');
-    game.add.image(110, 85, 'cloud', 0.8);
-    for (let i = 0; i < 9; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
+    game.add.image(640, 100, 'cloud');
+    game.add.image(1280, 80, 'cloud');
+    game.add.image(300, 85, 'cloud', 0.8);
+    for (let i = 0; i < context.canvas.width / 100; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
 
     // Title
     game.add.text(context.canvas.width / 2, 80, game.lang.results, textStyles.h1_green);

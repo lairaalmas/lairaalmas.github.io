@@ -60,19 +60,20 @@ const squareOne = {
     this.defaultBlockHeight = 40;  // Base block height
 
     this.startX = (gameOperation == 'Minus') ? 730 : 170; // Initial 'x' coordinate for the tractor and stacked blocks
+    this.startY = context.canvas.height - 157;
 
     // BACKGROUND
 
     // Add background image
-    game.add.image(0, 0, 'bgimage');
+    game.add.image(0, 0, 'bgimage', 2.2);
 
     // Add clouds
-    game.add.image(300, 100, 'cloud');
-    game.add.image(660, 80, 'cloud');
-    game.add.image(110, 85, 'cloud', 0.8);
+    game.add.image(640, 100, 'cloud');
+    game.add.image(1280, 80, 'cloud');
+    game.add.image(300, 85, 'cloud', 0.8);
 
     // Add floor of grass
-    for (let i = 0; i < 9; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
+    for (let i = 0; i < context.canvas.width / 100; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
 
     // Calls function that loads navigation icons
 
@@ -92,7 +93,7 @@ const squareOne = {
     }
 
     // TRACTOR 
-    this.tractor = game.add.sprite(this.startX, 445, 'tractor', 0, 0.8);
+    this.tractor = game.add.sprite(this.startX, this.startY, 'tractor', 0, 0.8);
 
     if (gameOperation == 'Plus') {
       this.tractor.anchor(1, 0.5);
@@ -142,7 +143,7 @@ const squareOne = {
     // SELECTION ARROW
 
     if (gameMode == 'A') {
-      this.arrow = game.add.image(this.startX + this.defaultBlockWidth * this.direc_level, 480, 'arrow_down');
+      this.arrow = game.add.image(this.startX + this.defaultBlockWidth * this.direc_level, this.startY + 35, 'arrow_down');
       this.arrow.anchor(0.5, 0.5);
       this.arrow.alpha = 0.5;
     }
@@ -429,7 +430,7 @@ const squareOne = {
       const lineSize = 2;
       const block = game.add.geom.rect(
         self.startX,
-        462 - i * (self.defaultBlockHeight - lineSize),
+        self.startY + 17 - i * (self.defaultBlockHeight - lineSize),
         curBlockWidth - lineSize,
         self.defaultBlockHeight - lineSize,
         lineColor,
@@ -455,11 +456,11 @@ const squareOne = {
         const label = [];
 
         if (divisor == 1) {
-          label[0] = game.add.text(x, 488 - i * y, divisor, textStyles.h2_blue);
+          label[0] = game.add.text(x, self.startY + 43 - i * y, divisor, textStyles.h2_blue);
         } else {
-          label[0] = game.add.text(x, 479 - i * y + 16, divisor, textStyles.p_blue);
-          label[1] = game.add.text(x, 479 - i * y, '1', textStyles.p_blue);
-          label[2] = game.add.text(x, 479 - i * y, '_', textStyles.p_blue);
+          label[0] = game.add.text(x, self.startY + 34 - i * y + 16, divisor, textStyles.p_blue);
+          label[1] = game.add.text(x, self.startY + 34 - i * y, '1', textStyles.p_blue);
+          label[2] = game.add.text(x, self.startY + 39 - i * y, '_', textStyles.p_blue);
         }
         // Add current label to group of labels
         self.stck.labels.push(label);
@@ -531,7 +532,7 @@ const squareOne = {
       const lineSize = 0.9;
       const block = game.add.geom.rect(
         x,
-        462 + self.defaultBlockHeight - lineSize,
+        self.startY + 17 + self.defaultBlockHeight - lineSize,
         blockWidth - lineSize,
         self.defaultBlockHeight - lineSize,
         colors.blueBckg,
@@ -557,7 +558,7 @@ const squareOne = {
     // Creates labels on the floor to display the numbers
     for (let i = 1; i < 10; i++) {
       const x = self.startX + (i * self.defaultBlockWidth * self.direc_level);
-      game.add.text(x, 462 + self.defaultBlockHeight + 58, i - 1, textStyles.h2_blue);
+      game.add.text(x, self.startY + self.defaultBlockHeight + 78, i - 1, textStyles.h2_blue);
     }
   },
 

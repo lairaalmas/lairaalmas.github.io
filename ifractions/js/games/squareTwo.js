@@ -67,14 +67,14 @@ const squareTwo = {
 
     // BACKGROUND AND KID
     // Add background image
-    game.add.image(0, 0, 'bgimage');
+    game.add.image(0, 0, 'bgimage', 2.2);
     // Add clouds
-    game.add.image(300, 100, 'cloud');
-    game.add.image(660, 80, 'cloud');
-    game.add.image(110, 85, 'cloud', 0.8);
+    game.add.image(640, 100, 'cloud');
+    game.add.image(1280, 80, 'cloud');
+    game.add.image(300, 85, 'cloud', 0.8);
 
     // Add floor of grass
-    for (let i = 0; i < 9; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
+    for (let i = 0; i < context.canvas.width / 100; i++) { game.add.image(i * 100, context.canvas.height - 100, 'floor'); }
 
     // Calls function that loads navigation icons
 
@@ -102,17 +102,17 @@ const squareTwo = {
     // Coordinates for A and B
     let xA, xB, yA, yB;
     if (gameMode != 'B') { // More subdivisions on B
-      xA = 230;
-      yA = 90;
+      xA = context.canvas.width / 2 - this.figureWidth/2;
+      yA = gameFrame().y;
       xB = xA;
       yB = yA + 3 * figureHeight + 30;
     } else { // More subdivisions on A
-      xB = 230;
-      yB = 90;
+      xB = context.canvas.width / 2 - this.figureWidth/2;
+      yB = gameFrame().y;
       xA = xB;
       yA = yB + 3 * figureHeight + 30;
     }
-
+    
     // Possible points for A
     const points = [2, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20];
 

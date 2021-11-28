@@ -210,8 +210,7 @@ const nameState = {
     document.getElementById('textbox').style.visibility = 'visible';
 
     // Does the same as the button click when the player presses 'enter'
-    const nameField = document.getElementById('textbox-content');
-    nameField.addEventListener('keypress', function (e) {
+    document.getElementById('textbox-content').addEventListener('keypress', function (e) {
       const keycode = e.key || e.code;
       if (keycode == 'Enter') {
         if (self.checkEmptyName()) self.saveName();

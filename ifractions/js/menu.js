@@ -49,7 +49,7 @@ const menuState = {
 
       // --------------------------- GAME ICONS 
 
-      const offset = context.canvas.width / (info.gameType.length + 1);
+      const offset = game.math.getOffset(context.canvas.width, info.gameType.length);
 
       for (let i = 0, x = offset; i < info.gameType.length; i++, x += offset) {
 
