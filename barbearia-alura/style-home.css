@@ -1,0 +1,51 @@
+
+/* nao é recomendavel criar estilo com tags mas sim com classes */
+
+#banner { /* identificador */
+  width: 100%;
+}
+
+.principal {
+  background: #ccc;
+  padding: 30px;
+}
+
+.titulo-principal {
+  padding-left: 20px;
+}
+
+p {
+  text-align: center;
+}
+
+#missao {
+  font-size: 20px;
+}
+
+em strong {
+  color: #794932;
+}
+
+.items {
+  font-style: italic;
+}
+
+.beneficios {
+  background: #fff;
+  padding: 20px;
+}
+
+.titulo-centralizado {
+  text-align: center;
+}
+
+ul {
+  display: inline-block;
+  vertical-align: top; /* por padrao é embaixo */
+  width: 20%;
+  margin-right: 15%;
+}
+
+.imagembeneficios {
+  width: 50%;
+}
