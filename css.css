@@ -1,169 +1,49 @@
+body {
+	margin: 0;
+	text-align: center;
+	font-family: 'VT323', monospace;
+	color: #e0e0e0;
+	font-size: 1.5em;
+}
 
-	body {
-		font-family: Helvetica, serif;
-		font-size: 12px;
-		
-		background-color: rgb(237, 237, 237);
-		line-height: 1.5em;
-		text-align: left;
-		margin: 0px;
-	}
+.geral {
+	background: radial-gradient(rgb(41, 41, 41), black);
+	position: absolute;
+	top:0;
+	width: 100%;
+	height: 100%;
+}
 
-	#cabecalho {
-		background-color: white;
+.tela {
+	width: 50%;
+	height: 50%;
+	margin: auto;
+	margin-top: 10%;
+}
 
-		padding:10px;
-		position: fixed;
-		z-index: 10;
-		width: 100%;
-	}
+h1::before{
+	color: #57c5e7;
+	content:"[ ";
+}
 
-	h1 {
-		margin: 0px;
-		padding: 0px;
-		line-height: 1em;
-	}
+h1::after{
+	color: #57c5e7;
+	content:" ]";
+}
 
-	#subtitulo{
-		margin: 0px;
-		padding: 0px;
+a {
+	color: #57c5e7;
+}
 
-		color: gray;
-		padding-left: 0px;
-		
-	}
+a:hover {
+	color: #7b7de6;
+	transition: 0.5s all ;
+}
 
-	h3 {
-		color: black;
-	}
-
-	p {
-		color: black;
-		font-size: 14px;
-		text-align: justify;
-	}
-
-	.paragrafo-centralizado {
-        text-align: center;
-    }
-		
-
-	ul {
-		list-style-type: none;
-		margin: 0px;
-		padding: 0px;
-		width: 220px;
-		height: 100%;
-		position: fixed;
-		overflow: auto;
-
-		font-size: 1.3em;
-		text-align:  left;
-		float: left;
-		padding-top: 62px;
-		padding-bottom: 20px;
-		background-color: rgb(53, 53, 53);
-	}
-
-	li a {
-		display: block;
-		padding: 10px;
-		background-color: rgb(53, 53, 53);
-	}
-
-	.menu-titulos{
-		color: rgb(208, 213, 219);
-		font-weight: bold;
-		padding: 0.5em;
-	}
-
-	.menu-topicos{
-		color: white;
-		padding: 0.5em;
-		padding-left: 1.5em;
-	}
-
-	.titulo{
-		overflow: auto;
-
-		margin: 0px;
-		margin-left: 100px;
-		margin-right: 100px;
-
-		padding: 40px;
-		padding-top: 35px;
-		padding-bottom: 15px;
-
-		border-top: 1px;
-		border-top-color: rgb(198, 198, 198);
-		border-top-style: solid;		
-		text-align: center;
-		color: inherit;
-	}
-
-	.secao{
-		overflow: auto;
-		
-		margin: 0px;
-		margin-left: 100px; /*largura do menu 220 + 100 margem*/
-		margin-right: 100px;
-
-		padding-top: 1px;
-		padding-left: 50px;
-		padding-right: 50px;
-		padding-bottom: 0px;
-	}
-
-	#final {
-		padding-bottom: 70px;
-	}
-
-	#inicio {
-	    padding-top: 90px;
-    }
-
-	a {
-		text-decoration: none;
-		color: rgb(20, 59, 122);
-	}
-
-	h1 a {
-		text-decoration: none;
-		color: rgb(86, 140, 226);
-	}
-
-	li a:hover, li a:focus{
-		color: white;
-		background-color: black;
-	}
-
-	li a:active{
-		background-color: rgb(85, 124, 186);
-	}
-
-	.active:hover, .active:focus{
-		color: white;
-		background-color: rgb(79, 146, 209);
-	}
-
-	.active {
-		background-color: rgb(48, 108, 165);
-  		color: white;
-	}
-
-	#footer{
-		margin: 0px;
-		clear: both;
-
-
-		position: fixed;
-		bottom: 0px;
-		width: 100%;
-
-		background-color: white;
-		padding: 10px;
-		text-align: left
-	}
-
-
-
+footer {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	border-top: 2px solid rgb(41, 41, 41);
+	padding: 10px 0;
+}
