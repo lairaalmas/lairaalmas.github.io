@@ -48,9 +48,12 @@ hr {
 	width: 100%;
 	color: rgba(123, 125, 230, 0.4)
 }
+ul {
+	padding: 0;
+}
 li {
 	list-style-type: none;
-	size: 1.5rem;
+	line-height: 1.5rem;
 }
 a {
 	color: #79fb75;
@@ -81,11 +84,12 @@ a:hover {
 	}
 	li {
 		text-align: left;
+		line-height: 2rem;
 	}
 	li::before {
 		color: #888be2;
 		font-weight: bold;
-		content: "> ";
+		content: ">> ";
 	}
 	.ilustracao {
 		order: -1;
@@ -95,6 +99,9 @@ a:hover {
 		background-repeat: no-repeat;
 		background-position: center;
 	}
+	li a {
+		font-size: 1.5rem;
+	}
 }
 
 @media screen and (min-width: 460px) {
@@ -102,6 +109,17 @@ a:hover {
 		margin-right: 2rem;
 		margin-left: auto;
 		align-items: flex-end;
+	}
+	li {
+		text-align: right;
+	}
+	li::before {
+		content: none;
+	}
+	li::after {
+		color: #888be2;
+		font-weight: bold;
+		content: " <<";
 	}
 }
 
@@ -113,7 +131,6 @@ a:hover {
 	}
 	.ilustracao {
 		order: 2;
-
 		height: 100%;
 		width: 50%;
 		background: url("./assets/espaco.png");
@@ -122,15 +139,10 @@ a:hover {
 		background-position: left;
 	}
 	li {
-		text-align: right;
+		line-height: 1.5rem;
 	}
-	li::before {
-		content: none;
-	}
-	li::after {
-		color: #888be2;
-		font-weight: bold;
-		content: " <";
+	li a {
+		font-size: 1.2rem;
 	}
 	li a:hover {
 		padding-right: 20px;
