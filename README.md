@@ -1,10 +1,10 @@
 # Minha página de projetos no github
 
-Inclui links de acesso aos meus projetos
+Acesse a página em [https://lairaalmas.github.io](https://lairaalmas.github.io)
 
-URL da página: https://lairaalmas.github.io
+Cont links de acesso aos meus projetos.
 
-Tecnologias:
+## Tecnologias:
 
 * HTML5
 * CSS3
