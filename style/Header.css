@@ -1,0 +1,52 @@
+.Header {
+  padding: 3rem 1rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#302b63, #0f0c29);
+}
+
+.Header__img {
+  background: url("../assets/espaco.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-grow: 1;
+}
+
+.Header__content {
+  font-size: 1.5rem;
+}
+
+.Header__content__title::before {
+  color: #79fb75;
+  content: "{ ";
+}
+
+.Header__content__title::after {
+  color: #79fb75;
+  content: "_ }";
+}
+
+.Header__content__technologies::before {
+  color: #79fb75;
+  content: "root@dev: ";
+}
+
+@media screen and (min-width: 980px) {
+  .Header {
+    flex-direction: row;
+  }
+  .Header__img {
+    width: 50%;
+  }
+  .Header__content {
+    text-align: left;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 50%;
+  }
+  .Header__content__title {
+    margin-bottom: 2rem;
+  }
+}

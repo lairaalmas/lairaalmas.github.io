@@ -1,0 +1,20 @@
+footer {
+  background: transparent;
+  padding: 10px;
+  position: relative;
+}
+footer a {
+  font-size: 2rem;
+}
+footer img {
+  position: absolute;
+  height: 200px;
+  right: 1rem;
+  top: -50%;
+}
+
+@media screen and (max-width: 768px) {
+  footer img {
+    position: static;
+  }
+}

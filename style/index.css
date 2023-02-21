@@ -1,0 +1,23 @@
+body {
+  color: #fff;
+  background: #111;
+  font-family: "Share Tech Mono", monospace;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  color: #79fb75;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f784d9;
+  transition: 0.5s all;
+}

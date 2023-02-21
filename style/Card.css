@@ -1,0 +1,71 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+.Card h4,
+.Card small,
+.Card ul,
+.Card li,
+.Card p,
+.Card hr {
+  padding: 0;
+  margin: 0;
+}
+
+.Card {
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.Card__header img {
+  width: 100%;
+  opacity: 0.8;
+}
+.Card__header img:hover {
+  opacity: 1;
+}
+
+.Card__header__info {
+  padding: 0.5rem;
+}
+
+.Card__header h4 {
+  font-weight: 700;
+}
+
+.Card__content {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.4rem;
+}
+
+.Card__content strong {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.Card__content__tech {
+  display: flex;
+  align-items: center;
+}
+
+.Card__footer {
+  padding: 1rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.2rem;
+}
+
+.Card__footer__link a {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 768px) {
+  .Card__content {
+    display: none;
+  }
+}

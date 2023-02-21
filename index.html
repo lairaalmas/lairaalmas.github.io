@@ -2,79 +2,104 @@
 <html lang="pt-br">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Laira Almas - Página antiga</title>
-	<link rel="icon" type="image/ico" href="./assets/avatar.png">
-	<link rel="stylesheet" type="text/css" href="./style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-	<base target="_blank">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laira Almas - Portfólio</title>
+  <link rel="icon" type="image/ico" href="./assets/avatar/avatar.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" type="text/css" href="./style/index.css">
+  <link rel="stylesheet" type="text/css" href="./style/Header.css">
+  <link rel="stylesheet" type="text/css" href="./style/Portfolio.css">
+  <link rel="stylesheet" type="text/css" href="./style/Card.css">
+  <link rel="stylesheet" type="text/css" href="./style/Footer.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+  <base target="_blank">
 </head>
 
 <body>
-	<div class="conteudo">
-		<div class="stars">
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<div class="informacao">
-			<h1>Oi, meu nome é Laira</h1>
+  <div class="container-flex">
 
-			<hr>
+    <header class="Header text-center">
+      <div class="Header__img" aria-hidden="true"></div>
+      <div class="Header__content">
+        <h1 class="Header__content__title">laira almas</h1>
 
-			<h3>Atualmente estou trabalhando no:</h3>
+        <p class="Header__content__technologies">front-end | reactjs | design system</p>
+      </div>
+    </header>
 
-			<ul>
-				<li><a href="http://www.usp.br/line/ifractions/">iFractions</a></li>
-			</ul>
+    <main id="portfolio" class="Portfolio">
 
-			<h3>Veja alguns dos meus projetos front-end aqui:</h3>
+      <h2 class="Portfolio__title py-5 text-center">PORTFÓLIO</h2>
 
-			<ul>
-				<li>
-					<a href="https://lairaalmas.github.io/alura-challenge-front-end/">Alura Challenge Front-End (2022)</a>
-				</li>
-				<li>
-					<a href="https://lairaalmas.github.io/barbearia-alura">Barbearia Alura (2022)</a>
-				</li>
-				<li>
-					<a href="https://lairaalmas.github.io/alura-store">Alura Store (2022)</a>
-				</li>
-				<li>
-					<a href="https://lairaalmas.github.io/alurinha-plataforma-cursos">Alurinha plataforma de cursos (2022)</a>
-				</li>
-				<li>
-					<a href="https://lairaalmas.github.io/apeperia">Apeperia (2022)</a>
-				</li>
-				<li>
-					<a href="https://lairaalmas.github.io/to-do-list/">To-Do list (2022)</a>
-				</li>
-				<!--<li>
-					<a href="https://lairaalmas.github.io/doguito/cadastro.html">Doguito (2022)</a>
-				</li>-->
-				<li>
-					<a href="https://lairaalmas.github.io/dado-virtual">Dado virtual (2023)</a>
-				</li>
-				<li>
-					<a href="https://lairaalmas.github.io/flip-a-coin">Flip a coin (2023)</a>
-				</li>
-				<li>
-					<a href="https://lairaalmas.github.io/chess-prototype">Chess prototype (2023)</a>
-				</li>
-			</ul>
+      <div class="Portfolio__container container pb-5">
 
-			<hr>
+        <h3 class="Portfolio__project__title pb-5">Projetos Pessoais</h3>
+        <ul>
+          <div id="portfolio__personal" class="row"></div>
+        </ul>
 
-			<h2>Acesse minha página pessoal <a href="http://www.ime.usp.br/~laira">AQUI</a></h2>
+        <h3 class="Portfolio__project__title py-5">Projetos do Mestrado</h3>
+        <ul>
+          <div id="portfolio__masters" class="row"></div>
+        </ul>
 
-		</div>
+        <h3 class="Portfolio__project__title py-5">Projetos desenvolvidos em cursos na Alura</h3>
+        <ul>
+          <div id="portfolio__alura" class="row"></div>
+        </ul>
 
-		<div class="ilustracao"></div>
+        <h3 class="Portfolio__project__title py-5">Projetos desenvolvidos em cursos na Udemy</h3>
+        <ul class="row">
+          <div id="portfolio__udemy" class="row"></div>
+        </ul>
 
-	</div>
+        <h3 class="Portfolio__project__title py-5">Projetos desenvolvidos em cursos na Rocketseat</h3>
+        <ul class="row">
+          <div id="portfolio__rocketseat" class="row"></div>
+        </ul>
+
+      </div>
+
+    </main>
+
+    <footer id="links">
+
+      <div class="container text-center">
+        <h4 class="pt-3">Links</h4>
+
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://github.com/lairaalmas"><i class="bi bi-github"
+                title="Github"></i></a>
+          </li>
+          <li class="list-inline-item"><a href="https://linkedin.com/in/lairaalmas"><i class="bi bi-linkedin"
+                title="Linkedin"></i></a>
+          </li>
+          <li class="list-inline-item"><a href="https://www.ime.usp.br/~laira/"><i class="bi bi-person-fill"
+                title="Página Acadêmica"></i></a>
+          </li>
+        </ul>
+
+        <img src="./assets/avatar/chill.png" aria-hidden="true" />
+
+        <p class="pt-3">Modificado pela última vez em Fevereiro de 2023.</p>
+
+      </div>
+    </footer>
+
+  </div>
 </body>
+
+<script src="./script/index.js"></script>
 
 </html>

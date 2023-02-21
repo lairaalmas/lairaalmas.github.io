@@ -1,0 +1,23 @@
+.Portfolio {
+  background: linear-gradient(#3e569c, #755d9c);
+}
+
+.Portfolio__title {
+  color: #79fb75;
+  font-size: 4rem;
+}
+
+.Portfolio__project__title::before {
+  color: #888be2;
+  font-weight: bold;
+  content: "</> ";
+}
+
+.Portfolio li {
+  margin-bottom: 1rem;
+}
+
+.Portfolio a {
+  display: flex;
+  flex-direction: column;
+}
