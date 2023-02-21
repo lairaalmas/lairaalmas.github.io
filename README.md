@@ -1,10 +1,14 @@
-# Minha página de projetos no github
+# Meu Portfólio
 
-Acesse a página em [https://lairaalmas.github.io](https://lairaalmas.github.io)
+Acesse o conteúdo desse repositório em [https://lairaalmas.github.io](https://lairaalmas.github.io).
 
-Cont links de acesso aos meus projetos.
+## Código e ilustrações
+
+🦖 [Laira Almas](https://github.com/lairaalmas)
 
 ## Tecnologias:
 
-* HTML5
-* CSS3
+- HTML5
+- CSS3
+- Bootstrap5
+- Javascript
