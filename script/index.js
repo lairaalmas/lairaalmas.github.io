@@ -176,6 +176,27 @@ const udemyProjectsContent = [
     linkRepo: "https://github.com/lairaalmas/udemy-form-validation",
     lang: "🇺🇸",
   },
+  {
+    title: "Page login",
+    period: "2023 - presente",
+    // localstorage
+    techList: ["html5", "css3", "react"],
+    img: "./assets/screens/udemy-login.png",
+    alt: "Tela do projeto.",
+    linkDemo: undefined,
+    linkRepo: "https://github.com/lairaalmas/udemy-login",
+    lang: "🇺🇸",
+  },
+  {
+    title: "Food order app",
+    period: "2023 - presente",
+    techList: ["html5", "css3", "react"],
+    img: "./assets/screens/udemy-food-app.png",
+    alt: "Tela do projeto.",
+    linkDemo: undefined,
+    linkRepo: "https://github.com/lairaalmas/udemy-food-app",
+    lang: "🇺🇸",
+  },
 ];
 const rocketseatProjectsContent = [
   {
