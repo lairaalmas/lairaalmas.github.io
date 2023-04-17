@@ -1,0 +1,125 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+.ifr-canvas {
+    width: 100%;
+}
+
+.ifr-input__container {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  visibility: hidden;
+}
+.ifr-input {
+  background-color: #fff;
+  padding: 15px 40px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  font-size: 24px;
+  font-family: Arial;
+  color: #000;
+  text-align: center;
+}
+.ifr-input:focus {
+  outline: 3px solid #85accc;
+}
+
+.ifr-input__container {
+  top: 220px;
+}
+.ifr-input {
+  padding: 5px 4px;
+  font-size: 8px;
+}
+
+@media only screen and (min-width: 576px) {
+  .ifr-input__container {
+    top: 220px;
+  }
+  .ifr-input {
+    padding: 10px 36px;
+    font-size: 16px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .ifr-input__container {
+    top: 220px;
+  }
+  .ifr-input {
+    padding: 10px 36px;
+    font-size: 16px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .ifr-input__container {
+    top: 280px;
+  }
+  .ifr-input {
+    padding: 14px 40px;
+    font-size: 18px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .ifr-input__container {
+    top: 330px;
+  }
+  .ifr-input {
+    padding: 14px 40px;
+    font-size: 24px;
+  }
+}
+
+.ifr-modal {
+    /* Hidden by default */
+    display: none;
+    /* Stay in place */
+    position: fixed;
+    /* Sit on top */
+    z-index: 1;
+    /* Location of the box */
+    padding-top: 155px;
+    left: 0;
+    top: 0;
+    /* Full width */
+    width: 100%;
+    /* Full height */
+    height: 100%;
+    /* Enable scroll if needed */
+    overflow: auto;
+    /* Fallback color */
+    background-color: rgb(0, 0, 0);
+    /* Black w/ opacity */
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.ifr-modal__content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+.ifr-modal__content img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ifr-modal__closeButton {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.ifr-modal__closeButton:hover,
+.ifr-modal__closeButton:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ifr-infoBox__menu__img {
+  width: 60%; 
+}

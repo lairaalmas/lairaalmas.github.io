@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+
+<html lang="pt-br">
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Educational game for teaching fractions" />
+  <meta name="keywords" content="ifractions, fraction, game, private data" />
+  <link rel="shortcut icon" href="./src/assets/img/scene/flag.png">
+  <link rel="stylesheet" href="./src/style/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="./src/style/IFractions.css">
+  <title>iFractions</title>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="panel panel-primary">
+
+      <div class="panel-heading">iFractions game :: by LInE</div>
+
+      <div class="panel-body">
+
+        <canvas class="ifr-canvas"></canvas>
+
+        <div class="ifr-input__container">
+          <input class="ifr-input" type="text" value="" size="13" maxlength="36">
+        </div>
+
+        <div class="ifr-modal">
+          <div class="ifr-modal__content">
+            <span class="ifr-modal__closeButton">&times;</span>
+            <div class='ifr-modal__infobox'></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Load all js files -->
+    <script src="src/js/menus/preMenu_boot.js"></script>
+    <script src="src/js/menus/preMenu_lang.js"></script>
+    <script src="src/js/menus/preMenu_name.js"></script>
+    <script src="src/js/menus/menu_main.js"></script>
+    <script src="src/js/menus/menu_custom.js"></script>
+    <script src="src/js/screens/map.js"></script>
+    <script src="src/js/screens/end.js"></script>
+    <script src="src/js/games/circleOne.js"></script>
+    <script src="src/js/games/squareOne.js"></script>
+    <script src="src/js/games/squareTwo.js"></script>
+    <!-- <script src="src/js/games/scaleOne.js"></script> -->
+    <script src="src/js/moodle/studentReport.js"></script> <!-- FOR MOODLE -->
+    <script src="src/js/moodle/integrationFunctions.js"></script> <!-- FOR MOODLE -->
+    <script src="src/js/gameMechanics.js"></script>
+    <script src="src/js/globals/globals_control.js"></script>
+    <script src="src/js/globals/globals_tokens.js"></script>
+    <script src="src/js/globals/globals_functions.js"></script>
+    <script src="src/js/globals/globals_debug.js"></script>
+
+    <script>
+
+      const defaultWidth = 1920; // Default width for the Canvas
+      const defaultHeight = 1080; // Default height for the Canvas
+
+      const context = document.querySelector('.ifr-canvas').getContext("2d");
+      context.canvas.width = defaultWidth;
+      context.canvas.height = defaultHeight;
+
+      // CREATING GAME STATES
+      game.state.add('boot', bootState);
+      game.state.add('lang', langState);
+      game.state.add('loadLang', loadLangState);
+      game.state.add('name', nameState);
+
+      game.state.add('menu', menuState);
+      game.state.add('customMenu', customMenuState);
+
+      game.state.add('map', mapState);
+      game.state.add('end', endState);
+
+      game.state.add('squareOne', squareOne);
+      game.state.add('circleOne', circleOne);
+      game.state.add('squareTwo', squareTwo);
+      // game.state.add('scaleOne', scaleOne);
+
+      game.state.add('studentReport', studentReport); // FOR MOODLE
+
+      // CALLING FIRST GAME STATE
+      game.state.start('boot');
+    </script>
+
+  </div>
+
+</body>
+
+</html>
