@@ -1,0 +1,265 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="./img/flag_icon.png">
+  <link rel="stylesheet" href="./style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='./style/style.css'>
+
+  <title>iFractions | Documentação</title>
+
+  <link rel="stylesheet" href="./prism/prism-default.css">
+  <script src="./prism/prism.js"></script>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">iFractions</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#download">Download</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./sobre.html">Conhecendo o iFractions</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false"> Documentação
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href='./area_professor.html'>Sou professor</a></li>
+              <li><a class="dropdown-item" aria-current="page" href='./area_programador.html'>Sou progamador</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./publicacoes.html">Publicações</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+        <li class="breadcrumb-item"><a href="area_programador.html">Área do programador</a></li>
+        <li class="breadcrumb-item"><a href="area_programador_4.html">Tutoriais</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Criando um jogo novo</li>
+      </ol>
+    </nav>
+    <h1 id='' class='display-4'>Tutoriais</h1>
+    <p class="lead"> ... </p>
+    <hr class="display-4">
+  </header>
+
+  <!-- pagina-->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <div class="col-lg-2 ifr__toc p-1 ifr__noBullet"></div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id="criarJogo">
+          <h2>Criando um jogo novo</h2>
+
+          <p>Para desenvolver um jogo novo para o iFractions, siga os proximos passos.</p>
+
+          <ol>
+
+            <li>
+              <h3>Criar um arquivo novo em <code>/js/games/nomeDoJogo.js</code>
+                contendo:
+              </h3>
+            </li>
+
+            <pre><code class='language-js'>const nomeDoJogo = {
+
+  /**
+    * Main code
+    */
+  create: function () {
+    if (moodle) {
+      navigationIcons.add(false, false, false, 
+      true, false, 
+      false, false);
+    } else {
+      navigationIcons.add(true, true, false, 
+      true, false, 
+      'customMenu', false);
+    }
+    // ...
+    game.timer.start(); // Set a timer for the current level (used in postScore)
+    game.event.add('click', this.onInputDown);
+    game.event.add('mousemove', this.onInputOver);
+  },
+
+  /**
+    * Game loop
+    */
+  update: function () {}
+
+  /**
+    * Called by mouse click event
+    *
+    * @param {object} mouseEvent contains the mouse click coordinates
+    */
+  onInputDown: function (mouseEvent) {
+    const shadowBlur = mouseEvent.offsetX, y = mouseEvent.offsetY;
+    // ...
+    navigationIcons.onInputDown(shadowBlur, y);
+    game.render.all();
+  },
+
+  /**
+    * Called by mouse move event
+    *
+    * @param {object} mouseEvent contains the mouse move coordinates
+    */
+  onInputOver: function (mouseEvent) {
+    const shadowBlur = mouseEvent.offsetX, y = mouseEvent.offsetY;
+    // ...
+    navigationIcons.onInputOver(shadowBlur, y);
+    game.render.all();
+  },
+
+}
+</code></pre>
+
+            <li>
+              <h3>Adicionar o arquivo criado no <code>&lt;body></code> em
+                <code>index.html</code>
+              </h3>
+            </li>
+
+            <pre><code class='language-html'>&lt;script src="js/games/nomeDoJogo.js">&lt;/script></code></pre>
+
+            <li>
+              <h3>Adicionar o novo estado do jogo no <code>&lt;script></code> em
+                <code>index.html</code>
+              </h3>
+            </li>
+
+            <pre><code class='language-js'>game.state.add('nomeDoJogo', nomeDoJogo);</code></pre>
+
+            <li>
+              <h3>Colocar as informações sobre o jogo novo em <code>globals.js</code>
+              </h3>
+            </li>
+
+            <pre><code class='clear language-js'>const info = {
+  all: {
+    nomeDoJogo: {
+      // colocar aqui as propriedades
+    },
+  }
+}
+</code></pre>
+
+            <li>
+              <h3>Colocar as informações sobre as novas imagens em
+                <code>globals.js</code>
+              </h3>
+            </li>
+
+
+            <pre><code class='clear language-js'>const url: {
+
+  boot: {
+    image: [
+      ['game&lt;id>', &lt;url>],
+    ],
+    sprite: [
+      ['mode&lt;id>', &lt;url>],
+    ]
+  },
+    
+  nomeDoJogo: {
+    image: [
+      ['posiçãoInicialNoMapa', &lt;url>],
+      ['posiçãoFinalNoMapa', &lt;url>],
+    ],
+    sprite: [
+      ['personagemNoMapa', &lt;url>],
+    ],
+    audio: [],
+  }
+  
+}
+</code></pre>
+
+
+            <li>
+              <h3>Atualizar assets</h3>
+            </li>
+
+            <p>Criar as novas figuras em:</p>
+
+            <ul>
+              <li>
+                <code>/assets/img/levels/nomeDoJogo.png</code> -> ícone de <b>jogo</b> na tela de menu
+                principal.
+              </li>
+              <li>
+                <code>/assets/img/levels/nomeDoJogo_1.png</code> -> ícone de <b>modo de jogo</b> na tela de
+                menu de
+                customização.
+              </li>
+            </ul>
+
+          </ol>
+        </section>
+
+        <div class="d-flex justify-content-start">
+          <a class="btn btn-primary" href='./area_programador_3.html' role="button">Voltar</a>
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="./script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="./script/script.js"></script>
+
+</html>

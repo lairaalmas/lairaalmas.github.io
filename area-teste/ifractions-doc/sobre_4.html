@@ -1,0 +1,343 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="./img/flag_icon.png">
+  <link rel="stylesheet" href="./style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='./style/style.css'>
+
+  <title>iFractions | Documentação</title>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">iFractions</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#download">Download</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./sobre.html">Conhecendo o iFractions</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false"> Documentação
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href='./area_professor.html'>Sou professor</a></li>
+              <li><a class="dropdown-item" href='./area_programador.html'>Sou progamador</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./publicacoes.html">Publicações</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sobre</li>
+        <li class="breadcrumb-item active" aria-current="page">Jogos</li>
+      </ol>
+    </nav>
+    <h1 class="display-4">Conhecendo o iFractions</h1>
+    <p class="lead">...</p>
+    <hr class="display-4">
+  </header>
+
+  <!-- pagina -->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet"></div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id='jogo'>
+          <h2>Jogos disponíveis</h2>
+
+          <p>...</p>
+
+          <!-- expandir no conceito dos jogos -->
+          <section id='jogo__quadrilateroI'>
+            <h3>Quadriláteros I</h3>
+
+            <ul>
+              <li>
+                Com temática rural, neste jogo o personagem é um trator que deseja empurrar uma porção de blocos com
+                o
+                intuito
+                de tapar um buraco aberto na grama da fazenda.
+              </li>
+
+              <li>
+                Este jogo representa uma fração como uma porção de um retângulo. Assim, os blocos levados pelo
+                trator
+                devem
+                ser equivalentes ao buraco no solo.
+              </li>
+
+              <li>
+                As operações matemáticas com frações representadas nesse jogo são soma (trator indo para a direita)
+                e
+                subtração (trator indo para a esquerda).
+              </li>
+
+              <li>
+                A figura <span>\ref{fig:s1-A}</span> apresenta o <b>modo de jogo</b> 'A', onde você deve selecionar
+                uma
+                porção do buraco no solo que seja proporcional aos blocos carregados pelo trator.
+              </li>
+
+              <li>
+                A figura <span>\ref{fig:s1-B}</span> apresenta o <b>modo de jogo</b> 'B', onde você deve a
+                quantidade
+                de
+                blocos necessária para que o trator consiga tapar o buraco no solo.
+              </li>
+
+              <li>
+                Em ambos modos de jogo na figura superior trator esta 'voltando' (<b>operação matemática</b> de
+                subtração
+                de
+                frações) e na inferior o trator está 'indo' (<b>operação matemática</b> de soma de frações).
+              </li>
+
+              <li>
+                Em ambos modos de jogo, também, a visualização de frações está ativada, permitindo ao usuário ver as
+                frações
+                do lado da pilha de blocos.
+              </li>
+            </ul>
+
+            <!-- (old) tem temática rural, onde o personagem é um trator que precisa empurrar uma dada porção de blocos para tampar o buraco no chão. Este jogo representa frações como subdivisões de quadriláteros. A soma e subtração de frações é representada como a 'ida' e 'volta' do trator, respectivamente. -->
+
+            <div class='text-center'>
+              <img src='img/s1-A.png' class='ifr__img img-responsive' width="60%">
+              <p>
+                Jogo <b>Quadriláteros I</b> (squareOne) - modo de seleção do buraco no chão (A) - subníveis de
+                subtração
+                (Minus) e soma (Plus), respectivamente (estado <code>squareOne</code> em
+                <code>/js/squareOne.js</code>).
+              </p>
+            </div>
+
+            <div class='text-center'>
+              <img src='img/s1-B.png' class='ifr__img img-responsive' width="60%">
+              <p>
+                Jogo <b>Quadriláteros I</b> (squareOne) - modo de seleção da pilha de retângulos (B) - subníveis de
+                subtração (Minus) e soma (Plus), respectivamente (estado <code>squareOne</code> em
+                <code>/js/squareOne.js</code>).
+              </p>
+            </div>
+
+          </section>
+
+          <hr class="my-4">
+
+          <section id='jogo__quadrilateroII'>
+            <h3>Quadriláteros II</h3>
+
+            <ul>
+              <li>Neste jogo o personagem é uma criança que deseja caminhar até a escola.</li>
+
+              <li>
+                Este jogo representa a fração como porção de um retângulo. Assim, são mostrados dois retângulos
+                <!-- difere da info no jogo (inicio) -->
+                de mesmo tamanho,
+                <!-- difere da info no jogo (fim) -->
+                com subdivisões diferentes e o jogador deve selecionar porções equivalentes.
+              </li>
+
+              <li>A operação matemática representada neste jogo é igualdade de frações.</li>
+
+              <li>
+                Na figura <span>\ref{fig:s2}</span> a imagem da esquerda apresenta o <b>modo de jogo</b> 'A', onde o
+                número
+                de
+                subdivisões do retângulo superior é maior que a inferior e a imagem da direita apresenta o <b>modo
+                  de
+                  jogo</b>
+                'B', onde o número de subdivisões do retângulo inferior é maior que o superior.
+              </li>
+
+              <li>
+                Em ambos modos de jogo a visualização de retângulos auxiliares está ativada, permitindo ao usuário
+                ver
+                os
+                retângulos quase transparentes abaixo dos retângulos interativos.
+              </li>
+            </ul>
+
+            <!-- (old)
+            também tem a temática da criança querendo chegar à escola, dessa vez à pé. Este jogo representa frações como subdivisões de quadriláteros. Aborda igualdade de frações como diferentes subdivisões em dois retângulos de mesmo tamanho.
+          
+            frações de diferentes denominadores são apresentadas para o aluno, permitindo que o mesmo perceba que mesmo com valores diferente, duas frações podem ser equivalentes.
+
+            p: considerar recolocar essas imagens embaixo com essas legendas que citam estados e mudar para uma legenda mais simples nesse ponto talvez?
+            -->
+
+            <div class='text-center'>
+              <img src='img/s2.png' class='ifr__img img-responsive' width="60%">
+              <p>
+                Jogo <b>Quadriláteros II</b> (squareTwo) com tema igualdade de frações - modos de maior subdivisão
+                em
+                cima (A) e embaixo (B), respectivamente (estado <code>squareTwo</code> em
+                <code>/js/squareTwo.js</code>).
+              </p>
+            </div>
+
+          </section>
+
+          <hr class="my-4">
+
+          <section id='jogo__circuloI'>
+            <h3>Círculos I</h3>
+
+            <ul>
+              <li>
+                Com uma temática de voo, neste jogo o personagem é uma criança que deseja voar de balão para chegar
+                até
+                a
+                escola
+              </li>
+
+              <li>
+                Este jogo representa uma fração como uma porção de um círculo (arco). Assim, os arcos selecionados
+                devem
+                ser
+                proporcionais ao caminho a ser percorrido.
+              </li>
+
+              <li>
+                As operações matemáticas com frações representadas neste jogo são: soma (criança indo para a
+                direita)
+                e
+                subtração (criança indo para a direita), além de ambas operações numa mesma fase.
+              </li>
+
+              <li>
+                A figura <span>\ref{fig:c1-A}</span> apresenta o <b>modo de jogo</b> 'A', onde você deve selecionar
+                a
+                posição
+                no solo em que o balão deve estar para que a criança consiga chegar até ele.
+              </li>
+              <!-- circulo -> linha no chao-->
+
+              <li>
+                A figura <span>\ref{fig:c1-B}</span> apresenta o <b>modo de jogo</b> 'B', onde você deve selecionar
+                a
+                quantidade de arcos necessária, cuja distancia leve até a posição do balão no chão.
+              </li>
+
+              <li>
+                Em ambos modos de jogo os arcos azuis fazer a criança ir para a direita (<b>operação matemática</b>}
+                de
+                soma
+                de frações) e os arcos vermelhos fazem a criança 'voltar' para a esquerda (<b>operação
+                  matemática</b>}
+                de
+                subtração de frações). Assim, em cada figura temos as operações de 'soma e subtração numa mesma
+                fase',
+                'soma' e
+                'subtração'.
+              </li>
+
+              <li>
+                Em ambos modos de jogo, também, a visualização de frações está ativada, permitindo ao usuário ver as
+                frações
+                do lado da pilha de blocos.
+              </li>
+            </ul>
+
+            <!-- (old)
+          item -> <b>CI:</b> tem temática de voo, onde o personagem é uma criança querendo viajar num balão para chegar até a escola. Este jogo representa frações como arcos. A circunferência do arco é equivalente à distância da criança até o balão. Semelhante a QI, este jogo aborda soma e subtração de frações como ida e volta da criança, mas também considera ambas operações de uma só vez.
+          -->
+
+            <div class='text-center'>
+              <img src='img/c1-A.png' class='ifr__img img-responsive' width="60%">
+              <p>
+                Jogo <b>Círculos I</b> (circleOne) - fase de selecionar a posição do balão no chão (A) - subníveis
+                com
+                soma
+                e
+                subtração juntos (Mixed), só de soma (Plus) e só de subtração (Minus), respectivamente %subníveis de
+                soma
+                (Plus),
+                subtração (Minus) e ambas operações (Mixed), respectivamente (estado <code>circleOne</code> em
+                <code>/js/circleOne.js</code>).
+              </p>
+            </div>
+
+            <div class='text-center'>
+              <img src='img/c1-B.png' class='ifr__img img-responsive' width="60%">
+              <p>
+                Jogo <b>Círculos I</b> (circleOne) - fase de selecionar a pilha de arcos (B) - subníveis com soma e
+                subtração juntos (Mixed), só de soma (Plus) e só de subtração (Minus), respectivamente (estado
+                <code>circleOne</code> em <code>/js/circleOne.js</code>).
+              </p>
+            </div>
+
+          </section>
+        </section>
+
+        <div class="d-flex justify-content-between">
+          <a class="btn btn-primary" href='./sobre_3.html' role="button">Voltar</a>
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+      <!-- desenvolver mais sobre a criação de trilhas
+        seguindo o fluxo do jogo, o aluno deve passar pelas fases de QI antes de ir para as fases da CI, visto que a
+        representação de frações por quadriláteros requer menor abstração por parte do aluno. Com o iFractions o aluno deve
+        poder aos poucos ir construindo e internalizando o conceito de frações com o aumento gradativo de abstração
+        requerida para resolver as atividades. Dessa forma, o ponto final seria a notação formal de frações. -->
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="./script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="./script/script.js"></script>
+
+</html>

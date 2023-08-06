@@ -1,0 +1,276 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="./img/flag_icon.png">
+  <link rel="stylesheet" href="./style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='./style/style.css'>
+
+  <title>iFractions | Documentação</title>
+
+  <link rel="stylesheet" href="./prism/prism-default.css">
+  <script src="./prism/prism.js"></script>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">iFractions</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#download">Download</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./sobre.html">Conhecendo o iFractions</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false"> Documentação
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href='./area_professor.html'>Sou professor</a></li>
+              <li><a class="dropdown-item" aria-current="page" href='./area_programador.html'>Sou progamador</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./publicacoes.html">Publicações</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+        <li class="breadcrumb-item"><a href="area_programador.html">Área do programador</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tecnologias utilizadas</li>
+      </ol>
+    </nav>
+    <h1 class="display-4">Tecnologias utilizadas</h1>
+    <p class="lead"> ... </p>
+    <hr class="display-4">
+  </header>
+
+  <!-- pagina -->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet">
+      </div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id='tecnologias'>
+
+          <h2 class="invisible">Tecnologias utilizadas</h2>
+
+          <table class="table">
+            <tr>
+              <th>Front-end</th>
+              <th>Back-end</th>
+            </tr>
+            <tr>
+              <td>
+                <ul>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                  <ul>
+                    <li>Manipulação de Canvas</li>
+                    <li>API Fetch</li>
+                  </ul>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>PHP (versão web)</li>
+                  <li>MySQL</li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+
+          <!-- triade web - lado cliente - bd -->
+          O iFractions é desenvolvido principalmente usando HTML, CSS e JavaScript. É uma aplicação que
+          executa em
+          sua
+          maioria no lado do cliente, portanto, a conexão com o banco de dados é estabelecida apenas para
+          acessar/guardar
+          informações sobre o jogo e progresso do jogador, mas não para o carregamento de mídia. Sua <i>Versão
+            Web</i> usa
+          MySql e PHP para se conectar ao banco de dados, enquanto a <i>Versão Moodle</i> usa o banco de dados
+          do
+          Próprio
+          Moodle.
+
+          É uma aplicação de página única (<i>Single Page Application</i>), portanto o carregamento de
+          arquivos de
+          mídia
+          quando a conexão com o banco de dados é feita de forma assíncrona.
+
+          Assim, na <i>Versão Web</i>
+
+          No início do desenvolvimento um arcabouço (framework) voltado para o desenvolvimento de jogos foi
+          usado
+          para
+          gerenciar os elementos de jogabilidade e interação, no entanto, recentemente, o escopo do projeto
+          foi
+          redesenhado utilizando elementos nativos do JavaScript.
+          <!-- Assim, a versão atual do iFractions é desenvolvida utilizando HTML5, CSS, JavaScript e PHP &minus; este último apenas na <i>versão web</i>. Por ser uma aplicação de página única (single page application), os arquivos de mídia são carregados no cache de forma assíncrona a medida que se fazem necessários, utilizando as propriedades do elemento <code>Image</code> do HTML para ralizar o carregamento de imagens e FETCH API para arquivos de áudio e idioma.
+
+              Foi adotado o modelo cliente-servidor de forma que a execução fica majoritariamente do lado do cliente, ou seja, no navegador do usuário. Dessa forma, conexões com o servidor são limitadas ao envio de informações de progresso do jogador para o banco de dados (na versão web, PHP é usado como linguagem intermediária) e, na versão Moodle, ao recebimento de informações fornecidas pelo iTarefa para gerenciamento do iMA. Desta forma, por ser uma ferramenta que permite acesso assíncrono, o Fetch API também é utilizado para requisições ao servidor.-->
+
+          <!-- lado do cliente + conexão com o banco de dados -->
+          <p>
+            O iFractions foi desenvolvido para executar em sua maioria no lado do cliente, no entanto, para
+            que as
+            informações de progresso do usuário sejam coletadas, uma conexão com o banco de dados é
+            estabelecida
+            sempre que o jogador termina um jogo.
+          </p>
+
+          <!-- phaser vs javascript -->
+          <p>
+            Inicialmente, um arcabouço (framework) voltado para o desenvolvimento de jogos foi usado para
+            gerenciar
+            os elementos de jogabilidade e interação, no entanto, recentemente, o escopo do projeto foi
+            redesenhado
+            utilizando apenas elementos nativos do JavaScript.
+          </p>
+
+          <p>
+            No processo de concepção do iFrations foi feita a decisão de usar o arcabouço
+            <a href='https://phaser.io/'>Phaser</a>. Mas recentemente, tendo em vista a tendência das
+            aplicações
+            atuais
+            de
+            abusarem de arcabouços, muitas vezes acabando por "usar um canhão para matar uma formiga" e tendo
+            em
+            vista o
+            tamanho reduzido do projeto, o
+            <!-- o que é válido para aplicações grandes e complexas, mas é muito comum aplicações pequenas usarem o que nao precisam...-->
+            iFractions se propôs a retirar arcabouços se não se provassem tão necessários.
+          </p>
+
+          <p>
+            Assim, a sua versão atual deixou de usar o Phaser e lança mão exclusivamente de recursos nativos
+            do
+            JavaScript,
+            facilitando a retrocompatibilidade com navegadores mais antigos.
+          </p>
+
+          <!-- lista de tecnologias -->
+          <p>
+            Assim, o iFractions é praticamente todo desenvolvido usando HTML, CSS e JavaScript, usando
+            principalmente as
+            propriedades fornecidas pelo HTMLCanvasElement. O carregamento de mídia no cache é feita usando o
+            <a href='https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API'>Fetch API</a> e
+            HTMLImageElement, e
+            a
+            conexão
+            com o banco de dados é feita usando PHP e
+            <a href='https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest'>XMLHttpRequest</a>.
+          </p>
+
+          <!-- single page application vs carregamento -->
+          <p>
+            O iFractions é uma aplicação de página única (<i>single page application</i>), portanto todas
+            telas do
+            jogo
+            são
+            desenhadas no Canvas. Mas nem todo elemento de mídia é carregado no cache quando a página é
+            aberta,
+            sendo
+            carregado quando necessário ao longo da execução.
+          </p>
+
+          <p>
+            Para isso o programa faz comunicação assíncrona usando o Fetch API para carregar áudios e arquivos
+            de
+            internacionalização e propriedades do HTMLImageElement para carregar imagens e
+            <i>spritesheets</i>. Esse
+            tipo
+            de
+            comunicação é feito também para estabelecer a comunicação com o banco de dados salvando
+            informações de
+            progresso
+            do jogador.
+          </p>
+
+          <!-- máquina de estado -->
+          <p>
+            Como é comum em jogos, o iFractions utiliza uma estrutura de máquina de estado, a qual estão
+            associados
+            os
+            estados do jogo &minus; mais comumente as telas, mas alguns estados não são explicitados, como o
+            de
+            carregamento
+            inicial
+            e de alteração de idioma.
+          </p>
+
+          <p>
+            Assim, a nível de código, um estado é um tipo especial de objeto que possui algumas <b>funções</b>
+            que
+            seguem
+            um comportamento predefinido, são elas: <b>preload</b>, <b>create</b> e <b>update</b>. Mais sobre
+            estados e
+            suas
+            funções nas seções <span>\ref{sec:funEst}</span> e <span>\ref{sec:estados}</span>.
+          </p>
+
+        </section>
+
+        <div class="d-flex justify-content-between">
+          <a class="btn btn-primary" href='./area_programador.html' role="button">Voltar</a>
+          <a class="btn btn-primary" href='./area_programador_3.html' role="button">Próximo</a>
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="./script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="./script/script.js"></script>
+
+</html>

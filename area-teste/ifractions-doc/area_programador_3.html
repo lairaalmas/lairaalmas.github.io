@@ -1,0 +1,1185 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="./img/flag_icon.png">
+  <link rel="stylesheet" href="./style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='./style/style.css'>
+
+  <title>iFractions | Documentação</title>
+
+  <link rel="stylesheet" href="./prism/prism-default.css">
+  <script src="./prism/prism.js"></script>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">iFractions</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#download">Download</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./sobre.html">Conhecendo o iFractions</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false"> Documentação
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href='./area_professor.html'>Sou professor</a></li>
+              <li><a class="dropdown-item" aria-current="page" href='./area_programador.html'>Sou progamador</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./publicacoes.html">Publicações</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
+        <li class="breadcrumb-item"><a href="area_programador.html">Área do programador</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Conhecendo o código</li>
+      </ol>
+    </nav>
+    <h1 id='' class='display-4'>Conhecendo o código</h1>
+    <p class="lead">
+      As seções <span>\ref{sec:gamemech}</span> e <span>\ref{sec:globals}</span> explicam os conteúdos
+      dos arquivos <code>gameMechanics.js</code> e
+      <code>globals.js</code>. Para visualizar a documentação detalhada dos parâmetros usados nas
+      funções em <code>gameMechanics.js</code> e das variáveis globais, bem como sobre os estados do iFractions
+      clique <a href='https://www.ime.usp.br/~laira/ifractions-doc/'>aqui</a>. Basta navegar pelo menu lateral.
+      Esta documentação gerada usando <a href='https://jsdoc.app/'>JSDoc</a> está em inglês e cobre apenas a
+      porção de javascript do código.
+    </p>
+    <hr class="display-4">
+  </header>
+
+  <!-- pagina -->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet">
+      </div>
+
+      <div class="col-lg-8 px-5">
+
+        <!-- titulo -->
+
+        <!-- agora o site ta como read only e nao consigo mudar de volta para ifractions-doc (minusculo) - será pq usei mt? tentar novamente depois
+    
+            OLD: A documentação detalhada dos parâmetros usados nas funções do iFractions e mais está disponível em <a href='https://www.ime.usp.br/~laira/ifractions-doc/'>link</a>. Basta navegar pelo menu lateral, que lista os estados, objetos e variáveis (globais) do código. Esta documentação está em inglês e cobre exclusivamente a porção de javascript do código. 
+          -->
+
+        <section id="estado">
+          <h2>Estados de jogo</h2>
+
+          <p>
+            Como mencionado anteriormente, um estado é um tipo especial de objeto que possui algumas funções
+            que
+            seguem
+            um
+            comportamento predefinido: <b>preload</b>, <b>create</b> e <b>update</b>. Nessa seção veremos mais
+            sobre
+            o
+            comportamento de cada uma dessas funções.
+          </p>
+
+          <ol type='A'>
+            <li><b>Preload</b>
+
+              <p>
+                O <code><b>preload</b></code> é a primeira função a ser executada quando um estado é chamado.
+                Ela
+                está
+                encarregada de
+                carregar todos elementos de mídia para o cache e chamar o <code>create</code>. Ela
+                <u>executa uma única vez</u>
+                e
+                o <code>create</code> só é chamado depois do último elemento de mídia ser carregado.
+              </p>
+
+              <p>
+                É uma função <u>opcional</u> &minus; se o estado atual não precisar de nenhum elemento
+                de
+                mídia novo ela não
+                precisa
+                existir.
+              </p>
+            </li>
+
+            <li><b>Create</b>
+
+              <p>
+                O <code><b>create</b></code> é chamado pelo <code>preload</code> logo após todas mídias serem
+                carregadas
+                no
+                cache. Ele
+                <u>executa uma única vez</u>. Contém "código principal" do estado atual &minus; desenho
+                da
+                tela,
+                definição de variáveis, criação de eventos etc. Ao fim da sua execução, chama o
+                <code>update</code>
+                &minus;
+                se
+                existir.
+              </p>
+
+              <p>
+                É uma função <u>necessária</u> &minus; precisa existir em todos estados, caso contrário
+                não
+                tem como mudar de
+                estado.
+              </p>
+            </li>
+
+            <li><b>Update</b>
+
+              <p>
+                O <code><b>update</b></code> é chamado logo após o fim da execução do <code>create</code>.
+                Está
+                sincronizado
+                com o laço de
+                jogo (<i>game loop</i>) e contém o código que reage a mudanças durante a execução. Aqui fica o
+                código que
+                reage
+                a ações do jogador.
+                <u>Continua sendo executado iterativamente enquanto não sair do estado</u>.
+              </p>
+
+              <p>
+                É uma função <u>opcional</u> &minus; algumas telas, por exemplo, só aguardam clique de
+                mouse, ou seja, a única
+                forma
+                de mudar de estado é por um evento, não precisando de <code>update</code> pois ações de
+                eventos
+                ficam em
+                funções
+                próprias.
+              </p>
+
+              <!-- PENSAR SOBRE O FATO DO CANVAS NEM O CONTEXT ESTAR INCLUSO NO JSDOC POR ESTAREM NO INDEX
+
+            colocar template de estado
+
+            -->
+            </li>
+          </ol>
+
+          <section id="estado__codigo">
+            <h3>No código</h3>
+
+            <p>
+              A tabela abaixo mostra a lista com todos estados do iFractions e em que arquivo estão contidos.
+            </p>
+
+            <table class='center-box'>
+              <tr>
+                <th><b>Estado</b></th>
+                <th><b>Arquivo</b></th>
+              </tr>
+              <tr>
+                <td>boot<br>lang<br>loadLang<br>name</td>
+                <td><code>/js/premenu.js</code></td>
+              </tr>
+              <tr>
+                <td>menu</td>
+                <td><code>/js/menu.js</code></td>
+              </tr>
+              <tr>
+                <td>customMenu</td>
+                <td><code>/js/customMenu.js</code></td>
+              </tr>
+              <tr>
+                <td>map<br>end</td>
+                <td><code>/js/map.js</code></td>
+              </tr>
+              <tr>
+                <td>studentReport</td>
+                <td><code>/js/studentReport.js</code></td>
+              </tr>
+              <tr>
+                <td>squareOne</td>
+                <td><code>/js/games/squareOne.js</code></td>
+              </tr>
+              <tr>
+                <td>circleOne</td>
+                <td><code>/js/games/circleOne.js</code></td>
+              </tr>
+              <tr>
+                <td>squareTwo</td>
+                <td><code>/js/games/squareTwo.js</code></td>
+              </tr>
+            </table>
+
+            <p class='center'>
+              Lista de estados e arquivos onde estão contidos.
+            </p>
+
+            <p>
+              É interessante perceber que, de forma simplista, os estados podem ser divididos em duas
+              categorias: os
+              que
+              unicamente carregam elementos de mídia no cache e as telas.
+            </p>
+
+            <p>
+              Considere a figura <span>\ref{fig:stateFlow}</span>, que corresponde ao fluxo principal do jogo
+              usando
+              como parâmetros chamadas de estado. Com exceção dos estados <code>boot</code> e
+              <code>loadLang</code>
+              que
+              só
+              fazem
+              carregamento, todos os outros estados correspondem a telas no jogo.
+            </p>
+
+            <div class="text-center">
+              <img src='img/fluxoDeEstados.png' class='ifr__img img-responsive' style='width: 450px;'
+                alt='Fluxo principal de estados.'>
+            </div>
+
+            <p>
+              Quando abrimos o iFractions no navegador, o arquivo <code>index.html</code> é executado,
+              carregando
+              todos
+              arquivos do diretório <code>/js</code>, inicializando o Canvas, e criando referência para todos
+              estados.
+              Então o
+              primeiro estado é chamado: <code>boot</code>. Este estado carrega no cache toda mídia necessária
+              para
+              as
+              telas
+              de selecionar linguagem e inserir nome, além dos ícones persistentes em todas as telas. Os
+              outros
+              elementos
+              de
+              mídia são carregados a medida que vão sendo necessários quando um estado novo é chamado.
+            </p>
+          </section>
+
+        </section>
+
+        <hr class="display-4" />
+
+        <section id="mechanics">
+          <h2>O arquivo <code class='clear'>gameMechanics.js</code></h2>
+
+          <p>
+            O arquivo <code>gameMechanics.js</code> é como uma caixa de ferramenta que contém tudo que o
+            iFractions
+            usa
+            durante a construção do código. Foi desenvolvido pelo LInE-IME-USP, com o intuito de diminuir
+            dependência
+            de
+            arcabouços de terceiros quando não se mostrava necessário.
+          </p>
+
+          <p>
+            Usando o prefixo <code>game</code>, este arquivo provê diversas funções que fazem o gerenciamento
+            de
+            elementos
+            de
+            jogabilidade, elementos visuais e sonoros etc, que são usadas em todos outros arquivos JavaScript.
+            A
+            seguir
+            temos a lista das funcionalidades providas por esse arquivo.
+          </p>
+
+          <section id="mechanics__estado">
+            <h3>3.5.1 Gerenciando o comportamento dos estados</h3>
+
+            <p>
+              Como apresentado na seção <span>\ref{sec:funEst}</span>, os estados são objetos que se comportam
+              seguindo
+              certas características. O <code>game.state</code> contém todo código que define esses
+              comportamentos,
+              além
+              ser
+              responsável por fazer a preparação para transicionar entre estados (limpar eventos, fila de
+              mídia,
+              variáveis
+              etc). Ele provê as seguintes funções:
+            </p>
+
+            <ul>
+              <li>
+                Criar um novo estado:
+                <pre><code class='language-js'>game.state.add(&lt;params>)</code></pre>
+              </li>
+              <li>
+                Chama/inicia o estado
+                <pre><code class='language-js'>game.state.start(&lt;params>)</code></pre>
+              </li>
+            </ul>
+          </section>
+
+          <section id="mechanics__laco">
+            <h3 id=''>3.5.2 Laço de jogo (<i>Game loop</i>)</h3>
+
+            <p>
+              Quando a função <b>update</b> é chamada dentro de um estado, o laço de jogo é iniciado
+              (<code>game.loop</code>), sendo executando iterativamente até a saída do estado atual. Ele
+              permite que
+              verifiquemos a cada iteração se houve mudança no código por ação do usuário, e é por meio dele
+              que é
+              possível
+              redesenhar tela, estabelecer um temporizador em segundos, executar animação de sprite etc.
+            </p>
+
+            <p>
+              É importante notar que elas <b>não</b> devem ser usadas diretamente, sendo chamadas pelo
+              gerenciador
+              de
+              estados. Abaixo, as funções disponíveis:
+            </p>
+
+            <ul>
+              <li>
+                Inicia o laço de jogo:
+                <pre><code class='language-js'>game.loop.start()</code></pre>
+              </li>
+              <li>
+                Encerra o laço de jogo:
+                <pre><code class='language-js'>game.loop.stop()</code></pre>
+              </li>
+            </ul>
+
+          </section>
+
+          <section id="mechanics__midia">
+            <h3>3.5.3 Carregando arquivos de mídia para o cache</h3>
+
+            <p>
+              O <code>game.load</code> recebe um vetor com os caminhos (URL) para arquivos de mídia e os
+              carrega
+              para o
+              <b>cache</b>.
+            </p>
+
+            <p>
+              Ele deve ser usado <b>exclusivamente</b> dentro da função <b>preload</b> de um estado,
+              garantindo que
+              a
+              função <b>create</b> só seja chamada quando todos elementos de mídia terminarem de ser
+              carregados.
+              <i>É importante notar que um elemento de mídia não pode ser usada se não tiver sido antes
+                carregado no
+                cache.</i>
+            </p>
+
+            <p>
+              As funções abaixo carregam elementos de mídia:
+            </p>
+
+            <!-- A cada URL carregada, ela chama <code>game.load.informMediaIsLoaded()</code>, que recebe a quantidade de elementos carregados até o momento e o total.
+        
+            Quando tudo for carregado, essa função chama <code>game.load.isPreloadDone()</code>, que verifica se todos tipos de mídia necessário para a página foram completamente carregados e por fim chama <code>game.state.create()</code>.
+        
+          -->
+
+            <ul>
+              <li>
+                Arquivos de idioma:
+                <pre><code class='language-js'>game.load.lang(&lt;url>)</code></pre>
+              </li>
+              <li>
+                Audios:
+                <pre><code class='language-js'>game.load.audio(&lt;urls>)</code></pre>
+              </li>
+              <li>
+                Imagens:
+                <pre><code class='language-js'>game.load.image(&lt;urls>)</code></pre>
+              </li>
+              <li>
+                Spritesheets:
+                <pre><code class='language-js'>game.load.sprite(&lt;urls>)</code></pre>
+              </li>
+            </ul>
+
+          </section>
+
+          <section id="mechanics__cache">
+            <h3>3.5.4 Como essa mídia é carregada no cache</h3>
+
+            <p>
+              Levando em consideração que o iFractions é uma aplicação de página única, uma "mudança de tela"
+              dentro
+              do
+              jogo corresponde, na verdade, a desenhar novos elementos gráficos no Canvas, sobrescrevendo a
+              tela
+              anterior.
+            </p>
+
+            <p>
+              Dessa forma, diferente de uma aplicação de varias páginas, onde a cada carregamento os elementos
+              de
+              mídia
+              ficam
+              prontos antes do código executar, ele utiliza chamadas assíncronas tanto para carregar os
+              arquivos
+              necessários
+              logo no inicio do programa, como para carregar novos elementos durante a execução.
+            </p>
+
+            <p>
+              Para isso, os arquivos de idioma e de áudio são carregados usando <b>Fetch API</b> e imagens (e
+              <i>spritesheets</i>) usando <b>HTMLImageElement</b>, ambos nativos do JavaScript.
+            </p>
+          </section>
+
+          <section id="mechanics__i11n">
+            <h3>3.5.5 Sobre o formato dos arquivos de idioma</h3>
+
+            <div class="text-center">
+              <img src='img/lang_files.png' class='ifr__img img-responsive' style='width:150px;'
+                alt='No iFractions, os arquivos usados para fazer a tradução dos textos ficam no diretório /assets/lang.'>
+            </div>
+
+            <p>
+              Estes arquivos não precisam de extensão todo seu conteúdo segue o formato
+              <code>&lt;chave>=&lt;tradução></code>, onde
+              as traduções não requerem uso de aspas.
+            </p>
+
+            <p>
+              <b>Ex:</b> <code>insert_name=DIGITE SEU NOME</code> (trecho do arquivo
+              <code>/assets/lang/pt_BR</code>).
+            </p>
+
+            <p>
+              Quando o usuário seleciona um idioma, a função
+              <code>game.load.lang(&lt;caminho para arquivo>)</code>
+              é
+              chamada.
+              Nela o conteúdo do arquivo referente ao idioma escolhido é acessado usando o Fetch API. A função
+              então
+              quebra
+              esse texto em <b>chave</b> e <b>tradução</b> usando a quebra de linha como indicativo de que a
+              tradução
+              encerrou, e os salva num objeto que pode ser acessado da forma <code>game.lang.&lt;chave></code>
+              (seção
+              <span>\ref{sec:acesso_direto}</span>).
+            </p>
+          </section>
+
+          <section id="mechanics__usaMidia">
+            <h3 id=''>3.5.6 Usando arquivos de idioma e áudio diretamente</h3>
+            <p>
+              O <code>gameMechanics.js</code> contém os objetos <code>audio, lang, image</code> e
+              <code>sprite</code>,
+              onde os elementos de mídia são salvos pelo <code>game.load</code> porém apenas
+              <code>audio</code> e
+              <code>lang</code> devem ser acessados diretamente.
+            </p>
+
+            <p>
+              Abaixo a forma de acesso desse tipos de mídia:
+            </p>
+
+            <ul>
+              <li>
+                Toca o som:
+                <pre><code class='language-js'>game.audio.&lt;nome do audio>.play()</code></pre>
+              </li>
+              <li>
+                Retorna a tradução associada àquela chave de acordo com o idioma selecionado pelo jogador:
+                <pre><code class='language-js'>game.lang.&lt;chave da palavra></code></pre>
+              </li>
+            </ul>
+
+            <p>
+              Já os objetos <code>image</code> e <code>sprite</code> <b>não</b> devem ser acessados
+              diretamente, mas
+              sim
+              por meio da função <code>game.add</code> (seção <span>\ref{sec:add}</span>), que salva os
+              elementos
+              gráficos
+              na
+              <b>fila de mídia</b> para o estado atual. A fila de mídia é usada <b>exclusivamente</b> por
+              <code>game.render</code>, que é chamado pelo gerenciados de estados. Mais sobre os detalhes
+              dessa
+              implementação
+              na seção <span>\ref{sec:render}</span>.
+            </p>
+
+          </section>
+
+          <section id="mechanics__canvasIndireto">
+            <h3 id=''>3.5.7 Desenhando na tela (indiretamente)</h3>
+
+            <p>
+              As funções providas por <code>game.add</code> podem ser usadas sempre que for desejado colocar
+              algum
+              elemento
+              gráfico na tela. No entanto, é importante notar que, por si só, ela não renderiza esses
+              elementos na
+              tela.
+              Todo
+              desenho no Canvas é realizado por <code>game.render</code> (seção
+              <span>\ref{sec:render}</span>), que
+              é
+              chamado
+              pelo gerenciador de estados quando este redesenha o Canvas. Assim, o papel das funções abaixo é
+              adicionar
+              esses
+              elementos para a fila de renderização. Obs.:
+              <i>Os parâmetros em negrito são obrigatórios enquanto os outros são opcionais.</i>
+            </p>
+
+            <ul>
+              <li>
+                Imagem:
+                <pre><code class='language-js'>game.add.image(&lt;params>)</code></pre>
+                <code>&lt;params> = <b>shadowBlur, y, img</b>, scale, alpha</code>
+              </li>
+              <li>
+                Spritesheet:
+                <pre><code class='language-js'>game.add.sprite(&lt;params>)</code></pre>
+                <code>&lt;params> = <b>shadowBlur, y, img</b>, curFrame, scale, alpha</code>
+              </li>
+              <li>Texto:
+                <pre><code class='language-js'>game.add.text(&lt;params>)</code></pre>
+                <code>&lt;params> = <b>shadowBlur, y, text, style</b>, align</code>
+              </li>
+            </ul>
+
+            <p>
+              Figuras geométricas também podem ser criadas usando <code>game.add.graphic</code>:
+            </p>
+
+            <ul>
+              <li>
+                Retângulo:
+                <pre><code class='language-js'>game.add.graphic.rect(&lt;params>)</code></pre>
+                <code>&lt;params> = <b>shadowBlur, y, width, height</b>, lineColor, lineWidth, fillColor, alpha</code>
+                <br>
+              </li>
+              <li>
+                Círculo:
+                <pre><code class='language-js'>game.add.graphic.circle(&lt;params>)</code></pre>
+                <code>&lt;params> = <b>shadowBlur, y, diameter</b>, lineColor, lineWidth, fillColor, alpha</code>
+              </li>
+              <li>
+                Arco:
+                <pre><code class='language-js'>game.add.graphic.arc(&lt;param>)</code></pre>
+                <code>&lt;params> = <b>shadowBlur, y, diameter, angleStart, angleEnd</b>, anticlockwise, lineColor, lineWidth, fillColor, alpha</code>
+                <br>
+              </li>
+            </ul>
+
+            <section id="mechanics__canvasIndireto__props">
+
+              <h4>3.5.7.1 Algumas propriedades disponíveis para esses elementos</h4>
+
+              <ul>
+                <li>
+                  Pivô:
+                  <pre><code class='language-js'>&lt;mídia>.anchor(&lt;valor horizontal>,&lt;valor vertical>)</code></pre>
+                </li>
+                <li>
+                  Adicionar sombra na figura:
+                  <pre><code class='language-js'>&lt;mídia>.shadow = &lt;valor booleano></code></pre>
+                </li>
+                <li>
+                  Rotação:
+                  <pre><code class='language-js'>&lt;mídia>.angle = &lt;ângulo em graus></code></pre>
+                </li>
+                <li>
+                  Transparência:
+                  <pre><code class='language-js'>&lt;mídia>.alpha = &lt;valor entre 0 e 1></code></pre>
+                </li>
+              </ul>
+
+              <p>
+                A tabela <span>\ref{tab:propr}</span> apresenta uma visualização das propriedades disponíveis
+                para
+                cada
+                elemento
+                gráfico adicionado usando <code>game.add</code>. Em verde temos os parâmetros obrigatórios na
+                criação,
+                em
+                amarelo o parâmetros opcionais, em azul as outras propriedades que podem ser usadas e em
+                branco as
+                propriedades
+                que o elemento não tem acesso.
+                <!-- 
+              ver se tem rotação na criação do objeto ou se ele pode so ser adicionado depois e considerado por game.render 
+            -->
+              </p>
+
+              <div class='center'>
+
+                <!--<table class='center-box' style='border-left: none; border-top: none'>-->
+                <table class='table table-bordered'>
+                  <thead>
+                    <tr>
+                      <td></td>
+                      <th><span class='vertical'>game.add.<b>image</b></span></th>
+                      <th><span class='vertical'>game.add.<b>sprite</b></span></th>
+                      <th><span class='vertical'>game.add.<b>text</b></span></th>
+                      <th><span class='vertical'>game.add.geom.<b>rect</b></span></th>
+                      <th><span class='vertical'>game.add.geom.<b>circle</b></span></th>
+                      <th><span class='vertical'>game.add.geom.<b>arc</b></span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>x</th>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                    </tr>
+                    <tr>
+                      <th>y</th>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                    </tr>
+                    <tr>
+                      <th>img</th>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>scale</th>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                    </tr>
+                    <tr>
+                      <th>alpha</th>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                    </tr>
+                    <tr>
+                      <th>curFrame</th>
+                      <td></td>
+                      <td class='table-warning'></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>width</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td class='table-success'></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>height</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td class='table-warning'></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>text</th>
+                      <td></td>
+                      <td></td>
+                      <td class='table-success'></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>style</th>
+                      <td></td>
+                      <td></td>
+                      <td class='table-success'></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>align</th>
+                      <td></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>font</th>
+                      <td></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>fill</th>
+                      <td></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>lineColor</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                    </tr>
+                    <tr>
+                      <th>lineWidth</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                    </tr>
+                    <tr>
+                      <th>fillColor</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                      <td class='table-warning'></td>
+                    </tr>
+                    <tr>
+                      <th>diameter</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class='table-success'></td>
+                      <td class='table-success'></td>
+                    </tr>
+                    <tr>
+                      <th>angleStart</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td class='table-success'></td>
+                    </tr>
+                    <tr>
+                      <th>angleEnd</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td class='table-success'></td>
+                    </tr>
+                    <tr>
+                      <th>anticlockwise</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td class='table-warning'></td>
+                    </tr>
+                    <tr>
+                      <th>xAnchor</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>yAnchor</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>anchor</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>xWithAnchor</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>yWithAnchor</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>shadow</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td class='table-primary'></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th>shadowColor</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                    </tr>
+                    <tr>
+                      <th>shadowBlur</th>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                      <td class='table-primary'></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <p>
+                  Lista de propriedades de cada elemento gráfico adicionados usando <code
+                    class='language-js'>game.add</code> &minus; em verde
+                  os parametros obrigatórios na criação; em amarelo os parametros opcionais; em azul as outras
+                  propriedades disponíveis.
+                </p>
+
+              </div>
+
+            </section>
+
+          </section>
+
+          <section id="mechanics__canvasDireto">
+            <h3>3.5.8 Desenhando na tela (diretamente)</h3>
+
+            <p>
+              Em <code>game.render</code> está o código que pega um objeto previamente criado em
+              <code>game.add</code>
+              e
+              desenha na tela usando as propriedade do elemento Canvas.
+            </p>
+
+            <p>
+              Ele utiliza uma fila de renderização &minus; <code>game.render.queue</code> &minus; para
+              estabelecer a
+              ordem
+              de
+              desenho
+              na
+              tela e é chamada <b>exclusivamente</b> pelo gerenciador de estados &minus; que redesenha a tela
+              a cada
+              chamada
+              do
+              laço de jogo.
+            </p>
+
+            <p>
+              É importante notar que o processo de desenho na tela foi dividido em <code
+                class='language-js'>game.add</code>
+              e
+              <code>game.render</code> por conta do laço de jogo, que redesenha a tela diversas
+              vezes.
+            </p>
+
+            <p>
+              <b>Resumindo a estrutura:</b> <code>game.add</code> cria o elemento e o salva na fila
+              de renderização e
+              <code>game.render</code> (re)desenha os elementos da fila de renderização na tela sempre que é
+              chamado
+              pelo
+              gerenciador de estados &minus; <code>game.state</code> &minus; que, por sua vez, segue o tempo
+              estabelecido pelo
+              laço
+              de
+              jogo &minus; <code>game.loop</code>.
+            </p>
+
+            <ul>
+              <li>
+                Desenha no Canvas todos elementos que estão na na fila de renderização:
+                <pre><code class='language-js'>game.render.all()</code></pre>
+              </li>
+              <li>
+                Limpa a fila de renderização. É chamado pelo gerenciador de estados ao sair de um estado para
+                que
+                elementos antigos não sigam sendo redesenhados na tela:
+                <pre><code class='language-js'>game.render.clear()</code></pre>
+              </li>
+            </ul>
+
+          </section>
+
+          <section id="mechanics__matematica">
+            <h3>3.5.9 Funções matemáticas</h3>
+
+            <p>
+              Algumas funções são necessárias diversas vezes no jogo então foram centralizadas em
+              <code>game.math</code>.
+            </p>
+
+            <ul>
+              <li>
+                Retorna um inteiro entre dois números
+                <pre><code class='language-js'>game.math.randomInRange(&lt;params>)</code></pre>
+              </li>
+              <li>
+                Retorna um divisor aleatório de um número:
+                <pre><code class='language-js'>game.math.randomDivisor(&lt;params>)</code></pre>
+              </li>
+              <li>
+                Converte de grau para radiano:
+                <pre><code class='language-js'>game.math.degreeToRad(&lt;params>)</code></pre>
+              </li>
+              <li>
+                Retorna a distância do centro de um ícone para o ponteiro do mouse:
+                <pre><code class='language-js'>game.math.distanceToPointer(&lt;params>)</code></pre>
+              </li>
+              <li>
+                verifica se ponteiro está sobre um ícone (frequentemente usada para validar eventos de mouse):
+                <pre><code class='language-js'>game.math.isOverIcon(&lt;params>)</code></pre>
+              </li>
+            </ul>
+
+          </section>
+
+          <section id="mechanics__mouse">
+            <h3 id=''>3.5.10 Eventos de mouse</h3>
+
+            <p>
+              O <code>game.event</code> encapsula <b>eventos</b> para que sejam usados pelo gerenciador de
+              estado.
+              Atualmente, ele captura eventos de mouse e toque de tela.
+            </p>
+
+            <ul>
+              <li>
+                Captura evento de clique de mouse (e toque de tela):
+                <pre><code class='language-js'>game.event.add('click',&lt;função>)</code></pre>
+              </li>
+              <li>
+                Captura evento de movimento de mouse. Usado para ver se o ponteiro está sobre um ícone:
+                <pre><code class='language-js'>game.event.add('move',&lt;função>)</code></pre>
+              </li>
+            </ul>
+
+            <p>
+              É importante entender a forma como o Canvas lida com eventos. Elementos desenhados no Canvas não
+              são
+              isolados do
+              mesmo, assim, o evento é capturado pelo Canvas como um todo e não pelo elemento separadamente.
+            </p>
+
+            <p>
+              Assim, quando um evento é capturado, a função definida como parâmetro na criação do evento é
+              chamada.
+              Por
+              convenção usamos os nomes <code>onInputOver()</code> e <code>onInputDown()</code> e precisam ser
+              declaradas
+              dentro do estado que contém o
+              evento.
+            </p>
+
+            <p>
+              Assim, quando estas funções são chamadas, sabemos que um evento foi capturado pelo Canvas, mas
+              não
+              sabemos
+              se o
+              ponteiro está sobre um elemento válido. Então essas funções devem fazer essa verificação. Para
+              isso
+              usamos
+              sempre que possível a função <code>game.math.isOverIcon()</code> (seção
+              <span>\ref{sec:math}</span>),
+              que
+              recebe
+              a lista de ícones válidos e as coordenadas do ponteiro e retorna se este está sobre algum deles.
+            </p>
+
+          </section>
+
+          <section id="mechanics__animacao">
+            <h3>3.5.11 Animação de sprites</h3>
+
+            <!-- O Spritesheet é... -->
+            <p>
+              As funções providas por <code>game.animation</code> gerenciam as animações do jogo. Essas
+              animações
+              são
+              feitas iterando pelos frames de um <i>spritesheet</i> a cada iteração do laço de jogo.
+            </p>
+
+            <ul>
+              <li>
+                Começa a executar uma animação:
+                <pre><code class='language-js'>game.animation.play(&lt;params>)</code></pre>
+              </li>
+              <li>
+                Para uma animação:
+                <pre><code class='language-js'>game.animation.stop(&lt;params>)</code></pre>
+              </li>
+            </ul>
+
+            <p>
+              Uma vez que seja adicionada a propriedade <code>animation</code> a um sprite ele pode ser
+              animado
+              usando
+              estas
+              funções acima.
+            </p>
+
+            <ul>
+              <li>
+                Adiciona a um <i>spritesheet</i> a propriedade de animação:
+                <pre><code class='language-js'>&lt;sprite>.animation = [&lt;nome>,[&lt;frames>]]</code></pre>
+              </li>
+            </ul>
+
+          </section>
+
+          <section id="mechanics__temp">
+            <h3 id=''>3.5.12 Temporizador</h3>
+
+            <p>
+              Usado no iFractions para calcular o tempo que o jogador levou para terminar um jogo, o
+              <code>game.timer</code> está associado ao laço de jogo e conta os segundos passados
+              desde o inicio do seu contador até o fim.
+            </p>
+
+            <ul>
+              <li>
+                Inicia o contador:
+                <pre><code class='language-js'>game.timer.start()</code></pre>
+              </li>
+              <li>
+                Para o contador:
+                <pre><code class='language-js'>game.timer.stop()</code></pre>
+              </li>
+              <li>
+                Retorna o tempo percorrido:
+                <pre><code class='language-js'>game.timer.elapsed</code></pre>
+              </li>
+            </ul>
+          </section>
+
+        </section>
+
+        <hr class=" display-4" />
+
+        <section id="global">
+          <h2>O arquivo <code class='clear'>globals.js</code></h2>
+
+          <p>
+            O arquivo <code>/js/globals.js</code> contém variáveis, objetos e funções globais do iFractions,
+            possuindo
+            informações como <code>gameType, levelType, sublevelType, gameDifficulty</code>, que definem a
+            escolha
+            do
+            jogo atual, como ilustrado pela tabela <span>\ref{tab:niveis}</span>).
+            <!-- Expandir.
+              
+              item -> <code>url</code> - contém as URL para os arquivos de mídia; usado para parâmetro para
+              <code>game.load</code>; divide as URL por tela onde é carregada e tipo de mídia.
+            -->
+          </p>
+
+        </section>
+
+        <div class="d-flex justify-content-between">
+          <a class="btn btn-primary" href='./area_programador_2.html' role="button">Voltar</a>
+          <a class="btn btn-primary" href='./area_programador_4.html' role="button">Próximo</a>
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="./script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="./script/script.js"></script>
+
+</html>
