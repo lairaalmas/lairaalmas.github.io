@@ -7,56 +7,22 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
   <meta name="description" content="Collection of educational games for teaching fractions" />
-  <meta name="keywords" content="ifractions, fraction, game, private data, math" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
 
-  <link rel="icon" type="image/ico" href="./img/flag_icon.png">
-  <link rel="stylesheet" href="./style/bootstrap/bootstrap.min.css">
-  <link rel='stylesheet' href='./style/style.css'>
+  <link rel="icon" type="image/ico" href="../../assets/flag_icon.png">
+  <link rel="stylesheet" href="../../style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='../../style/style.css'>
 
-  <title>iFractions | Documentação</title>
+  <title>iFractions | Área do Desenvolvedor</title>
 
-  <link rel="stylesheet" href="./prism/prism-default.css">
-  <script src="./prism/prism.js"></script>
+  <link rel="stylesheet" href="../../style/prism/prism-default.css">
+  <script src="../../script/prism/prism.js"></script>
 </head>
 
 <body class="container-flex">
 
   <!-- menu superior -->
   <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">iFractions</a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html#download">Download</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="./sobre.html">Conhecendo o iFractions</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false"> Documentação
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href='./area_professor.html'>Sou professor</a></li>
-              <li><a class="dropdown-item" aria-current="page" href='./area_programador.html'>Sou progamador</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="./publicacoes.html">Publicações</a>
-          </li>
-        </ul>
-      </div>
-    </div>
   </nav>
 
   <!-- botao de voltar ao inicio da pagina -->
@@ -74,14 +40,15 @@
   <header class="jumbotron jumbotron-flex p-5">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Início</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Área do programador</li>
+        <li class="breadcrumb-item"><a href="../../index.html">Início</a></li>
+        <li class="breadcrumb-item"><a href="../documentacao.html">Documentação</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Área do Desenvolvedor - início</li>
       </ol>
     </nav>
-    <h1 class="display-4">Área do programador</h1>
+    <h1 class="display-4">Área do Desenvolvedor</h1>
     <hr class="display-4">
     <p class="lead">
-      Está página apresenta detalhes da implementação do iFractions. É indicada para programadores que desejam
+      Esta página apresenta detalhes da implementação do iFractions. É indicada para desenvolvedores que desejam
       colaborar com o projeto, tem curiosidade sobre o funcionamento da ferramenta ou desejam incorporá-la ao
       seu site ou a um Moodle preexistente.
     </p>
@@ -91,15 +58,16 @@
   <main class='container-flex'>
     <div class="row">
       <!-- menu de navegacao lateral -->
-      <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet"></div>
+      <!-- <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet"></div> -->
+      <div class="col-lg-2 text-start p-1"></div>
 
       <div class="col-lg-8 px-5">
 
-        <section id="diretorio">
+        <section id="sec-diretorio">
           <h2>Diretório <code>Ifractions-web</code></h2>
 
           <p>
-            O conteúdo do pacote <code>Ifractions-web</code> está disposto a seguir:
+            O conteúdo do pacote <code>Ifractions-web</code> está disposto da seguinte forma:
           </p>
 
           <div class="container">
@@ -110,66 +78,93 @@
               <div class="col-lg-9 ifr__noBullet ">
                 <ul class="my-bordered-list">
                   <li>
-                    <code>/assets</code> &minus; com os diretórios que contém os arquivos de mídia
+                    <code>assets/</code> &minus; com os diretórios que contém os arquivos de mídia
                     <ul>
                       <li>
-                        <code>/img</code> &minus; imagem e spritesheet
+                        <code>audio/</code> &minus; audios
                       </li>
                       <li>
-                        <code>/audio</code> &minus; audio
+                        <code>img/</code> &minus; imagens e spritesheets
                       </li>
                       <li>
-                        <code>/lang</code> &minus; idioma
+                        <code>lang/</code> &minus; idiomas
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <code>/css</code> &minus; com os arquivos CSS que definem o estilo da página
-                  </li>
-                  <li>
-                    <code>/js</code> &minus; com código JavaScript que define as telas e a lógica do jogo
-                  </li>
-                  <ul>
-                    <li>
-                      <code>/js/games</code>
-                    </li>
+                    <code>js/</code> &minus; com código JavaScript que define as telas e a lógica do jogo
                     <ul>
                       <li>
-                        <code>squareOne.js</code>, <code>squareTwo.js</code> e <code>circleOne.js</code> contém os
-                        estados
-                        que correspondem às telas dos jogos
+                        <code>games/</code>
+                        <ul>
+                          <li>
+                            <code>squareOne.js</code>, <code>squareTwo.js</code> e <code>circleOne.js</code> − contém os
+                            estados
+                            que correspondem às telas dos jogos
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <code>globals/</code> − contém os recursos globais do jogo
+                        <ul>
+                          <li>
+                            <code>globals_control.js</code>
+                          </li>
+                          <li>
+                            <code>globals_debug.js</code>
+                          </li>
+                          <li>
+                            <code>globals_functions.js</code>
+                          </li>
+                          <li>
+                            <code>globals_tokens.js</code>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <code>menus/</code>
+                        <ul>
+                          <li><code>menu_boot.js</code></li>
+                          <li><code>menu_lang.js</code></li>
+                          <li><code>menu_name.js</code></li>
+                          <li><code>menu_main.js</code></li>
+                          <li><code>menu_custom.js</code></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <code>moodle/</code>
+                        <ul>
+                          <li><code>integrationFunctions.js</code> − contém recursos que permitem o funcionamento da
+                            <b>Versão Moodle</b> (incluido funções que conversam com o iTarefa)
+                          </li>
+                          <li>
+                            <code>studentReport.js</code> − contém o estado que mostra o progresso do aluno na <b>Versão
+                              Moodle</b>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <code>screens/</code>
+                        <ul>
+                          <li><code>end.js</code></li>
+                          <li><code>map.js</code></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <code>gameMechanics.js</code> provê todas ferramentas de jogabilidade e interação com o
+                        Canvas que são usadas no código
                       </li>
                     </ul>
-                    <li>
-                      <code>gameMechanics.js</code> provê todas ferramentas de jogabilidade e interação com o Canvas
-                      que
-                      são
-                      usadas no código
-                    </li>
-                    <li>
-                      <code>globals.js</code> contém os recursos globais do jogo
-                    </li>
-                    <li>
-                      <code>integrationFunctions.js</code> contém recursos que permitem o funcionamento da <b>Versão
-                        Moodle</b>
-                      (incluido funções que conversam com o iTarefa)
-                    </li>
-                    <li>
-                      <code>studentReport.js</code> contém o estado que mostra o progresso do aluno na <b>Versão
-                        Moodle</b>
-                    </li>
-                    <li>
-                      <code>premenu.js</code>, <code>menu.js</code>, <code>customMenu.js</code> e
-                      <code>map.js</code>
-                      contém
-                      os
-                      outros estados que não são os jogos em si
-                    </li>
-                  </ul>
+                  </li>
                   <li>
-                    <code>/php</code> &minus; com código em PHP que estabelece a conexão com o banco de dados na
-                    <b>Versão
-                      Web</b>
+                    <code>php/</code> &minus; com código em PHP que estabelece a conexão com o banco de dados na
+                    <b>Versão Web</b>
+                    <ul>
+                      <li><code>save.php</code></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <code>style/</code> &minus; com os arquivos CSS que definem o estilo da página
                   </li>
                   <li>
                     <code>index.html</code> é o arquivo principal
@@ -182,13 +177,14 @@
 
         <hr class="display-4" />
 
-        <section id="local">
+        <section id="sec-local">
           <h2>Executando o iFractions localmente</h2>
 
           <p>
             Esta seção mostra como o programador pode utilizar o iFractions localmente. Analogamente, os passos
             podem ser usados para subir a <i>Versão Web</i> para o seu site ou instalar a <i>Versão Moodle</i> em um
-            Moodle existente &minus; para este último pode apenas ser feito pelo administrador do Moodle.
+            Moodle existente &minus; para este último pode apenas ser feito pelo administrador do Moodle. Acesse os
+            arquivos mencionados em <a href="../../index.html#download">downloads</a>.
           </p>
 
           <section id="local__web">
@@ -199,10 +195,12 @@
               </li>
               <ul>
                 <li>
-                  um servidor local &minus; por exemplo o <a href='http://www.apache.org/'>Apache</a>;
+                  um servidor local &minus; por exemplo o <a target="_blank" href='http://www.apache.org/'>Apache</a>;
                 </li>
                 <li>
-                  <a href='https://www.mysql.com/'>MySQL</a> e <a href='https://www.php.net/'>PHP</a> se for
+                  <a target="_blank" href='https://www.mysql.com/'>MySQL</a> e <a target="_blank"
+                    href='https://www.php.net/'>PHP</a> se
+                  for
                   desejado
                   guardar as informações do aluno num banco de dados. <em>Note que esta versão não precisa de
                     conexão com
@@ -211,8 +209,7 @@
               </ul>
               <li>
                 O pacote <code>Ifractions-web.tar.gz</code> deve ser desempacotado no diretório do servidor
-                local
-                (geralmente <code>/var/www/html</code> no Ubuntu);
+                local (geralmente <code>/var/www/html</code> no Ubuntu);
               </li>
               <li>
                 Assim, ele pode ser acessado no navegador por meio do endereço do servidor local (geralmente
@@ -230,10 +227,11 @@
               </li>
               <ul>
                 <li>
-                  um <a href='https://moodle.org/'>Moodle</a> instalado na máquina
+                  um <a target="_blank" href='https://moodle.org/'>Moodle</a> instalado na máquina
                 </li>
                 <li>
-                  o pacote <a href='https://moodle.org/plugins/mod_iassign'>iTarefa</a> instalado nesse Moodle
+                  o pacote <a target="_blank" href='https://moodle.org/plugins/mod_iassign'>iTarefa</a> instalado nesse
+                  Moodle
                 </li>
                 <ul>
                   <li>
@@ -242,8 +240,9 @@
                     acessados pelo aluno &minus; dentre eles o <strong>iFractions</strong>.
                   </li>
                   <li>
-                    O arquivo <code>README.md</code> no <a href='http://200.144.254.107/git/LInE/iassign'>repositório do
-                      iAssign</a> explica
+                    O arquivo <code>README.md</code> no <a target="_blank"
+                      href='http://200.144.254.107/git/LInE/iassign'>repositório do
+                      iTarefa</a> explica
                     o processo de instalação e uso do módulo.
                   </li>
                 </ul>
@@ -266,25 +265,25 @@
 
         <hr class="display-4" />
 
-        <section id="bd">
+        <section id="sec-bd">
           <h2>Configurando o banco de dados</h2>
 
           <p>
             O iFractions executa a conexão com o banco de dados de forma diferente nas duas versões. Para mais
-            informações sobre os requisitos de cada versão veja a <a href='#cod-requisitos'>seção acima</a>.
+            informações sobre os requisitos de cada versão veja a <a href='#local'>seção acima</a>.
           </p>
 
           <section id="bd__web">
             <h3 class='ifr__color__lightBlue'>Versão Web (PHP e MySQL)</h3>
 
             <p>
-              Esta versão utiliza um banco de dados MySQL e um arquivo PHP <code>/php/save.php</code> que
+              Esta versão utiliza um banco de dados MySQL e um arquivo PHP <code>php/save.php</code> que
               gerencia a conexão entre o iFractions e o bando de dados. É usado o <code>Fetch API</code> para acessar
               este arquivo de forma assíncrona usando o método HTTP <code>POST</code>.
             </p>
 
             <p>
-              Tendo instalado todos <a href='#cod-requisitos'>requisitos</a>, para que seja possível
+              Tendo instalado todos <a href='#local'>requisitos</a>, para que seja possível
               estabelecer uma
               conexão entre o iFractions e banco de dados de forma correta é preciso fazer as seguintes
               configurações:
@@ -330,10 +329,10 @@
 
               </li>
 
-              <li><b>Atualizar o arquivo <code>/php/save.php</code></b>
+              <li><b>Atualizar o arquivo <code>php/save.php</code></b>
 
                 <p>
-                  É preciso definir os valores para algumas variáveis em <code>/php/save.php</code> de acordo
+                  É preciso definir os valores para algumas variáveis em <code>php/save.php</code> de acordo
                   a
                   configuração do banco de dados como aparece a seguir:
                 </p>
@@ -347,14 +346,15 @@ $tablename = "ifractions";  // INSERT table name (default=ifractions)
 
               </li>
 
-              <li><b>Atualizar o arquivo <code>/js/globals.js</code></b>
+              <li><b>Atualizar o arquivo <code>js/globals/globals_functions.js</code></b>
 
                 <p>
-                  Em <code>/js/globals.js</code> existe uma função global chamada <code>sendToDB()</code>.
+                  Em <code>js/globals/globals_functions.js</code> existe uma função global chamada
+                  <code>sendToDatabase()</code>.
                   Quando a
                   informação do jogador é coletada ao final de cada jogo, o arquivo do jogo a envia para
-                  <code>sendToDB()</code> que, por sua vez, faz uma conexão assíncrona com
-                  <code>/php/save.php</code>,
+                  <code>sendToDatabase()</code> que, por sua vez, faz uma conexão assíncrona com
+                  <code>php/save.php</code>,
                   permitindo o envio das informações para o banco de dados.
                 </p>
 
@@ -373,15 +373,16 @@ $tablename = "ifractions";  // INSERT table name (default=ifractions)
 
               <p>
                 Existe uma função chamada <code>postScore()</code> dentro de cada estado de jogo &minus;
-                <code>/js/squareOne.js</code>, <code>/js/squareTwo.js</code> e <code>/js/circleOne.js</code>.
+                <code>js/games/squareOne.js</code>, <code>js/games/squareTwo.js</code> e
+                <code>js/games/circleOne.js</code>.
                 Assim, sempre que o jogador termina uma fase (tendo ele acertado ou não), antes de voltar para o
                 mapa
                 de
                 fases, a função <code>postScore()</code> é chamada. Ela concatena toda informação sobre o
                 progresso do
                 jogador numa <i>string</i> que é passada como parâmetro para a função global
-                <code>sendToDB()</code>
-                (de <code>/js/globals.js</code>) que a envia para o banco de dados.
+                <code>sendToDatabase()</code>
+                (de <code>js/globals/globals_functions.js</code>) que a envia para o banco de dados.
               </p>
 
               <pre><code class='language-js'>const data = '&line_game=' + // collect game shape
@@ -406,13 +407,14 @@ $tablename = "ifractions";  // INSERT table name (default=ifractions)
 
             <section id='dados'>
               <h2>Onde os dados são coletados</h2>
-              <p><span class="text-warning">Em construção...</span></p>
+              <p>Em construção...</p>
             </section>
           </section>
         </section>
 
         <div class="d-flex justify-content-end">
-          <a class="btn btn-primary" href='./area_programador_2.html' role="button">Próximo</a>
+          <!-- 1 -->
+          <a class="btn btn-primary" href='./page_2.html' role="button">Próximo - tecnologias utilizadas</a>
         </div>
 
       </div>
@@ -426,7 +428,8 @@ $tablename = "ifractions";  // INSERT table name (default=ifractions)
 
 </body>
 
-<script src="./script/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="./script/script.js"></script>
+<script src="../../script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../../script/index.js"></script>
+<script src="../../script/navMenu.js"></script>
 
 </html>

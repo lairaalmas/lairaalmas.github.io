@@ -1,0 +1,84 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="../assets/flag_icon.png">
+  <link rel="stylesheet" href="../style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='../style/style.css'>
+
+  <title>iFractions | Publicações</title>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index.html">Início</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Publicações</li>
+      </ol>
+    </nav>
+    <h1 class="display-4">Publicações</h1>
+    <p class="lead">Nessa página, você encontra as publicações a respeito do iFractions.</p>
+    <hr class="display-4">
+  </header>
+
+  <!-- pagina-->
+  <main class='container'>
+
+    <section>
+      <ul>
+        <li class="my-3">
+          <b>Artigo:</b> M. J. Ibarra et al., "Game Based Learning for Math Learning: Ifractions Case Study,"
+          <i>2019
+            International
+            Conference on Virtual Reality and Visualization (ICVRV)</i>, 2019, pp. 208-211, doi:
+          <a target="_blank"
+            href='https://ieeexplore.ieee.org/abstract/document/9213024'>10.1109/ICVRV47840.2019.00050</a>.
+        </li>
+        <li>
+          <b>Poster</b>: Terceiro Encontro Paulista de Pós-Graduandos em Computação (EPPC3). Jogos educativos no
+          ensino
+          de matemática básica. 2019. (Encontro).
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="../script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../script/index.js"></script>
+<script src="../script/navMenu.js"></script>
+<script>
+  updateMenu(1);
+</script>
+
+</html>

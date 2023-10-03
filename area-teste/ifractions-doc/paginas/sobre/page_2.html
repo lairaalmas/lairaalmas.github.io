@@ -1,0 +1,169 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="../../assets/flag_icon.png">
+  <link rel="stylesheet" href="../../style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='../../style/style.css'>
+
+  <title>iFractions | Sobre</title>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../index.html">Início</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sobre - personalização</li>
+        <!-- <li class="breadcrumb-item active" aria-current="page">Personalização</li> -->
+      </ol>
+    </nav>
+    <h1 class="display-4">Conhecendo o iFractions</h1>
+    <!-- <p class="lead">...</p> -->
+    <hr class="display-4">
+  </header>
+
+  <!-- pagina -->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <!-- <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet"></div> -->
+      <div class="col-lg-2 text-start p-1"></div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id='personalizacao'>
+          <h2>Personalização</h2>
+
+          <p>
+            O iFractions é uma coletânea de jogos que aborda diferentes assuntos relacionados a frações. Nele, o
+            usuário pode personalizar o jogo como desejado nos menus do iFractions combinando:
+            <span class="badge rounded-pill bg-success">Jogo</span> +
+            <span class="badge rounded-pill bg-success">Modo de Jogo</span> +
+            <span class="badge rounded-pill bg-success">Operação matemática</span> +
+            <span class="badge rounded-pill bg-success">Nível de dificuldade</span> +
+            <span class="badge rounded-pill bg-success">Elementos visuais auxiliares</span>.
+          </p>
+
+          <div class="d-flex gap-3 mb-3">
+            <img class="w-50" src="../../assets/menu.png" alt="">
+            <img class="w-50" src="../../assets/custom-menu-s1.png" alt="">
+          </div>
+
+          <table class="table text-start">
+            <tr>
+              <th>Jogo</th>
+              <td>É o conceito principal. Temos disponíveis atualmente 3 jogos: quadriláteros I e quadriláteros II, que
+                lidam com frações aplicadas em figuras retangulares, e círculos I, que apresenta fração como um arco.
+              </td>
+            </tr>
+            <tr>
+              <th>Modo de jogo</th>
+              <td>São as diferentes variações para o jogo selecionado.
+              </td>
+            </tr>
+            <tr>
+              <th>Operação matemática</th>
+              <td>Representam diferentes conteúdos de frações (soma, subtração, igualdade etc) que podem ser abordados
+                pelo mesmo jogo.
+              </td>
+            </tr>
+            <tr>
+              <th>Nível de dificuldade</th>
+              <td>Representado como um número inteiro tal que quando maior o valor, maior a dificuldade, informa a
+                dificuldade geral do jogo, sendo parâmetro para criação dos 4 fases do jogo selecionado.</td>
+              <!-- 
+                p: mostrar o que dificuldade significa em cada fase (subdivisão do chão, frações mais difíceis, etc.) 
+              -->
+            </tr>
+            <tr>
+              <th>Elementos visuais auxiliares</th>
+              <td>Dizem respeito ao controle da adição ou remoção de elementos visuais que podem facilitar o jogo, como
+                mostrar ou não as frações na tela.</td>
+            </tr>
+          </table>
+
+          <p>
+            Uma vez configurado, ele gera um mapa com <strong>4 fases</strong> para a jogo personalizado, <strong>com
+              nível crescente de dificuldade</strong>. O objetivo do usuário é então chegar ao final do mapa,
+            finalizando todos os níveis do jogo.
+          </p>
+
+          <div class="d-flex justify-content-center">
+            <img class="mb-3 w-50" src="../../assets/map.png" alt="">
+          </div>
+
+          <div class="shadow p-3 w-50 mx-auto">
+            <img src='../../assets/selected-game.png' class='ifr__img img-responsive' alt='Tela do mapa de fases.'
+              width="100%">
+            <table class="table text-start">
+              <tr>
+                <th>Jogo</th>
+                <td><em>Quandriláteros I</em><br />(temática rural)</td>
+              </tr>
+              <tr>
+                <th>Modos de jogo</th>
+                <td><i>A</i><br />(selecionar subdivisão do chão)</td>
+              </tr>
+              <tr>
+                <th>Operação matemática</th>
+                <td><i>Plus</i><br />(soma de frações)</td>
+              </tr>
+              <tr>
+                <th>Dificuldade</th>
+                <td>3<br />(Mais difícil)</td>
+              </tr>
+              <tr>
+                <th>Elementos auxiliares</th>
+                <td><i>Mostrar frações</i></td>
+              </tr>
+            </table>
+          </div>
+
+        </section>
+
+        <div class="d-flex justify-content-between">
+          <a class="btn btn-primary" href='./page_1.html' role="button">Voltar - Especificações</a>
+          <a class="btn btn-primary" href='./page_3.html' role="button">Próximo - Fluxo de telas</a>
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="../../script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../../script/index.js"></script>
+<script src="../../script/navMenu.js"></script>
+
+</html>

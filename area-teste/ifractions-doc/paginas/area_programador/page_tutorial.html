@@ -1,0 +1,304 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="../../assets/flag_icon.png">
+  <link rel="stylesheet" href="../../style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='../../style/style.css'>
+
+  <title>iFractions | Área do Desenvolvedor</title>
+
+  <link rel="stylesheet" href="../../style/prism/prism-default.css">
+  <script src="../../script/prism/prism.js"></script>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../index.html">Início</a></li>
+        <li class="breadcrumb-item"><a href="../documentação.html">Documentação</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Área do Desenvolvedor</li>
+        <li class="breadcrumb-item active" aria-current="page">Tutorial: criando um jogo novo
+        </li>
+      </ol>
+    </nav>
+    <h1 id='' class='display-4'>Tutorial: criando um jogo novo</h1>
+    <p class="lead">Se você é um desenvolvedor que deseja colaborar com o iFractions criando um novo jogo, essa seção
+      mostrará os passos mínimos para fazê-lo. </p>
+    <hr class="display-4">
+  </header>
+
+  <!-- pagina-->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <!-- <div class="col-lg-2 ifr__toc p-1 ifr__noBullet"></div> -->
+      <div class="col-lg-2 text-start p-1"></div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id="criarJogo">
+          <!-- <h2>Criando um jogo novo</h2> -->
+
+          <!-- <p></p> -->
+
+          <ul class="list-unstyled">
+
+            <li>
+              <h3>1. Criar um arquivo novo em <code>js/games/nomeDoJogo.js</code>
+                contendo:
+              </h3>
+
+              <pre><code class='language-js'>/******************************
+ * This file holds game states.
+ ******************************/
+
+/** [GAME STATE]
+ *
+ * Write game documentation here
+ *
+ * @namespace
+ */
+const nomeDoJogo = {
+  /**
+   * Main code
+   */
+  create: function () {
+    // Your code goes here
+
+    if (moodle) {
+      navigation.add.right(['audio']);
+    } else {
+      navigation.add.left(['back', 'menu', 'show_answer'], 'customMenu');
+      navigation.add.right(['audio']);
+    }
+
+    game.timer.start(); // Set a timer for the current level (used in postScore())
+    game.event.add('click', this.events.onInputDown);
+    game.event.add('mousemove', this.events.onInputOver);
+  },
+
+  /**
+   * Game loop
+   */
+  update: function () {
+    // Your code goes here
+
+    game.render.all();
+  },
+
+  utils: {
+    // Your functions go here
+  },
+
+  events: {
+    /**
+     * Called by mouse click event
+     *
+     * @param {object} mouseEvent contains the mouse click coordinates
+     */
+    onInputDown: (mouseEvent) => {
+      // Your code goes here
+
+      navigation.onInputDown(x, y);
+      game.render.all();
+    },
+
+    /**
+     * Called by mouse move event
+     *
+     * @param {object} mouseEvent contains the mouse move coordinates
+     */
+    onInputOver: (mouseEvent) => {
+      // Your code goes here
+
+      navigation.onInputOver(mouseEvent.x, mouseEvent.y);
+      game.render.all();
+    },
+  },
+
+  fetch: {
+    /**
+     * Saves players data after level ends - to be sent to database <br>
+     *
+     * Attention: the 'line_' prefix data table must be compatible to data table fields (MySQL server)
+     *
+     * @see /php/save.php
+     */
+    postScore: () => {
+      const data = ''; // Your query goes here
+      sendToDatabase(data);
+    },
+  },
+};
+</code></pre>
+            </li>
+
+            <li>
+              <h3>2. Adicionar o arquivo criado no <code>&lt;body></code> em
+                <code>index.html</code>
+              </h3>
+
+              <pre><code class='language-html'>&lt;script src="./js/games/nomeDoJogo.js">&lt;/script></code></pre>
+            </li>
+
+            <li>
+              <h3>3. Adicionar o novo estado do jogo no <code>&lt;script></code> em
+                <code>index.html</code>
+              </h3>
+
+              <pre><code class='language-js'>game.state.add('nomeDoJogo', nomeDoJogo);</code></pre>
+            </li>
+
+
+            <li>
+              <h3>4. Adicionar as informações sobre o jogo novo na lista de jogos em
+                <code>js/globals/globals_control.js</code>
+              </h3>
+
+              <pre><code class='clear language-ts'>const gameList = [
+  // ...
+  {
+    gameName: string, // Nome do jogo
+    gameMode: string[], // Modos de jogo disponíveis
+    gameOperation: string[], // Operações de jogo disponíveis
+    gameDifficulty: number, // Nível máximo de dificuldade
+    gameShape: string, // Figura geométrica que está representando a fração
+    assets: {
+      menu: { // centraliza informações necessárias no menu principal
+        gameNameBtn: string, // ID do botão de seleção do jogo atual no menu principal
+        infoBox: () => ({}) // Conteúdo informativo que aprece ao clicar no "?" ao lado do botão 
+      },
+      customMenu: { // centraliza informações necessárias no menu secundário
+        gameModeBtn: string[], // ID do botão de modo do jogo atual no menu secundário
+        gameOperationBtn: string[], // ID do botão de operação
+        auxiliarTitle: (x, y, offsetX, offsetH) => {}, // renderiza parte de elemento auxiliar no menu secundário
+        infoBox: () => ({
+          gameMode: {},
+          gameDifficulty: {},
+          gameMisc: {},
+        }), // Conteúdo informativo que aparece ao clicar no "?" ao lado de cada botão
+      },
+      map: { // centraliza informações necessárias no mapa do jogo
+        characterAnimation: (operation) => {}, // Parâmetros recebidos pela função de animar personagem no mapa
+        character: (operation) => {}, // Sprite com animação do personagem principal do jogo percorrendo o mapa
+        startBuilding: () => {}, // Lugar de onde o personagem sai no mapa
+        endBuilding: () => {}, // Lugar que o personagem quer chegar ao percorrer o mapa
+      },
+      end: { // centraliza informações necessárias na tela final do jogo
+        characterAnimation: () => ({}), // Parâmetros recebidos pela função de animar personagem na tela final
+        character: () => ({}), // Sprite com animação do personagem principal do jogo na tela final
+        building: () => ({}) // Lugar que o personagem quer chegar ao percorrer o mapa
+      }
+    }
+  }
+];
+</code></pre>
+            </li>
+
+            <li>
+              <h3>5. Adicionar as mídias que serão usadas no jogo atual em
+                <code>js/globals/globals_tokens.js</code>
+              </h3>
+
+              <p>
+                A global <code>url</code> referencia todos arquivos de mídia usados dentro do iFractions. Novos itens
+                podem ser adicionados em <code>boot</code> ou dentro de uma nova propriedade com o nome do jogo.
+                Itens colocados em <code>boot</code> são carregados em cache assim que o iFractions inicia enquanto os
+                dentro do uma propriedade com o nome do jogo só serão carregadas quando esse jogo for selecionado.
+              </p>
+
+              <pre><code class='clear language-js'>const url: {
+  // (esses itens serão carregados logo quando o ifractions é iniciado)
+  // é preciso pelo menos colocar os ícones de menu associados ao novo jogo
+  boot: {
+    image: [
+      ['game_&lt;gameId>', &lt;url>], // ícone do jogo no menu primario
+    ],
+    sprite: [
+      ['mode_&lt;gameId>', &lt;url>], // ícone do modo de jogo no menu secundario
+    ]
+  },
+
+  // (esse itens só serão carregados ao abrir o jogo)
+  nomeDoJogo: {
+    image: [
+      ['&lt;lugar de onde o personagem sai no mapa>', &lt;url>],
+      ['&lt;lugar onde o personagem chegará no mapa>', &lt;url>],
+    ],
+    sprite: [
+      ['&lt;spritesheet do personagem>', &lt;url>],
+    ],
+    audio: [],
+  }
+  
+}
+</code></pre>
+            </li>
+
+            <li>
+              <h3>6. Adicionar novos assets</h3>
+
+              <p>Criar as novas figuras em:</p>
+
+              <ul>
+                <li>
+                  <code>assets/img/icons_menu/nomeDoJogo.png</code> -> ícone de <b>jogo</b> na tela de menu
+                  principal.
+                </li>
+                <li>
+                  <code>assets/img/icons_menu/nomeDoJogo_1.png</code> -> ícone de <b>modo de jogo</b> na tela de
+                  menu de customização.
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+        </section>
+
+        <div class="d-flex justify-content-start">
+          <a class="btn btn-primary" href='./page_3.html' role="button">Voltar</a>
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="../../script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../../script/index.js"></script>
+<script src="../../script/navMenu.js"></script>
+
+</html>

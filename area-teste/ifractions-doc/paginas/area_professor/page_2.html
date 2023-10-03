@@ -1,0 +1,168 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="../../assets/flag_icon.png">
+  <link rel="stylesheet" href="../../style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='../../style/style.css'>
+
+  <title>iFractions | Área do Professor</title>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../index.html">Início</a></li>
+        <li class="breadcrumb-item"><a href="../documentacao.html">Documentação</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Área do Professor - preparando atividade</li>
+      </ol>
+    </nav>
+    <h1 class="display-4">Área do Professor</h1>
+    <p class="lead">Esta área foi preparada para ajudar o professor ou administrador a usar o iFractions no Moodle.</p>
+    <hr class="display-4">
+    <!-- <p class="lead"></p> -->
+  </header>
+
+  <!-- pagina -->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <!-- <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet">
+      </div> -->
+      <div class="col-lg-2 text-start p-1"></div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id="preparando">
+          <h2>Preparando uma atividade com o iFractions (Professor)</h2>
+
+          <p>Se você é um professor, siga o seguinte tutorial para criar uma atividade interativa do iFractions dentro
+            do Moodle.</p>
+
+          <h3>1. Clicar no botão verde escrito <em>Adicionar atividade</em> com na figura abaixo:</h3>
+
+          <div class="text-center mb-3">
+            <img src='../../assets/moodle_adicionar_atividade.png' class='ifr__img img-responsive shadow w-100'>
+          </div>
+
+          <h3>2. Na página aberta:</h3>
+
+          <ol>
+            <li>
+              Selecionar tipo de atividade: <em>Exercício</em>;
+            </li>
+            <li>
+              Digitar o título da atividade (não deve coincidir com títulos anteriores);
+            </li>
+            <li>
+              Digitar o enunciado que o aluno receberá (em atividade iFractions cada tipo de jogo pode ter o mesmo
+              enunciado);
+            </li>
+            <li>
+              Selecionar o tipo iMA: <em>iFractions (0.1.20200221)</em>
+            </li>
+            <li id="passo-2-5">
+              Selecionar o arquivo de atividade (via editor em linha ou arquivo previamente gravado) — veja <a
+                href="#secao-3">seção 3</a> para
+              mais detalhes desse passo;
+              <div class="text-center mb-3">
+                <img src=' ../../assets/moodle_info_atividade.png' class='ifr__img img-responsive shadow w-75'
+                  alt='Definindo título, enunciado, selecionando iMA e definindo data.' />
+              </div>
+            </li>
+            <li>
+              Configurar o prazo da atividade;
+            </li>
+            <li>
+              Clicar no botão para registrar a atividade: Salvar mudanças.
+            </li>
+          </ol>
+
+          <h3 id="secao-3">3. Selecionar arquivo ou construir uma atividade com editor iMA em linha:</h3>
+
+          <ol>
+            <li>No <a href="#passo-2-5">passo 2.5</a>, deve-se clicar no botão <em>Escolha o arquivo...</em>;</li>
+            <li id="passo-3-2">Na página aberta, clicar no botão <em>Abrir Editor iFractions online</em>;</li>
+            <li>
+              Na página aberta, digitar um nome de arquivo <em>(e.g. <code>ativ1_etap1</code>)</em> e selecionar jogo
+              (trator/quadrilátero I), modo de jogo, operação e dificuldade;
+
+              <div class="text-center">
+                <img src='../../assets/moodle_personalizar_jogo.png' class='ifr__img img-responsive shadow' width="60%"
+                  alt='Definindo tipo de atividade iFractions no editor em linha de iMA (trator/quadrilátero I).'>
+              </div>
+            </li>
+            <li>Clicar no botão <em>Gravar Atividade</em>.</li>
+            <li>
+              Aparecerá uma janela com a informação <em>"Atividade interativa gravada com sucesso sob o nome:
+                ativ1_etap1.frc"</em>, devendo-se clicar no botão OK Aquela janela é fechada, retornando-se à tela
+              aberta em <a href="#passo-3-2">3.2</a>, em sua parte inferior estão todas as atividades registradas, a
+              última criada em destaque. </li>
+            <li id="passo-3-5">
+              Deve-se selecionar o arquivo a ser utilizado para a atividade <em>(e.g. ativ1_etap1.frc)</em>;
+              <div class="text-center">
+                <img src='../../assets/moodle_selecionar_jogo.png' class='ifr__img img-responsive shadow' width="60%"
+                  alt='Gravando a iMA personalizada na atividade atual.'>
+              </div>
+            </li>
+          </ol>
+
+          <h3>4. Completar registro da atividade:</h3>
+
+          <ol>
+            <li>
+              Após selecionar o arquivo em <a href="#passo-3-6">3.5</a>, aquela janela é fechada retornando-se a janela
+              principal, agora
+              basta clicar no botão Salvar mudanças.
+
+              <div class="d-flex justify-content-between">
+                <a class="btn btn-primary" href='./page_1.html' role="button">Voltar - Instalar no Moodle</a>
+                <a class="btn btn-primary" href='./page_3.html' role="button">Próximo - Examinar atividade do
+                  aluno</a>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="../../script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../../script/index.js"></script>
+<script src="../../script/navMenu.js"></script>
+
+</html>

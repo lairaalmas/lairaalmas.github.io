@@ -1,0 +1,254 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="../../assets/flag_icon.png">
+  <link rel="stylesheet" href="../../style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='../../style/style.css'>
+
+  <title>iFractions | Sobre</title>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../index.html">Início</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sobre - fluxo de telas</li>
+      </ol>
+    </nav>
+    <h1 class="display-4">Conhecendo o iFractions</h1>
+    <!-- <p class="lead">...</p> -->
+    <hr class="display-4">
+  </header>
+
+  <!-- pagina -->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <!-- <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet"></div> -->
+      <div class="col-lg-2 text-start p-1"></div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id='navegacao'>
+          <section id='navegacao__fluxo'>
+            <h3>Fluxo de telas</h3>
+
+            <p>
+              Na imagem abaixo, as setas em preto representam o fluxo principal do <em>iFractions online</em>,
+              passando pelas telas: seleção de idioma (1), nome de usuário (2), menu principal com os jogos (3), menu de
+              personalização do jogo selecionado (4), mapa das fases (5), as fases em si (6) e a animação final, quando
+              o aluno terminou todas as fases do mapa. Já as setas em amarelo apresentam o fluxo alternativo que pode
+              ser executado pelo usuário utilizando os ícones de navegação na parte superior da tela.
+            </p>
+
+            <div class="text-center">
+              <img src='../../assets/fluxo-de-telas.png' class='ifr__img img-responsive'>
+              <!-- <p>Fluxo das telas do iFractions.</p> -->
+            </div>
+
+            <!-- Mais sobre o funcionamento do ifractions moodle na seção ?? -->
+
+            <!-- Fazer fluxo de telas para versão moodle -->
+
+            <p>
+              O <i>iFractions para Moodle</i> utiliza variações deste fluxo para o papel de professor e de aluno,
+              deixando toda personalização do jogo para o papel de professor e mapa e jogos para o papel de aluno.
+            </p>
+
+            <section id='navegacao__lang_name'>
+              <h4>1- Tela de idioma</h3>
+
+                <p>Ao abrir o <i>iFractions online</i>, a primeira tela apresentada para o usuário é a tela de idioma.
+                  Atualmente o iFractions está disponível em Português, Inglês, Espanhol, Italiano e Francês.
+                </p>
+
+                <div class="text-center mb-3">
+                  <img class="w-50" src="../../assets/lang.png" alt="">
+                </div>
+            </section>
+
+            <section>
+              <h4>2- Tela de nome do usuário</h4>
+
+              <p>Em seguida temos a tela que pede o nome do usuário. No <em> iFractions Moodle</em> as telas de nome e
+                idioma não são mostradas pois essas informações são fornecidas pelo Moodle.
+              </p>
+
+              <div class="text-center mb-3">
+                <img class="w-50" src="../../assets/name.png" alt="">
+              </div>
+
+            </section>
+
+            <section id='navegacao__menu'>
+              <h4>3 e 4 - Telas de menu</h4>
+
+              <p>
+                Na tela de menu principal. o usuário pode selecionar qual jogo ele deseja personalizar e jogar.
+              </p>
+
+              <div class="text-center mb-3">
+                <img class='ifr__img img-responsive w-50' src='../../assets/menu.png'>
+              </div>
+
+              <p>
+                Após a escolha, o menu secundário é apresentado, permitindo ao usuário personalizar o jogo escolhido.
+                Abaixo é possível ver as telas de menu secundário dos três jogos disponíveis.
+              </p>
+
+              <!-- atualizar com novas imagens-->
+              <div class="row mb-3">
+                <div class="col-lg-4"> <img src='../../assets/custom-menu-s1.png' class='ifr__img img-responsive'
+                    width="100%">
+                </div>
+                <div class="col-lg-4"> <img src='../../assets/custom-menu-c1.png' class='ifr__img img-responsive'
+                    width="100%">
+                </div>
+                <div class="col-lg-4"> <img src='../../assets/custom-menu-s2.png' class='ifr__img img-responsive'
+                    width="100%">
+                </div>
+              </div>
+
+              <!-- na imagem nao ta saindo o I de 'circulos I' (e outros) -->
+
+              <p>
+                Assim, o jogo a ser gerado será uma combinação de: <b>jogo, modo de jogo, operação matemática, nível
+                  de dificuldade</b> e <b>elementos visuais auxiliares</b>.
+                <!-- (como mencionado nas seções <span>\ref{sec:diff}</span> e <span>\ref{sec:sobreJogos}</span>).-->
+              </p>
+
+              <p>A tabela abaixo apresenta as variáveis usadas para configurar os jogos disponíveis: QI (Quadriláteros
+                I), CI (Círculos I) e QII (Quadriláteros II) - e todos valores possíveis para elas.
+              </p>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Variáveis</th>
+                    <th>Valores para QI</th>
+                    <th>Valores para CI</th>
+                    <th>Valores para QII</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th><code>gameId</code></th>
+                    <td><code>1</code></td>
+                    <td><code>2</code></td>
+                    <td><code>3</code></td>
+                  </tr>
+                  <tr>
+                    <th><code>gameName</code></th>
+                    <td><code>squareOne</code></td>
+                    <td><code>circleOne</code></td>
+                    <td><code>squareTwo</code></td>
+                  </tr>
+                  <tr>
+                    <th><code>gameMode</code></th>
+                    <td><code>a</code>, <code>b</code></td>
+                    <td><code>a</code>, <code>b</code></td>
+                    <td><code>a</code>, <code>b</code></td>
+                  </tr>
+                  <tr>
+                    <th><code>gameOperation</code></th>
+                    <td><code>plus</code>, <code>minus</code></td>
+                    <td><code>plus</code>, <code>minus</code>, <code>mixed</code></td>
+                    <td><code>equals</code></td>
+                  </tr>
+                  <tr>
+                    <th><code>gameDifficulty</code></th>
+                    <td><code>1</code> à <code>3</code></td>
+                    <td><code>1</code> à <code>3</code></td>
+                    <td><code>1</code> à <code>5</code></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- faltou levelLabel pq tem esse nome horrivel q eu tenho q mudar -->
+
+              <!--<p class='center'>Lista de variáveis que configuram os jogos e seus possíveis valores.</p>-->
+
+              <!-- As telas de menu apresentam também alguns ícones de ajuda (círculos azuis com interrogações), onde com um clique o usuário pode visualizar mais informações sobre elementos do jogo. -->
+
+            </section>
+            <section id='navegacao__mapa'>
+              <h3>Mapa de fases</h3>
+
+              <p>
+                Tendo finalizado a personalização do jogo, é chamada a tela do mapa de fases contendo 4 fases em nível
+                crescente de dificuldade de acordo com as configurações definidas.
+              </p>
+
+              <div class='text-center mb-3'>
+                <img src='../../assets/map.png' class='ifr__img img-responsive' width="60%">
+                <!-- <p>Mapa de fases (estado <b>mapState</b> em <code>/js/map.js</code>)</p> -->
+              </div>
+            </section>
+            <section id='navegacao__animacao'>
+              <h3>Animação final</h3>
+
+              <p>
+                Quando uma atividade é completada corretamente o jogador passa para o próximo ponto no mapa. Tendo
+                terminado
+                todas as fases o personagem chega no seu objetivo, sendo apresentada a tela de animação final
+                que encerra o fluxo de telas principal do jogo e retorna para o menu
+                principal.
+              </p>
+
+              <div class='text-center mb-3'>
+                <img src='../../assets/end.png' class='ifr__img img-responsive' width="60%">
+                <!-- <p>
+                  Tela que indica fim do jogo após o aluno concluir todas fases (estado <code>endState</code> em
+                  <code>/js/map.js</code>).
+                </p> -->
+              </div>
+            </section>
+          </section>
+
+          <div class="d-flex justify-content-between">
+            <a class="btn btn-primary" href='./page_2.html' role="button">Voltar - Personalização</a>
+            <a class="btn btn-primary" href='./page_4.html' role="button">Próximo - Jogos</a>
+          </div>
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="../../script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../../script/index.js"></script>
+<script src="../../script/navMenu.js"></script>
+
+</html>

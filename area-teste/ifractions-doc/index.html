@@ -7,11 +7,13 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
   <meta name="description" content="Collection of educational games for teaching fractions" />
-  <meta name="keywords" content="ifractions, fraction, game, private data, math" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
 
-  <link rel="icon" type="image/ico" href="./img/flag_icon.png">
+  <link rel="icon" type="image/ico" href="./assets/flag_icon.png">
   <link rel="stylesheet" href="./style/bootstrap/bootstrap.min.css">
   <link rel='stylesheet' href='./style/style.css'>
+
+  <base target="_blank">
 
   <title>iFractions | Documentação</title>
 </head>
@@ -20,40 +22,6 @@
 
   <!-- menu superior -->
   <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
-    <div class="container-fluid">
-      <a class="navbar-brand" aria-current="page" href="index.html">iFractions</a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html#download">Download</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="./sobre.html">Conhecendo o iFractions</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false"> Documentação
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href='./area_professor.html'>Sou professor</a></li>
-              <li><a class="dropdown-item" href='./area_programador.html'>Sou progamador</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="./publicacoes.html">Publicações</a>
-          </li>
-        </ul>
-      </div>
-    </div>
   </nav>
 
   <!-- botao de voltar ao inicio da pagina -->
@@ -76,7 +44,7 @@
         frações</strong> direcionado a alunos do Ensino Fundamental. Ele é um dos sistemas educacionais de
       <strong>código aberto</strong> que vem sendo desenvolvido pelo <a href='http://www.usp.br/line'
         target="_blank">LInE</a> e utiliza dinâmicas de jogo para apresentar conteúdos de frações de forma aplicada,
-      buscando atrair o interesse do aluno e prover viasualizações lúdicas de conteúdos formais, além de
+      buscando atrair o interesse do aluno e prover visualizações lúdicas de conteúdos formais, além de
       <strong>permitir ampla personalização dos jogos</strong>, possibilitando que se adaptem às necessidades do
       usuário.
     </p>
@@ -117,7 +85,6 @@
 
     <section id="concepcao">
       <h2>Concepção</h2>
-      <!-- historico -- coloca o nome do resto da galera? -->
       <p>
         O projeto teve início em 2016 numa parceria entre os professores
         <a href='http://www.ime.usp.br/~leo'>Leônidas de Oliveira Brandão</a>
@@ -129,20 +96,6 @@
           href='https://www.researchgate.net/publication/262370367_The_Six_Facets_of_Serious_Game_Design_A_Methodology_Enhanced_by_Our_Design_Pattern_Library'>
           Six facets of Serious Game Design</a> e segue sendo desenvolvido desde então.
       </p>
-      <!--
-      <h2 class='sanfona' id=''>Objetivos</h2>
-        <p>
-          O objetivo do iFractions é ensinar frações para o usuário de forma lúdica por meio de uma coletânea de jogos
-          que aborda diferentes tópicos do assunto, eventualmente permitindo ao usuário trilhar um caminho que o guie de
-          jogos que apresentam frações de forma puramente gráfica até o conhecimento formal.
-        </p>
-
-        <p>
-          É importante que o jogo não seja focado em competição entre alunos pois isso gera condições adversas para o
-          aprendizado, como o aluno tentar apenas chegar ao final da fase e não realmente no processo como um todo (a
-          interação entre alunos deveria ser focada na cooperação).
-        </p>
-      -->
     </section>
 
     <hr class="my-4">
@@ -186,32 +139,34 @@
         O iFractions faz parte da comunidade de <strong>software livre</strong>, usando a <a
           href='https://www.gnu.org/licenses/licenses.pt-br.html'>Licença Pública Geral GNU (GPLv3)</a>, possuindo
         código
-        aberto que pode ser distribuido gratuitamente. Atualmente existem duas versões do iFractions
-        disponíveis:
+        aberto que pode ser distribuido gratuitamente.
       </p>
+
+      <p>Atualmente existem duas versões do iFractions disponíveis:</p>
 
       <div class="row">
 
         <div class="col-lg-6 mb-3 d-flex">
           <div class="card shadow">
 
-            <img class="card-img-top" src="./img/menu.png" alt="Card image cap">
+            <img class="card-img-top" src="./assets/menu.png" alt="Card image cap">
 
             <div class="card-body">
               <h3 class="card-title">iFractions Web</h3>
-              <p class="card-text text-warning">...</p>
+              <p class="card-text">Esta versão pode ser usada no navegador livremente.</p>
 
               <h4>Links de desenvolvimento</h4>
               <ul class="list-unstyled">
-                <li><span class="text-warning">Versão estável</span></li>
-                <li><a href='http://200.144.254.107/git/LInE/Ifractions-web'>Versão de desenvolvimento</a></li>
+                <li><span class="text-muted">Versão estável</span></li>
+                <li><a href='http://200.144.254.107/git/LInE/Ifractions-web/src/master'>Versão de desenvolvimento</a>
+                </li>
               </ul>
 
-              <!--<div class="text-center">
+              <div class="text-center">
                 <a class="btn btn-primary" href="http://www.usp.br/line/ifractions" role="button" target="_blank">
                   Jogue Online Aqui
                 </a>
-              </div>-->
+              </div>
             </div>
 
           </div>
@@ -220,19 +175,18 @@
         <div class="col-lg-6 mb-3 d-flex">
           <div class="card shadow">
 
-            <img class="card-img-top" src="./img/student-report.png" alt="Card image cap">
+            <img class="card-img-top" src="./assets/student-report.png" alt="Card image cap">
 
             <div class="card-body">
               <h3 class="card-title">iFractions Moodle</h3>
               <p class="card-text">Esta versão pode ser integrada a um ambiente <a href='https://moodle.org/'>Moodle</a>
                 a partir do pacote <a href='https://www.matematica.br/ia/index_pt.html'>iTarefa</a>, aparecendo como
-                um
-                de seus Módulos de Atividade Interativos (iMA).
+                um de seus Módulos de Atividade Interativos (iMA).
               </p>
 
               <h4>Links de desenvolvimento</h4>
               <ul class="list-unstyled">
-                <li><a href='https://moodle.org/plugins/mod_iassign'>Versão estável</a></li>
+                <li><a href='https://moodle.org/plugins/mod_iassign'>Versão estável (no site do Moodle)</a></li>
                 <li><a href='http://200.144.254.107/git/LInE/iassign'>Versão de desenvolvimento</a></li>
               </ul>
             </div>
@@ -252,6 +206,6 @@
 
 <script src="./script/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="./script/bootstrap/bootstrap.esm.min.js"></script>
-<script src="./script/script.js"></script>
+<script src="./script/index.js"></script>
 
 </html>

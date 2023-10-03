@@ -1,0 +1,119 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="../../assets/flag_icon.png">
+  <link rel="stylesheet" href="../../style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='../../style/style.css'>
+
+  <title>iFractions | Área do Professor</title>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../index.html">Início</a></li>
+        <li class="breadcrumb-item"><a href="../documentacao.html">Documentação</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Área do Professor - examinando atividades</li>
+      </ol>
+    </nav>
+    <h1 class="display-4">Área do Professor</h1>
+    <hr class="display-4">
+    <p class="lead"></p>
+  </header>
+
+  <!-- pagina -->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <!-- <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet">
+      </div> -->
+      <div class="col-lg-2 text-start p-1"></div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id="examinando">
+          <h2>Examinando atividades dos alunos</h2>
+
+          <p>Se você é um professor, siga o seguinte tutorial para analisar as atividades do iFractions enviadas pelo
+            seus alunos no
+            Moodle.
+          </p>
+
+          <h3>
+            1. Para examinar uma atividade deve-se entrar na página da atividade (estando no papel professor);
+          </h3>
+
+          <h3>
+            2. Na página do iTarefa (da atividade), clicar no botão <em>"Relatórios"</em> (segundo botão) e depois na
+            opção <em>"Página inicial"</em>;
+          </h3>
+
+          <h3>
+            3. Receberá uma página com uma tabela. Na coluna "Estudantes" estão os nomes dos alunos
+            matriculados
+            e na coluna "1" os resultados dos alunos para atividade 1 (e assim por diante se houver mais atividades);
+          </h3>
+
+          <div class="text-center mb-3">
+            <img src='../../assets/moodle_relatorio_alunos.png' class='ifr__img img-responsive shadow w-100'
+              alt='Tabela com todos os alunos e todas as atividades do bloco.'>
+          </div>
+
+          <h3>
+            4. Para examinar uma atividade específica de um aluno, clicar na entrada correspondente à linha do aluno e
+            coluna da atividade. A página retornada é como na figura abaixo.
+          </h3>
+
+          <div class="text-center mb-3">
+            <img src='../../assets/moodle_solucao_aluno.png' class='ifr__img img-responsive shadow w-100'
+              alt='tividade 1 do aluno 1.'>
+          </div>
+
+        </section>
+
+        <div>
+          <a class="btn btn-primary" href='./page_2.html' role="button">Voltar - Criar atividade</a>
+        </div>
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="../../script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../../script/index.js"></script>
+<script src="../../script/navMenu.js"></script>
+
+</html>

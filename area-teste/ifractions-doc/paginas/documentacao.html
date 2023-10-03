@@ -1,0 +1,151 @@
+<!-- LInE - Free Education, Private Data - http://www.usp.br/line -->
+<!DOCTYPE html>
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <meta name="description" content="Collection of educational games for teaching fractions" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
+
+  <link rel="icon" type="image/ico" href="../assets/flag_icon.png">
+  <link rel="stylesheet" href="../style/bootstrap/bootstrap.min.css">
+  <link rel='stylesheet' href='../style/style.css'>
+
+  <title>iFractions | Documentação</title>
+
+  <link rel="stylesheet" href="../style/prism/prism-default.css">
+  <script src="../script/prism/prism.js"></script>
+</head>
+
+<body class="container-flex">
+
+  <!-- menu superior -->
+  <nav class="navbar navbar-expand-lg navbar-dark ifr__color__blue">
+  </nav>
+
+  <!-- botao de voltar ao inicio da pagina -->
+  <button onclick="backToTop()" type="button" id="ifr__btn__backToTop" title="Go to top"
+    class="btn btn-primary">&uparrow;</button>
+
+  <!-- modal -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="myModal-img" src="">
+    <div id="caption"></div>
+  </div>
+
+  <!-- header -->
+  <header class="jumbotron jumbotron-flex p-5">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../../index.html">Início</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Documentação
+
+        </li>
+      </ol>
+    </nav>
+    <h1 class="display-4">Documentação</h1>
+    <hr class="display-4">
+    <p class="lead">
+      <!-- Esta página apresenta detalhes da implementação do iFractions. É indicada para programadores que desejam
+      colaborar com o projeto, tem curiosidade sobre o funcionamento da ferramenta ou desejam incorporá-la ao
+      seu site ou a um Moodle preexistente. -->
+    </p>
+  </header>
+
+  <!-- pagina -->
+  <main class='container-flex'>
+    <div class="row">
+      <!-- menu de navegacao lateral -->
+      <!-- <div class="col-lg-2 text-start p-1 ifr__toc ifr__noBullet"></div> -->
+      <div class="col-lg-2 text-start p-1"></div>
+
+      <div class="col-lg-8 px-5">
+
+        <section id="diretorio">
+          <h2>Sou programador</h2>
+          <ul>
+            <li><a href="./area_programador/page_1.html">Início</a>
+              <ul>
+                <li><a href="./area_programador/page_1.html#sec-diretorio">Estrutura de pastas</a></li>
+                <li><a href="./area_programador/page_1.html#sec-local">Instalação local</a></li>
+                <li><a href="./area_programador/page_1.html#sec-bd">Configuração do
+                    banco de dados</a></li>
+                <!-- Onde os dados são coletados -->
+              </ul>
+            </li>
+
+            <li><a href="./area_programador/page_2.html">Tecnologias utilizadas</a></li>
+            <li><a href="./area_programador/page_3.html">Conhecendo o código</a>
+              <ul>
+                <li><a href="./area_programador/page_3.html#estado">Estados do jogo</a>
+                  <ul>
+                    <li><a href="./area_programador/page_3.html#estado__codigo">No código</a>
+                  </ul>
+                <li><a href="./area_programador/page_3.html#mechanics">O arquivo gameMechanics.js</a>
+                  <ul>
+                    <li><a href="./area_programador/page_3.html#mechanics__estado">Gerenciando estados</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__laco">Game loop</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__midia">Carregando mídia em cache</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__cache">Como a mídia é carregada em cache
+                        estados</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__i18n">Sobre arquivos de idioma</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__usaMidia">Usando arquivos de idioma</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__canvasIndireto">Desenhando na tela
+                        (indiretamente)</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__canvasDireto">Desenhando na tela
+                        (diretamente)</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__matematica">Funções matemáticas</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__mouse">Eventos de mouse</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__animacao">Animação</a>
+                    <li><a href="./area_programador/page_3.html#mechanics__temp">Temporizador</a>
+                  </ul>
+                  <!-- <li><a href="./area_programador/page_3.html#global">O arquivo globals.js</a> -->
+              </ul>
+            </li>
+            <li><span class="badge bg-success">Tutorial</span> <a href="./area_programador/page_tutorial.html">Criando
+                um novo jogo no iFractions</a>
+          </ul>
+
+          <h2>Sou professor</h2>
+          <ul>
+            <li><span class="badge bg-success">Tutorial</span> <a href="./area_professor/page_2.html">Como preparar uma
+                atividade com iFractions no
+                Moodle</a></li>
+            <li><span class="badge bg-success">Tutorial</span> <a href="./area_professor/page_3.html">Como analisar as
+                atividades com iFractions enviadas
+                pelos alunos
+                no Moodle</a></li>
+          </ul>
+
+          <h2>Sou administrador Moodle</h2>
+          <ul>
+            <li><span class="badge bg-success">Tutorial</span> <a href="./area_professor/page_1.html">Como instalar o
+                pacote iTarefa/iFractions no Moodle</a>
+            </li>
+          </ul>
+
+          <hr>
+
+
+      </div>
+
+      <div class="col-lg-2 p-1"></div>
+    </div>
+  </main>
+
+  <!-- rodape -->
+  <footer id='footer' class="container-flex mt-5 py-5 text-center"></footer>
+
+</body>
+
+<script src="../script/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="../script/index.js"></script>
+<script src="../script/navMenu.js"></script>
+<script>
+  updateMenu(1);
+</script>
+
+</html>
