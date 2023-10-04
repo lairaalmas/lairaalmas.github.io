@@ -7,11 +7,11 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 
   <meta name="description" content="Collection of educational games for teaching fractions" />
-  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math" />
+  <meta name="keywords" content="ifractions, ifrações, fraction, game, private data, math, moodle" />
 
   <link rel="icon" type="image/ico" href="../../assets/flag_icon.png">
   <link rel="stylesheet" href="../../style/bootstrap/bootstrap.min.css">
-  <link rel='stylesheet' href='../../style/style.css'>
+  <link rel='stylesheet' href="../../style/style.css">
 
   <title>iFractions | Área do Desenvolvedor</title>
 
@@ -41,15 +41,16 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="../../index.html">Início</a></li>
-        <li class="breadcrumb-item"><a href="../documentação.html">Documentação</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Área do Desenvolvedor</li>
+        <li class="breadcrumb-item"><a href="../documentacao.html">Documentação</a></li>
         <li class="breadcrumb-item active" aria-current="page">Tutorial: criando um jogo novo
         </li>
       </ol>
     </nav>
-    <h1 id='' class='display-4'>Tutorial: criando um jogo novo</h1>
-    <p class="lead">Se você é um desenvolvedor que deseja colaborar com o iFractions criando um novo jogo, essa seção
-      mostrará os passos mínimos para fazê-lo. </p>
+    <h1 id='' class='display-4'>Área do Desenvolvedor</h1>
+    <p class="lead">Esta página apresenta detalhes da implementação do iFractions. É indicada para desenvolvedores que
+      desejam
+      colaborar com o projeto, tem curiosidade sobre o funcionamento da ferramenta ou desejam incorporá-la ao
+      seu site ou a um Moodle preexistente.</p>
     <hr class="display-4">
   </header>
 
@@ -63,8 +64,10 @@
       <div class="col-lg-8 px-5">
 
         <section id="criarJogo">
-          <!-- <h2>Criando um jogo novo</h2> -->
+          <h2>Criando um novo jogo</h2>
 
+          <p>Se você é um desenvolvedor que deseja colaborar com o iFractions criando um novo jogo, essa seção
+            mostrará os passos mínimos para fazê-lo.</p>
           <!-- <p></p> -->
 
           <ul class="list-unstyled">
@@ -281,8 +284,8 @@ const nomeDoJogo = {
           </ul>
         </section>
 
-        <div class="d-flex justify-content-start">
-          <a class="btn btn-primary" href='./page_3.html' role="button">Voltar</a>
+        <div>
+          <a class="btn btn-primary" href='../documentacao.html' role="button">Voltar</a>
         </div>
 
       </div>
@@ -299,6 +302,8 @@ const nomeDoJogo = {
 
 <script src="../../script/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="../../script/index.js"></script>
-<script src="../../script/navMenu.js"></script>
+<script>
+  updateMenu(2);
+</script>
 
 </html>
