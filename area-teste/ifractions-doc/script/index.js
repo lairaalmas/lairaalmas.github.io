@@ -18,7 +18,7 @@ function backToTop() {
 // Insere em todos rodapés
 let footer = document.getElementById("footer");
 footer.innerHTML =
-  "<p>Atualizado pela ultima vez em: 2 de Outubro de 2023 -- por <a href='http://www.ime.usp.br/~laira'>Laira</a>.</p>";
+  "<p>Atualizado pela ultima vez em: 3 de Outubro de 2023 -- por <a href='http://www.ime.usp.br/~laira'>Laira</a>.</p>";
 
 // Cria menu de navegação
 let nav = document.querySelector(".navbar");
